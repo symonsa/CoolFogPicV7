@@ -4,7 +4,11 @@
 #include "serial_buffer.h"
 #include <stdio.h>
 
+#ifdef _PIC18F4550_H_
 #define USE_SER_INTERUPT 1
+#else
+#define USE_SER_INTERUPT 0
+#endif
 #define bigdelay //__delay_ms(2000);
 void ser_int(void);
 void tx(char);
@@ -58,7 +62,11 @@ void ser_int(void) {
     TX9 = 0;
 
     RCSTA = 0b10010000; //Serial Port enabled,8-bit reception
+#ifdef _PIC18F4550_H_
     SPBRG = 207; //9600 baudrate for 4Mhz is 25, 8Mhz 51, 207 for 2400 baud
+#else
+     SPBRG = 103; //2400 baud 16f877a
+#endif
 
     CREN = 1;
     TXIE = USE_SER_INTERUPT;
@@ -242,7 +250,7 @@ receiveMessage (void)
   }
   // received a valid character - so add
   message[len] = c;
-  printf("%c",c);
+  //printf("%c",c);
   len++;
   if (len >= MAX_MESSAGE) {
     // not valid
@@ -251,7 +259,7 @@ receiveMessage (void)
   }
   if (frameEnd == c) {
     message[len] = 0;
-    printf("Message%s %d\r\n",message,len);
+    //printf("Message%s %d\r\n",message,len);
     len = 0;
 
     return message;

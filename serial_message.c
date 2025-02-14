@@ -44,8 +44,8 @@ void setBaseMessage(char messageType, char msgAddress) {
 
 	outputMessage[ADDRESS_POS] = msgAddress;
 	outputMessage[MSG_TYPE_POS] = messageType;
-	outputMessage[ZONE1POS] =     chartox(zones >>4);
-    outputMessage[ZONE2POS] =     chartox((zones &15));
+	outputMessage[ZONE1POS] =     chartox(combinedZones >>4);
+    outputMessage[ZONE2POS] =     chartox((combinedZones &15));
 
     // now set the status
 
@@ -63,7 +63,8 @@ void setBaseMessage(char messageType, char msgAddress) {
 }
 
 void process_set_zones_message(char * inmessage) {
-    zones = (xtochar(inmessage[ZONE1POS]) << 4) + xtochar(inmessage[ZONE2POS]);
+    commsZones = (xtochar(inmessage[ZONE1POS]) << 4) + xtochar(inmessage[ZONE2POS]);
+    combineZones();
     setBaseMessage('s', inmessage[ADDRESS_POS]);
 
 
@@ -74,6 +75,7 @@ void process_set_zones_message(char * inmessage) {
 
 void process_get_status_message(char * inmessage) {
     //    printf("In process get status\r\n");
+    combineZones();
     setBaseMessage('g', inmessage[ADDRESS_POS]);
 
     //    for (int i = 0; i < MAX_MESSAGE; i ++){

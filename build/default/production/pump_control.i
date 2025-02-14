@@ -5715,7 +5715,7 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/limits.h" 1 3
 # 10 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\limits.h" 2 3
 # 7 "./pump_control.h" 2
-# 107 "./pump_control.h"
+# 110 "./pump_control.h"
 extern char state;
 extern char inIdleDumpHour;
 
@@ -5792,10 +5792,14 @@ typedef union {
 
 extern fault_flags_t fault_flags;
 
-extern unsigned int zones;
+extern unsigned char combinedZones;
+extern unsigned char commsZones;
 
+
+
+void combineZones(void);
 void shutdown(void);
-# 212 "./pump_control.h"
+# 219 "./pump_control.h"
 char *receiveMessage(void);
 void putch(char c);
 int puts(const char * str);
@@ -6085,8 +6089,12 @@ char *tempnam(const char *, const char *);
 
 
 char state = standbyState;
-unsigned int zones = 0;
+unsigned char commsZones = 0, combinedZones = 0;
 
+void combineZones(void){
+    combinedZones = commsZones | PORTB;
+    PORTD = combinedZones;
+}
 char *PumpStateMappings[] = {
     "standbyState\n\r",
     "shutdownState\n\r",
@@ -6154,7 +6162,7 @@ init(void) {
 
 
     RBPU = 0;
-# 167 "pump_control.c"
+# 171 "pump_control.c"
 IRCF2 = 1;
 IRCF1 = 1;
 IRCF0 = 1;
@@ -6166,8 +6174,8 @@ IRCF0 = 1;
     TRISB = 0;
 
 
-    { PORTAbits.RA3 = (0);}; { PORTAbits.RA0 = (0); fault_flags.wpOkBit = (0);}; { PORTAbits.RA1 = (0); fault_flags.mainPumpBit = (0);}; { PORTBbits.RB5 = (0); fault_flags.boostPumpBit = (0);}; { PORTAbits.RA2 = (0); fault_flags.dumpSolenoidBit = (0);}; { PORTBbits.RB0 = (0);}; TRISD = 0; PORTD = 0x00; TRISAbits.RA0 = 0; TRISAbits.RA1 = 0; TRISAbits.RA2 = 0; TRISAbits.RA3 = 0; TRISBbits.RB5 = 0; TRISBbits.RB0 = 0;;
-    TRISBbits.RB2 = 1; TRISBbits.RB3 = 1; TRISAbits.RA4 = 1; TRISAbits.RA5 = 1; TRISBbits.RB4 = 1;;
+    { PORTAbits.RA3 = (0);}; { PORTAbits.RA0 = (0); fault_flags.wpOkBit = (0);}; { PORTAbits.RA1 = (0); fault_flags.mainPumpBit = (0);}; { PORTEbits.RE0 = (0); fault_flags.boostPumpBit = (0);}; { PORTAbits.RA2 = (0); fault_flags.dumpSolenoidBit = (0);}; { PORTEbits.RE1 = (0);}; TRISD = 0; PORTD = 0x00; TRISAbits.RA0 = 0; TRISAbits.RA1 = 0; TRISAbits.RA2 = 0; TRISAbits.RA3 = 0; TRISEbits.RE0 = 0; TRISEbits.RE1 = 0;;
+    TRISCbits.RC0 = 1; TRISCbits.RC1 = 1; TRISAbits.RA4 = 1; TRISAbits.RA5 = 1; TRISCbits.RC2 = 1; TRISB = 1;
 
 
     fault_flags.boostPumpBit = 0;
@@ -6186,7 +6194,9 @@ IRCF0 = 1;
 
     GIE = 1;
     state = standbyState;
-    zones = 0;
+    commsZones = 0;
+    combinedZones = 0;
+    combineZones();
     inIdleDumpHour = 0;
 
 
@@ -6201,10 +6211,10 @@ resetPump(void) {
     init();
     init_event_timer();
 }
-# 221 "pump_control.c"
+# 227 "pump_control.c"
 void checkIfShoudReset(void) {
 
-    if (!( (!PORTBbits.RB3) || (zones != 0) )
+    if (!( (!PORTCbits.RC1) || (combinedZones != 0) )
             && (fault_flags.lwl_fault
             || fault_flags.lwp_fault
             || fault_flags.lfp_fault
@@ -6214,7 +6224,7 @@ void checkIfShoudReset(void) {
         resetPump();
     }
 }
-# 252 "pump_control.c"
+# 258 "pump_control.c"
 void toggleLeds(void) {
     PORTD++;
 }
@@ -6228,10 +6238,11 @@ main(void) {
     init_event_timer();
     ser_int();
     printf("waitingxxxx \n\r");
-# 281 "pump_control.c"
+# 287 "pump_control.c"
     unsigned int msg_counter = 0;
     while (1) {
-        toggleLeds();
+        combineZones();
+
 
         process_event_timer();
 
@@ -6255,7 +6266,7 @@ main(void) {
 
         checkIfShoudReset();
         monitor_water_pressure();
-        if (!( !PORTBbits.RB4)) {
+        if (!( !PORTCbits.RC2)) {
             clear_callback(EventPODebounce);
         }
         switch (state) {

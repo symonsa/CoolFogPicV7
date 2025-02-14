@@ -5634,7 +5634,7 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/limits.h" 1 3
 # 10 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\limits.h" 2 3
 # 7 "./pump_control.h" 2
-# 107 "./pump_control.h"
+# 110 "./pump_control.h"
 extern char state;
 extern char inIdleDumpHour;
 
@@ -5711,10 +5711,14 @@ typedef union {
 
 extern fault_flags_t fault_flags;
 
-extern unsigned int zones;
+extern unsigned char combinedZones;
+extern unsigned char commsZones;
 
+
+
+void combineZones(void);
 void shutdown(void);
-# 212 "./pump_control.h"
+# 219 "./pump_control.h"
 char *receiveMessage(void);
 void putch(char c);
 int puts(const char * str);
@@ -5756,7 +5760,7 @@ monitor_water_pressure(void){
 
 
 
-  if (( PORTBbits.RB2) == fault_flags.wpOkBit){
+  if (( PORTCbits.RC0) == fault_flags.wpOkBit){
 
 
 

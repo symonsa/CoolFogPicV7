@@ -1,23 +1,29 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"183 ./pump_control.h
-[; ;./pump_control.h: 183: extern unsigned int zones;
-[v _zones `ui ~T0 @X0 0 e ]
-"164
-[; ;./pump_control.h: 164:     struct {
+"186 ./pump_control.h
+[; ;./pump_control.h: 186: extern unsigned char combinedZones;
+[v _combinedZones `uc ~T0 @X0 0 e ]
+"167
+[; ;./pump_control.h: 167:     struct {
 [s S369 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S369 . lwl_fault lwp_fault lfp_fault po_fault wpOkBit mainPumpBit boostPumpBit pumpOverloadBit dumpSolenoidBit ]
-"162
-[; ;./pump_control.h: 162: typedef union {
+"165
+[; ;./pump_control.h: 165: typedef union {
 [u S368 `S369 1 `ui 1 ]
 [n S368 . . value ]
-"181
-[; ;./pump_control.h: 181: extern fault_flags_t fault_flags;
+"184
+[; ;./pump_control.h: 184: extern fault_flags_t fault_flags;
 [v _fault_flags `S368 ~T0 @X0 0 e ]
-"219
-[; ;./pump_control.h: 219: void output_message(char *message);
-[v _output_message `(v ~T0 @X0 0 ef1`*uc ]
+"187
+[; ;./pump_control.h: 187: extern unsigned char commsZones;
+[v _commsZones `uc ~T0 @X0 0 e ]
+"191
+[; ;./pump_control.h: 191: void combineZones(void);
+[v _combineZones `(v ~T0 @X0 0 ef ]
 "226
-[; ;./pump_control.h: 226: void resetPump(void);
+[; ;./pump_control.h: 226: void output_message(char *message);
+[v _output_message `(v ~T0 @X0 0 ef1`*uc ]
+"233
+[; ;./pump_control.h: 233: void resetPump(void);
 [v _resetPump `(v ~T0 @X0 0 ef ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 54: __asm("SPPDATA equ 0F62h");
@@ -646,11 +652,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;serial_message.c: 46:  outputMessage[2] = messageType;
 [e = *U + &U _outputMessage * -> -> -> 2 `i `ui `ux -> -> # *U &U _outputMessage `ui `ux _messageType ]
 "47
-[; ;serial_message.c: 47:  outputMessage[3] = chartox(zones >>4);
-[e = *U + &U _outputMessage * -> -> -> 3 `i `ui `ux -> -> # *U &U _outputMessage `ui `ux ( _chartox (1 -> >> _zones -> 4 `i `uc ]
+[; ;serial_message.c: 47:  outputMessage[3] = chartox(combinedZones >>4);
+[e = *U + &U _outputMessage * -> -> -> 3 `i `ui `ux -> -> # *U &U _outputMessage `ui `ux ( _chartox (1 -> >> -> _combinedZones `i -> 4 `i `uc ]
 "48
-[; ;serial_message.c: 48:     outputMessage[4] = chartox((zones &15));
-[e = *U + &U _outputMessage * -> -> -> 4 `i `ui `ux -> -> # *U &U _outputMessage `ui `ux ( _chartox (1 -> & _zones -> -> 15 `i `ui `uc ]
+[; ;serial_message.c: 48:     outputMessage[4] = chartox((combinedZones &15));
+[e = *U + &U _outputMessage * -> -> -> 4 `i `ui `ux -> -> # *U &U _outputMessage `ui `ux ( _chartox (1 -> & -> _combinedZones `i -> 15 `i `uc ]
 "52
 [; ;serial_message.c: 52:     char v = (fault_flags.value >> 8) &0xf;
 [v _v `uc ~T0 @X0 1 a ]
@@ -688,151 +694,157 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _inmessage `*uc ~T0 @X0 1 r1 ]
 [f ]
 "66
-[; ;serial_message.c: 66:     zones = (xtochar(inmessage[3]) << 4) + xtochar(inmessage[4]);
-[e = _zones -> + << -> ( _xtochar (1 *U + _inmessage * -> -> 3 `i `x -> -> # *U _inmessage `i `x `i -> 4 `i -> ( _xtochar (1 *U + _inmessage * -> -> 4 `i `x -> -> # *U _inmessage `i `x `i `ui ]
+[; ;serial_message.c: 66:     commsZones = (xtochar(inmessage[3]) << 4) + xtochar(inmessage[4]);
+[e = _commsZones -> + << -> ( _xtochar (1 *U + _inmessage * -> -> 3 `i `x -> -> # *U _inmessage `i `x `i -> 4 `i -> ( _xtochar (1 *U + _inmessage * -> -> 4 `i `x -> -> # *U _inmessage `i `x `i `uc ]
 "67
-[; ;serial_message.c: 67:     setBaseMessage('s', inmessage[1]);
+[; ;serial_message.c: 67:     combineZones();
+[e ( _combineZones ..  ]
+"68
+[; ;serial_message.c: 68:     setBaseMessage('s', inmessage[1]);
 [e ( _setBaseMessage (2 , -> -> 115 `ui `uc *U + _inmessage * -> -> 1 `i `x -> -> # *U _inmessage `i `x ]
-"70
-[; ;serial_message.c: 70:     output_message(outputMessage);
+"71
+[; ;serial_message.c: 71:     output_message(outputMessage);
 [e ( _output_message (1 &U _outputMessage ]
-"73
-[; ;serial_message.c: 73: }
+"74
+[; ;serial_message.c: 74: }
 [e :UE 380 ]
 }
-"75
-[; ;serial_message.c: 75: void process_get_status_message(char * inmessage) {
+"76
+[; ;serial_message.c: 76: void process_get_status_message(char * inmessage) {
 [v _process_get_status_message `(v ~T0 @X0 1 ef1`*uc ]
 {
 [e :U _process_get_status_message ]
 [v _inmessage `*uc ~T0 @X0 1 r1 ]
 [f ]
-"77
-[; ;serial_message.c: 77:     setBaseMessage('g', inmessage[1]);
+"78
+[; ;serial_message.c: 78:     combineZones();
+[e ( _combineZones ..  ]
+"79
+[; ;serial_message.c: 79:     setBaseMessage('g', inmessage[1]);
 [e ( _setBaseMessage (2 , -> -> 103 `ui `uc *U + _inmessage * -> -> 1 `i `x -> -> # *U _inmessage `i `x ]
-"82
-[; ;serial_message.c: 82:     output_message(outputMessage);
-[e ( _output_message (1 &U _outputMessage ]
 "84
-[; ;serial_message.c: 84: }
+[; ;serial_message.c: 84:     output_message(outputMessage);
+[e ( _output_message (1 &U _outputMessage ]
+"86
+[; ;serial_message.c: 86: }
 [e :UE 381 ]
 }
-"86
-[; ;serial_message.c: 86: void process_set_address_message(char * inmessage) {
+"88
+[; ;serial_message.c: 88: void process_set_address_message(char * inmessage) {
 [v _process_set_address_message `(v ~T0 @X0 1 ef1`*uc ]
 {
 [e :U _process_set_address_message ]
 [v _inmessage `*uc ~T0 @X0 1 r1 ]
 [f ]
-"87
-[; ;serial_message.c: 87:     unsigned char new_address = inmessage[3];
+"89
+[; ;serial_message.c: 89:     unsigned char new_address = inmessage[3];
 [v _new_address `uc ~T0 @X0 1 a ]
 [e = _new_address -> *U + _inmessage * -> -> 3 `i `x -> -> # *U _inmessage `i `x `uc ]
-"90
-[; ;serial_message.c: 90:     setBaseMessage('a', inmessage[1]);
+"92
+[; ;serial_message.c: 92:     setBaseMessage('a', inmessage[1]);
 [e ( _setBaseMessage (2 , -> -> 97 `ui `uc *U + _inmessage * -> -> 1 `i `x -> -> # *U _inmessage `i `x ]
-"91
-[; ;serial_message.c: 91:     output_message(outputMessage);
-[e ( _output_message (1 &U _outputMessage ]
 "93
-[; ;serial_message.c: 93: }
+[; ;serial_message.c: 93:     output_message(outputMessage);
+[e ( _output_message (1 &U _outputMessage ]
+"95
+[; ;serial_message.c: 95: }
 [e :UE 382 ]
 }
-"95
-[; ;serial_message.c: 95: void process_reset_pump(char * inmessage) {
+"97
+[; ;serial_message.c: 97: void process_reset_pump(char * inmessage) {
 [v _process_reset_pump `(v ~T0 @X0 1 ef1`*uc ]
 {
 [e :U _process_reset_pump ]
 [v _inmessage `*uc ~T0 @X0 1 r1 ]
 [f ]
-"96
-[; ;serial_message.c: 96:     resetPump();
-[e ( _resetPump ..  ]
-"97
-[; ;serial_message.c: 97:     setBaseMessage('m', inmessage[1]);
-[e ( _setBaseMessage (2 , -> -> 109 `ui `uc *U + _inmessage * -> -> 1 `i `x -> -> # *U _inmessage `i `x ]
 "98
-[; ;serial_message.c: 98:     output_message(outputMessage);
-[e ( _output_message (1 &U _outputMessage ]
+[; ;serial_message.c: 98:     resetPump();
+[e ( _resetPump ..  ]
 "99
-[; ;serial_message.c: 99: }
+[; ;serial_message.c: 99:     setBaseMessage('m', inmessage[1]);
+[e ( _setBaseMessage (2 , -> -> 109 `ui `uc *U + _inmessage * -> -> 1 `i `x -> -> # *U _inmessage `i `x ]
+"100
+[; ;serial_message.c: 100:     output_message(outputMessage);
+[e ( _output_message (1 &U _outputMessage ]
+"101
+[; ;serial_message.c: 101: }
 [e :UE 383 ]
 }
-"102
-[; ;serial_message.c: 102: process_message(char *inmessage) {
+"104
+[; ;serial_message.c: 104: process_message(char *inmessage) {
 [v _process_message `(v ~T0 @X0 1 ef1`*uc ]
 {
 [e :U _process_message ]
 [v _inmessage `*uc ~T0 @X0 1 r1 ]
 [f ]
-"104
-[; ;serial_message.c: 104:     char msgType;
+"106
+[; ;serial_message.c: 106:     char msgType;
 [v _msgType `uc ~T0 @X0 1 a ]
-"105
-[; ;serial_message.c: 105:     unsigned char address = 0;
+"107
+[; ;serial_message.c: 107:     unsigned char address = 0;
 [v _address `uc ~T0 @X0 1 a ]
 [e = _address -> -> 0 `i `uc ]
-"110
-[; ;serial_message.c: 110:     if (inmessage[1] == '0' || inmessage[1] == address) {
+"112
+[; ;serial_message.c: 112:     if (inmessage[1] == '0' || inmessage[1] == address) {
 [e $ ! || == -> *U + _inmessage * -> -> 1 `i `x -> -> # *U _inmessage `i `x `ui -> 48 `ui == -> *U + _inmessage * -> -> 1 `i `x -> -> # *U _inmessage `i `x `i -> _address `i 385  ]
 {
-"112
-[; ;serial_message.c: 112:         msgType = inmessage[2];
-[e = _msgType *U + _inmessage * -> -> 2 `i `x -> -> # *U _inmessage `i `x ]
 "114
-[; ;serial_message.c: 114:         switch(msgType){
+[; ;serial_message.c: 114:         msgType = inmessage[2];
+[e = _msgType *U + _inmessage * -> -> 2 `i `x -> -> # *U _inmessage `i `x ]
+"116
+[; ;serial_message.c: 116:         switch(msgType){
 [e $U 387  ]
 {
-"115
-[; ;serial_message.c: 115:             case 'S':
-[e :U 388 ]
-"116
-[; ;serial_message.c: 116:             case 's':
-[e :U 389 ]
 "117
-[; ;serial_message.c: 117:                 process_set_zones_message(inmessage);
-[e ( _process_set_zones_message (1 _inmessage ]
+[; ;serial_message.c: 117:             case 'S':
+[e :U 388 ]
 "118
-[; ;serial_message.c: 118:                 break;
-[e $U 386  ]
+[; ;serial_message.c: 118:             case 's':
+[e :U 389 ]
+"119
+[; ;serial_message.c: 119:                 process_set_zones_message(inmessage);
+[e ( _process_set_zones_message (1 _inmessage ]
 "120
-[; ;serial_message.c: 120:             case 'G':
-[e :U 390 ]
-"121
-[; ;serial_message.c: 121:             case 'g':
-[e :U 391 ]
+[; ;serial_message.c: 120:                 break;
+[e $U 386  ]
 "122
-[; ;serial_message.c: 122:                 process_get_status_message(inmessage);
-[e ( _process_get_status_message (1 _inmessage ]
+[; ;serial_message.c: 122:             case 'G':
+[e :U 390 ]
 "123
-[; ;serial_message.c: 123:                 break;
-[e $U 386  ]
+[; ;serial_message.c: 123:             case 'g':
+[e :U 391 ]
+"124
+[; ;serial_message.c: 124:                 process_get_status_message(inmessage);
+[e ( _process_get_status_message (1 _inmessage ]
 "125
-[; ;serial_message.c: 125:             case 'A':
-[e :U 392 ]
-"126
-[; ;serial_message.c: 126:             case 'a':
-[e :U 393 ]
+[; ;serial_message.c: 125:                 break;
+[e $U 386  ]
 "127
-[; ;serial_message.c: 127:                 process_set_address_message(inmessage);
-[e ( _process_set_address_message (1 _inmessage ]
+[; ;serial_message.c: 127:             case 'A':
+[e :U 392 ]
 "128
-[; ;serial_message.c: 128:                 break;
+[; ;serial_message.c: 128:             case 'a':
+[e :U 393 ]
+"129
+[; ;serial_message.c: 129:                 process_set_address_message(inmessage);
+[e ( _process_set_address_message (1 _inmessage ]
+"130
+[; ;serial_message.c: 130:                 break;
 [e $U 386  ]
-"137
-[; ;serial_message.c: 137:             case 'M':
-[e :U 394 ]
-"138
-[; ;serial_message.c: 138:             case 'm':
-[e :U 395 ]
 "139
-[; ;serial_message.c: 139:                 process_reset_pump(inmessage);
-[e ( _process_reset_pump (1 _inmessage ]
+[; ;serial_message.c: 139:             case 'M':
+[e :U 394 ]
 "140
-[; ;serial_message.c: 140:                 break;
+[; ;serial_message.c: 140:             case 'm':
+[e :U 395 ]
+"141
+[; ;serial_message.c: 141:                 process_reset_pump(inmessage);
+[e ( _process_reset_pump (1 _inmessage ]
+"142
+[; ;serial_message.c: 142:                 break;
 [e $U 386  ]
-"143
-[; ;serial_message.c: 143:         }
+"145
+[; ;serial_message.c: 145:         }
 }
 [e $U 386  ]
 [e :U 387 ]
@@ -846,11 +858,11 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> -> 109 `ui `i 395
  386 ]
 [e :U 386 ]
-"146
-[; ;serial_message.c: 146:     }
+"148
+[; ;serial_message.c: 148:     }
 }
 [e :U 385 ]
-"147
-[; ;serial_message.c: 147: }
+"149
+[; ;serial_message.c: 149: }
 [e :UE 384 ]
 }

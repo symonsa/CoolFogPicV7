@@ -1,33 +1,41 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"2459 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2459:     struct {
-[s S107 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S107 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
-"2469
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2469:     struct {
-[s S108 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S108 . INT0 INT1 INT2 . PGM PGC PGD ]
-"2478
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2478:     struct {
-[s S109 :3 `uc 1 :1 `uc 1 ]
-[n S109 . . CCP2_PA2 ]
-"2458
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2458: typedef union {
-[u S106 `S107 1 `S108 1 `S109 1 ]
-[n S106 . . . . ]
-"2483
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2483: extern volatile PORTBbits_t PORTBbits __attribute__((address(0xF81)));
-[v _PORTBbits `VS106 ~T0 @X0 0 e@3969 ]
-"164 ./pump_control.h
-[; ;./pump_control.h: 164:     struct {
+"2832 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2832:     struct {
+[s S121 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
+[n S121 . RE0 RE1 RE2 RE3 . RDPU ]
+"2840
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2840:     struct {
+[s S122 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S122 . CK1SPP CK2SPP OESPP ]
+"2845
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2845:     struct {
+[s S123 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
+[n S123 . PD2 PC2 CCP10 CCP9E . CCP2E ]
+"2853
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2853:     struct {
+[s S124 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
+[n S124 . RDE WRE CS PC3E . PA2E ]
+"2861
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2861:     struct {
+[s S125 :2 `uc 1 :1 `uc 1 :4 `uc 1 :1 `uc 1 ]
+[n S125 . . PB2 . RE7 ]
+"2831
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2831: typedef union {
+[u S120 `S121 1 `S122 1 `S123 1 `S124 1 `S125 1 ]
+[n S120 . . . . . . ]
+"2868
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2868: extern volatile PORTEbits_t PORTEbits __attribute__((address(0xF84)));
+[v _PORTEbits `VS120 ~T0 @X0 0 e@3972 ]
+"167 ./pump_control.h
+[; ;./pump_control.h: 167:     struct {
 [s S369 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S369 . lwl_fault lwp_fault lfp_fault po_fault wpOkBit mainPumpBit boostPumpBit pumpOverloadBit dumpSolenoidBit ]
-"162
-[; ;./pump_control.h: 162: typedef union {
+"165
+[; ;./pump_control.h: 165: typedef union {
 [u S368 `S369 1 `ui 1 ]
 [n S368 . . value ]
-"181
-[; ;./pump_control.h: 181: extern fault_flags_t fault_flags;
+"184
+[; ;./pump_control.h: 184: extern fault_flags_t fault_flags;
 [v _fault_flags `S368 ~T0 @X0 0 e ]
 "2320 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2320:     struct {
@@ -56,33 +64,33 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2353
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2353: extern volatile PORTAbits_t PORTAbits __attribute__((address(0xF80)));
 [v _PORTAbits `VS100 ~T0 @X0 0 e@3968 ]
-"239 ./pump_control.h
-[; ;./pump_control.h: 239: void monitor_pump_run(void);
+"246 ./pump_control.h
+[; ;./pump_control.h: 246: void monitor_pump_run(void);
 [v _monitor_pump_run `(v ~T0 @X0 0 ef ]
-"160
-[; ;./pump_control.h: 160: void clear_callback(char callback);
+"163
+[; ;./pump_control.h: 163: void clear_callback(char callback);
 [v _clear_callback `(v ~T0 @X0 0 ef1`uc ]
 "17 start_main.c
 [; ;start_main.c: 17:         clear_callback(EventLowFogPressure);
 [c E3171 0 1 2 3 4 5 6 7 8 9 .. ]
 [n E3171 timer_event_pos EventLowWaterLevel EventLowWaterPressure EventLowWaterPressureDebounce EventLowFogPressure EventFaultStateLED EventIdleTimeout EventDumpSolenoid EventRunSignalDebounce EventPODebounce EventTotalNumber  ]
-"107 ./pump_control.h
-[; ;./pump_control.h: 107: extern char state;
+"110 ./pump_control.h
+[; ;./pump_control.h: 110: extern char state;
 [v _state `uc ~T0 @X0 0 e ]
 "18 start_main.c
 [; ;start_main.c: 18:         state = pumprunState;
 [c E3162 0 1 2 3 4 5 6 .. ]
 [n E3162 pump_state_e standbyState shutdownState startpumpInitialState startpumpWaitState startpumpSecondLWPCheckState startmainState pumprunState  ]
 [v F3190 `(v ~T0 @X0 0 tf ]
-"133 ./pump_control.h
-[; ;./pump_control.h: 133: typedef struct timer_event {
+"136 ./pump_control.h
+[; ;./pump_control.h: 136: typedef struct timer_event {
 [s S367 `i 1 :1 `uc 1 :1 `uc 1 `uc 1 `ui 1 `*F3190 1 ]
 [n S367 timer_event time_left active flag_bit next_state flag_data callback ]
-"150
-[; ;./pump_control.h: 150: extern volatile timer_event timer_events[EventTotalNumber];
+"153
+[; ;./pump_control.h: 153: extern volatile timer_event timer_events[EventTotalNumber];
 [v _timer_events `VS367 ~T0 @X0 -> 0 `x e ]
-"159
-[; ;./pump_control.h: 159: void enable_callback(char callback, int time_delay);
+"162
+[; ;./pump_control.h: 162: void enable_callback(char callback, int time_delay);
 [v _enable_callback `(v ~T0 @X0 0 ef2`uc`i ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 54: __asm("SPPDATA equ 0F62h");
@@ -601,9 +609,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _start_main ]
 [f ]
 "12
-[; ;start_main.c: 12:     { PORTBbits.RB5 = (1); fault_flags.boostPumpBit = (1);};
+[; ;start_main.c: 12:     { PORTEbits.RE0 = (1); fault_flags.boostPumpBit = (1);};
 {
-[e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
+[e = . . _PORTEbits 0 0 -> -> 1 `i `uc ]
 [e = . . _fault_flags 0 6 -> -> 1 `i `uc ]
 }
 "13

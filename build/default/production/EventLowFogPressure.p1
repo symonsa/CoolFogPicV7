@@ -1,39 +1,39 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [v F3190 `(v ~T0 @X0 0 tf ]
-"133 ./pump_control.h
-[; ;./pump_control.h: 133: typedef struct timer_event {
+"136 ./pump_control.h
+[; ;./pump_control.h: 136: typedef struct timer_event {
 [s S367 `i 1 :1 `uc 1 :1 `uc 1 `uc 1 `ui 1 `*F3190 1 ]
 [n S367 timer_event time_left active flag_bit next_state flag_data callback ]
-"150
-[; ;./pump_control.h: 150: extern volatile timer_event timer_events[EventTotalNumber];
+"153
+[; ;./pump_control.h: 153: extern volatile timer_event timer_events[EventTotalNumber];
 [v _timer_events `VS367 ~T0 @X0 -> 0 `x e ]
 "15 EventLowFogPressure.c
 [; ;EventLowFogPressure.c: 15:     if (timer_events[EventLowFogPressure].flag_data) {
 [c E3171 0 1 2 3 4 5 6 7 8 9 .. ]
 [n E3171 timer_event_pos EventLowWaterLevel EventLowWaterPressure EventLowWaterPressureDebounce EventLowFogPressure EventFaultStateLED EventIdleTimeout EventDumpSolenoid EventRunSignalDebounce EventPODebounce EventTotalNumber  ]
-"159 ./pump_control.h
-[; ;./pump_control.h: 159: void enable_callback(char callback, int time_delay);
+"162 ./pump_control.h
+[; ;./pump_control.h: 162: void enable_callback(char callback, int time_delay);
 [v _enable_callback `(v ~T0 @X0 0 ef2`uc`i ]
-"164
-[; ;./pump_control.h: 164:     struct {
+"167
+[; ;./pump_control.h: 167:     struct {
 [s S369 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S369 . lwl_fault lwp_fault lfp_fault po_fault wpOkBit mainPumpBit boostPumpBit pumpOverloadBit dumpSolenoidBit ]
-"162
-[; ;./pump_control.h: 162: typedef union {
+"165
+[; ;./pump_control.h: 165: typedef union {
 [u S368 `S369 1 `ui 1 ]
 [n S368 . . value ]
-"181
-[; ;./pump_control.h: 181: extern fault_flags_t fault_flags;
+"184
+[; ;./pump_control.h: 184: extern fault_flags_t fault_flags;
 [v _fault_flags `S368 ~T0 @X0 0 e ]
-"107
-[; ;./pump_control.h: 107: extern char state;
+"110
+[; ;./pump_control.h: 110: extern char state;
 [v _state `uc ~T0 @X0 0 e ]
 "22 EventLowFogPressure.c
 [; ;EventLowFogPressure.c: 22:         state = shutdownState;
 [c E3162 0 1 2 3 4 5 6 .. ]
 [n E3162 pump_state_e standbyState shutdownState startpumpInitialState startpumpWaitState startpumpSecondLWPCheckState startmainState pumprunState  ]
-"242 ./pump_control.h
-[; ;./pump_control.h: 242: void clear_callback_for_shutdown(void);
+"249 ./pump_control.h
+[; ;./pump_control.h: 249: void clear_callback_for_shutdown(void);
 [v _clear_callback_for_shutdown `(v ~T0 @X0 0 ef ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 54: __asm("SPPDATA equ 0F62h");

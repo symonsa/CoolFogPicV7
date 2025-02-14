@@ -5634,7 +5634,7 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/limits.h" 1 3
 # 10 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\limits.h" 2 3
 # 7 "./pump_control.h" 2
-# 107 "./pump_control.h"
+# 110 "./pump_control.h"
 extern char state;
 extern char inIdleDumpHour;
 
@@ -5711,10 +5711,14 @@ typedef union {
 
 extern fault_flags_t fault_flags;
 
-extern unsigned int zones;
+extern unsigned char combinedZones;
+extern unsigned char commsZones;
 
+
+
+void combineZones(void);
 void shutdown(void);
-# 212 "./pump_control.h"
+# 219 "./pump_control.h"
 char *receiveMessage(void);
 void putch(char c);
 int puts(const char * str);
@@ -5769,7 +5773,7 @@ standby (void)
 
   { PORTAbits.RA1 = (0); fault_flags.mainPumpBit = (0);};
 
-  { PORTBbits.RB5 = (0); fault_flags.boostPumpBit = (0);};
+  { PORTEbits.RE0 = (0); fault_flags.boostPumpBit = (0);};
   if (!inIdleDumpHour){
      { PORTAbits.RA2 = (0); fault_flags.dumpSolenoidBit = (0);};
   }
@@ -5778,7 +5782,7 @@ standby (void)
 
 
 
-  if (( (!PORTBbits.RB3) || (zones != 0) )
+  if (( (!PORTCbits.RC1) || (combinedZones != 0) )
       && !fault_flags.lwl_fault
       && !fault_flags.lwp_fault
       && !fault_flags.lfp_fault

@@ -5634,7 +5634,7 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/limits.h" 1 3
 # 10 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\limits.h" 2 3
 # 7 "./pump_control.h" 2
-# 107 "./pump_control.h"
+# 110 "./pump_control.h"
 extern char state;
 extern char inIdleDumpHour;
 
@@ -5711,10 +5711,14 @@ typedef union {
 
 extern fault_flags_t fault_flags;
 
-extern unsigned int zones;
+extern unsigned char combinedZones;
+extern unsigned char commsZones;
 
+
+
+void combineZones(void);
 void shutdown(void);
-# 212 "./pump_control.h"
+# 219 "./pump_control.h"
 char *receiveMessage(void);
 void putch(char c);
 int puts(const char * str);
@@ -5765,10 +5769,10 @@ start_pump ()
 
 
   if (state != startpumpWaitState) {
-    { PORTBbits.RB5 = (1); fault_flags.boostPumpBit = (1);};
+    { PORTEbits.RE0 = (1); fault_flags.boostPumpBit = (1);};
   }
 
-  if (!( (!PORTBbits.RB3) || (zones != 0) )) {
+  if (!( (!PORTCbits.RC1) || (combinedZones != 0) )) {
 
 
     state = shutdownState;
@@ -5792,7 +5796,7 @@ start_pump ()
 
 
 
- { PORTBbits.RB5 = (0); fault_flags.boostPumpBit = (0);};
+ { PORTEbits.RE0 = (0); fault_flags.boostPumpBit = (0);};
 
  timer_events[EventLowWaterPressure].flag_bit = 0;
  timer_events[EventLowWaterPressure].next_state = startpumpSecondLWPCheckState;
@@ -5804,7 +5808,7 @@ start_pump ()
 
 
 
- { PORTBbits.RB5 = (1); fault_flags.boostPumpBit = (1);};
+ { PORTEbits.RE0 = (1); fault_flags.boostPumpBit = (1);};
 
  timer_events[EventLowWaterPressure].flag_bit = 1;
  timer_events[EventLowWaterPressure].next_state = shutdownState;

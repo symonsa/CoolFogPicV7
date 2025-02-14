@@ -6,6 +6,7 @@
 // 'C' source line config statements
 
 // CONFIG1L
+#ifdef _PIC18F4550_H_
 #pragma config PLLDIV = 1       // PLL Prescaler Selection bits (No prescale (4 MHz oscillator input drives PLL directly))
 #pragma config CPUDIV = OSC1_PLL2// System Clock Postscaler Selection bits ([Primary Oscillator Src: /1][96 MHz PLL Src: /2])
 #pragma config USBDIV = 1       // USB Clock Selection bit (used in Full-Speed USB mode only; UCFG:FSEN = 1) (USB clock source comes directly from the primary oscillator block with no postscale)
@@ -72,6 +73,24 @@
 
 // #pragma config statements should precede project file includes.
 // Use project enums instead of #define for ON and OFF.
+#else
+// PIC16F877A Configuration Bit Settings
+
+// 'C' source line config statements
+
+// CONFIG
+#pragma config FOSC = HS        // Oscillator Selection bits (XT oscillator)
+#pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled)
+#pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
+#pragma config BOREN = ON       // Brown-out Reset Enable bit (BOR enabled)
+#pragma config LVP = ON         // Low-Voltage (Single-Supply) In-Circuit Serial Programming Enable bit (RB3/PGM pin has PGM function; low-voltage programming enabled)
+#pragma config CPD = OFF        // Data EEPROM Memory Code Protection bit (Data EEPROM code protection off)
+#pragma config WRT = OFF        // Flash Program Memory Write Enable bits (Write protection off; all program memory may be written to by EECON control)
+#pragma config CP = OFF         // Flash Program Memory Code Protection bit (Code protection off)
+
+// #pragma config statements should precede project file includes.
+// Use project enums instead of #define for ON and OFF.
+#endif
 
 #include <xc.h>
 
@@ -82,9 +101,20 @@
 #include "serial_buffer.h"
 #include <stdio.h>
 
-char state = standbyState;
-unsigned int zones = 0;
+#ifdef _PIC18F4550_H_
+#define LOOP_COUNT_TO_SEND (1 << 10)
+#else
+#define LOOP_COUNT_TO_SEND (1 << 8)
+#endif
 
+
+char state = standbyState;
+unsigned char commsZones = 0, combinedZones = 0;
+
+void combineZones(void){
+    combinedZones = commsZones | manualZones;
+    outputZones = combinedZones;
+}
 char *PumpStateMappings[] = {
     "standbyState\n\r",
     "shutdownState\n\r",
@@ -151,7 +181,9 @@ init(void) {
     //  PCFG2 = 1;
     //  PCFG1 = 1;
     //  PCFG0 = 1;
+#ifdef _PIC18F4550_H_
     RBPU = 0;
+#endif
     // new
     /*
      IRCF2:IRCF0: Internal Oscillator Frequency Select bits
@@ -164,9 +196,11 @@ init(void) {
 001 = 125 kHz
 000 = 31 kHz (from either INTOSC/256 or INTRC directly)(2)
      */
+#ifdef _PIC18F4550_H_
 IRCF2 = 1;
 IRCF1 = 1;
 IRCF0 = 1;
+#endif
 
 
     PORTA = 0;
@@ -195,7 +229,9 @@ IRCF0 = 1;
 
     GIE = 1;
     state = standbyState;
-    zones = 0;
+    commsZones = 0;
+    combinedZones = 0;
+    combineZones();
     inIdleDumpHour = 0;
 
 
@@ -280,7 +316,8 @@ main(void) {
 
     unsigned int msg_counter = 0;
     while (1) {
-        toggleLeds();
+        combineZones();
+        //toggleLeds();
         //printf("z");
         process_event_timer();
 #if 1
@@ -292,7 +329,7 @@ main(void) {
         serial_process_loop();
 #if 1
         msg_counter++;
-        if (msg_counter >= (1 << 10)) {
+        if (msg_counter >= (LOOP_COUNT_TO_SEND)) {
             printPumpState();
             printFaultState();
             process_get_status_message(sendGetMessageBuffer);

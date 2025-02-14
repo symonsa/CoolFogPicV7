@@ -177,7 +177,7 @@ startpumpSecondLWPCheckState 4
 startmainState 5
 pumprunState 6
 ]
-"308
+"315
 [e E3171 timer_event_pos `uc
 EventLowWaterLevel 0
 EventLowWaterPressure 1
@@ -308,21 +308,7 @@ EventRunSignalDebounce 7
 EventPODebounce 8
 EventTotalNumber 9
 ]
-"1 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\abs.c
-[v _abs abs `(i  1 e 2 0 ]
-"9 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\aodiv.c
-[v ___aodiv __aodiv `(o  1 e 8 0 ]
-"9 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\aomod.c
-[v ___aomod __aomod `(o  1 e 8 0 ]
-"72 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\doprnt.c
-[v _pad pad `(i  1 s 2 pad ]
-"259
-[v _ctoa ctoa `(i  1 s 2 ctoa ]
-"274
-[v _dtoa dtoa `(i  1 s 2 dtoa ]
-"546
-[v _stoa stoa `(i  1 s 2 stoa ]
-"670
+"670 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\doprnt.c
 [v _vfpfcnvrt vfpfcnvrt `(i  1 s 2 vfpfcnvrt ]
 "1368
 [v _vfprintf vfprintf `(i  1 e 2 0 ]
@@ -378,19 +364,19 @@ EventTotalNumber 9
 [v _EventRunSignalDebounceCallBack EventRunSignalDebounceCallBack `(v  1 e 1 0 ]
 "4 C:\Users\antho\Documents\Projects\pic\aecv7.X\MonitorWaterPressure.c
 [v _monitor_water_pressure monitor_water_pressure `(v  1 e 1 0 ]
-"98 C:\Users\antho\Documents\Projects\pic\aecv7.X\pump_control.c
+"88 C:\Users\antho\Documents\Projects\pic\aecv7.X\pump_control.c
+[v _combineZones combineZones `(v  1 e 1 0 ]
+"102
 [v _printPumpState printPumpState `(v  1 e 1 0 ]
-"103
+"107
 [v _printFaultState printFaultState `(v  1 e 1 0 ]
-"139
+"143
 [v _init init `(v  1 e 1 0 ]
-"209
+"215
 [v _resetPump resetPump `(v  1 e 1 0 ]
-"221
+"227
 [v _checkIfShoudReset checkIfShoudReset `(v  1 e 1 0 ]
-"252
-[v _toggleLeds toggleLeds `(v  1 e 1 0 ]
-"258
+"264
 [v _main main `(v  1 e 1 0 ]
 "4 C:\Users\antho\Documents\Projects\pic\aecv7.X\pump_run.c
 [v _pump_run pump_run `(v  1 e 1 0 ]
@@ -436,13 +422,13 @@ EventTotalNumber 9
 [v _setBaseMessage setBaseMessage `(v  1 e 1 0 ]
 "65
 [v _process_set_zones_message process_set_zones_message `(v  1 e 1 0 ]
-"75
+"76
 [v _process_get_status_message process_get_status_message `(v  1 e 1 0 ]
-"86
+"88
 [v _process_set_address_message process_set_address_message `(v  1 e 1 0 ]
-"95
+"97
 [v _process_reset_pump process_reset_pump `(v  1 e 1 0 ]
-"102
+"104
 [v _process_message process_message `(v  1 e 1 0 ]
 "4 C:\Users\antho\Documents\Projects\pic\aecv7.X\shutdown_state.c
 [v _shutdown shutdown `(v  1 e 1 0 ]
@@ -498,34 +484,77 @@ EventTotalNumber 9
 [v _PORTAbits PORTAbits `VES51  1 e 1 @3968 ]
 "2453
 [v _PORTB PORTB `VEuc  1 e 1 @3969 ]
-[s S411 . 1 `uc 1 RB0 1 0 :1:0 
-`uc 1 RB1 1 0 :1:1 
-`uc 1 RB2 1 0 :1:2 
-`uc 1 RB3 1 0 :1:3 
-`uc 1 RB4 1 0 :1:4 
-`uc 1 RB5 1 0 :1:5 
-`uc 1 RB6 1 0 :1:6 
-`uc 1 RB7 1 0 :1:7 
+[s S411 . 1 `uc 1 RC0 1 0 :1:0 
+`uc 1 RC1 1 0 :1:1 
+`uc 1 RC2 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 RC4 1 0 :1:4 
+`uc 1 RC5 1 0 :1:5 
+`uc 1 RC6 1 0 :1:6 
+`uc 1 RC7 1 0 :1:7 
 ]
-"2483
-[s S420 . 1 `uc 1 INT0 1 0 :1:0 
-`uc 1 INT1 1 0 :1:1 
-`uc 1 INT2 1 0 :1:2 
-`uc 1 . 1 0 :2:3 
-`uc 1 PGM 1 0 :1:5 
-`uc 1 PGC 1 0 :1:6 
-`uc 1 PGD 1 0 :1:7 
+"2605
+[s S420 . 1 `uc 1 T1OSO 1 0 :1:0 
+`uc 1 T1OSI 1 0 :1:1 
+`uc 1 CCP1 1 0 :1:2 
+`uc 1 . 1 0 :3:3 
+`uc 1 TX 1 0 :1:6 
+`uc 1 RX 1 0 :1:7 
 ]
-[s S428 . 1 `uc 1 . 1 0 :3:0 
-`uc 1 CCP2_PA2 1 0 :1:3 
+[s S427 . 1 `uc 1 T13CKI 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 P1A 1 0 :1:2 
+`uc 1 . 1 0 :3:3 
+`uc 1 CK 1 0 :1:6 
+`uc 1 DT 1 0 :1:7 
 ]
-[u S431 . 1 `S411 1 . 1 0 `S420 1 . 1 0 `S428 1 . 1 0 ]
-[v _PORTBbits PORTBbits `VES431  1 e 1 @3969 ]
+[s S434 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 CCP2 1 0 :1:1 
+`uc 1 PA1 1 0 :1:2 
+]
+[s S438 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 PA2 1 0 :1:1 
+]
+[u S441 . 1 `S411 1 . 1 0 `S420 1 . 1 0 `S427 1 . 1 0 `S434 1 . 1 0 `S438 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES441  1 e 1 @3970 ]
 "2705
 [v _PORTD PORTD `VEuc  1 e 1 @3971 ]
+[s S759 . 1 `uc 1 RE0 1 0 :1:0 
+`uc 1 RE1 1 0 :1:1 
+`uc 1 RE2 1 0 :1:2 
+`uc 1 RE3 1 0 :1:3 
+`uc 1 . 1 0 :3:4 
+`uc 1 RDPU 1 0 :1:7 
+]
+"2868
+[s S766 . 1 `uc 1 CK1SPP 1 0 :1:0 
+`uc 1 CK2SPP 1 0 :1:1 
+`uc 1 OESPP 1 0 :1:2 
+]
+[s S770 . 1 `uc 1 PD2 1 0 :1:0 
+`uc 1 PC2 1 0 :1:1 
+`uc 1 CCP10 1 0 :1:2 
+`uc 1 CCP9E 1 0 :1:3 
+`uc 1 . 1 0 :3:4 
+`uc 1 CCP2E 1 0 :1:7 
+]
+[s S777 . 1 `uc 1 RDE 1 0 :1:0 
+`uc 1 WRE 1 0 :1:1 
+`uc 1 CS 1 0 :1:2 
+`uc 1 PC3E 1 0 :1:3 
+`uc 1 . 1 0 :3:4 
+`uc 1 PA2E 1 0 :1:7 
+]
+[s S784 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 PB2 1 0 :1:2 
+`uc 1 . 1 0 :4:3 
+`uc 1 RE7 1 0 :1:7 
+]
+[u S789 . 1 `S759 1 . 1 0 `S766 1 . 1 0 `S770 1 . 1 0 `S777 1 . 1 0 `S784 1 . 1 0 ]
+[v _PORTEbits PORTEbits `VES789  1 e 1 @3972 ]
 "3427
 [v _TRISA TRISA `VEuc  1 e 1 @3986 ]
-[s S751 . 1 `uc 1 TRISA0 1 0 :1:0 
+[s S827 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 TRISA3 1 0 :1:3 
@@ -534,24 +563,40 @@ EventTotalNumber 9
 `uc 1 TRISA6 1 0 :1:6 
 ]
 "3457
-[u S767 . 1 `S751 1 . 1 0 `S24 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES767  1 e 1 @3986 ]
+[u S843 . 1 `S827 1 . 1 0 `S24 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES843  1 e 1 @3986 ]
 "3625
 [v _TRISB TRISB `VEuc  1 e 1 @3987 ]
-[s S787 . 1 `uc 1 TRISB0 1 0 :1:0 
-`uc 1 TRISB1 1 0 :1:1 
-`uc 1 TRISB2 1 0 :1:2 
-`uc 1 TRISB3 1 0 :1:3 
-`uc 1 TRISB4 1 0 :1:4 
-`uc 1 TRISB5 1 0 :1:5 
-`uc 1 TRISB6 1 0 :1:6 
-`uc 1 TRISB7 1 0 :1:7 
+[s S883 . 1 `uc 1 TRISC0 1 0 :1:0 
+`uc 1 TRISC1 1 0 :1:1 
+`uc 1 TRISC2 1 0 :1:2 
+`uc 1 . 1 0 :3:3 
+`uc 1 TRISC6 1 0 :1:6 
+`uc 1 TRISC7 1 0 :1:7 
 ]
-"3657
-[u S805 . 1 `S787 1 . 1 0 `S411 1 . 1 0 ]
-[v _TRISBbits TRISBbits `VES805  1 e 1 @3987 ]
+"3875
+[s S890 . 1 `uc 1 RC0 1 0 :1:0 
+`uc 1 RC1 1 0 :1:1 
+`uc 1 RC2 1 0 :1:2 
+`uc 1 . 1 0 :3:3 
+`uc 1 RC6 1 0 :1:6 
+`uc 1 RC7 1 0 :1:7 
+]
+[u S897 . 1 `S883 1 . 1 0 `S890 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES897  1 e 1 @3988 ]
 "4001
 [v _TRISD TRISD `VEuc  1 e 1 @3989 ]
+[s S863 . 1 `uc 1 TRISE0 1 0 :1:0 
+`uc 1 TRISE1 1 0 :1:1 
+`uc 1 TRISE2 1 0 :1:2 
+]
+"4245
+[s S867 . 1 `uc 1 RE0 1 0 :1:0 
+`uc 1 RE1 1 0 :1:1 
+`uc 1 RE2 1 0 :1:2 
+]
+[u S871 . 1 `S863 1 . 1 0 `S867 1 . 1 0 ]
+[v _TRISEbits TRISEbits `VES871  1 e 1 @3990 ]
 "4936
 [v _RCSTA RCSTA `VEuc  1 e 1 @4011 ]
 "5146
@@ -614,8 +659,6 @@ EventTotalNumber 9
 [v _flags flags `i  1 s 2 flags ]
 [v _prec prec `i  1 s 2 prec ]
 [v _width width `i  1 s 2 width ]
-"66
-[v _dbuf dbuf `[32]uc  1 s 32 dbuf ]
 "69
 [v _nout nout `i  1 s 2 nout ]
 "3 C:\Users\antho\Documents\Projects\pic\aecv7.X\EventIdleTimeout.c
@@ -623,14 +666,15 @@ EventTotalNumber 9
 "85 C:\Users\antho\Documents\Projects\pic\aecv7.X\pump_control.c
 [v _state state `uc  1 e 1 0 ]
 "86
-[v _zones zones `ui  1 e 2 0 ]
-"88
+[v _commsZones commsZones `uc  1 e 1 0 ]
+[v _combinedZones combinedZones `uc  1 e 1 0 ]
+"92
 [v _PumpStateMappings PumpStateMappings `[7]*.25uc  1 e 14 0 ]
-[s S1104 . 260 `[256]uc 1 data 256 0 `ui 1 start 2 256 `ui 1 length 2 258 ]
+[s S1250 . 260 `[256]uc 1 data 256 0 `ui 1 start 2 256 `ui 1 length 2 258 ]
 "310 C:\Users\antho\Documents\Projects\pic\aecv7.X\serial.c
-[v _inbound inbound `S1104  1 e 260 0 ]
+[v _inbound inbound `S1250  1 e 260 0 ]
 "311
-[v _outbound outbound `S1104  1 e 260 0 ]
+[v _outbound outbound `S1250  1 e 260 0 ]
 "14 C:\Users\antho\Documents\Projects\pic\aecv7.X\serial_message.c
 [v _outputMessage outputMessage `[10]uc  1 s 10 outputMessage ]
 [s S185 timer_event 8 `i 1 time_left 2 0 `uc 1 active 1 2 :1:0 
@@ -653,22 +697,17 @@ EventTotalNumber 9
 "8
 [u S95 . 2 `S85 1 . 2 0 `ui 1 value 2 0 ]
 [v _fault_flags fault_flags `S95  1 e 2 0 ]
-"258 C:\Users\antho\Documents\Projects\pic\aecv7.X\pump_control.c
+"264 C:\Users\antho\Documents\Projects\pic\aecv7.X\pump_control.c
 [v _main main `(v  1 e 1 0 ]
 {
-"260
+"266
 [v main@sendGetMessageBuffer sendGetMessageBuffer `[10]uc  1 a 10 0 ]
-"281
+"287
 [v main@msg_counter msg_counter `ui  1 a 2 12 ]
-"259
+"265
 [v main@message message `*.39uc  1 a 2 10 ]
-[v main@F3632 F3632 `[10]uc  1 s 10 F3632 ]
-"349
-} 0
-"252
-[v _toggleLeds toggleLeds `(v  1 e 1 0 ]
-{
-"254
+[v main@F3636 F3636 `[10]uc  1 s 10 F3636 ]
+"356
 } 0
 "3 C:\Users\antho\Documents\Projects\pic\aecv7.X\start_pump_state.c
 [v _start_pump start_pump `(v  1 e 1 0 ]
@@ -699,7 +738,7 @@ EventTotalNumber 9
 [v _receiveMessage receiveMessage `(*.39uc  1 e 2 0 ]
 {
 "225
-[v receiveMessage@c c `uc  1 a 1 69 ]
+[v receiveMessage@c c `uc  1 a 1 26 ]
 "224
 [v receiveMessage@message message `[10]uc  1 s 10 message ]
 "226
@@ -711,16 +750,16 @@ EventTotalNumber 9
 {
 "28
 [v pop@d d `uc  1 a 1 23 ]
-[s S1104 . 260 `[256]uc 1 data 256 0 `ui 1 start 2 256 `ui 1 length 2 258 ]
+[s S1250 . 260 `[256]uc 1 data 256 0 `ui 1 start 2 256 `ui 1 length 2 258 ]
 "27
-[v pop@buff buff `*.39S1104  1 p 2 19 ]
+[v pop@buff buff `*.39S1250  1 p 2 19 ]
 "44
 } 0
 "51
 [v _has_data has_data `(uc  1 e 1 0 ]
 {
-[s S1104 . 260 `[256]uc 1 data 256 0 `ui 1 start 2 256 `ui 1 length 2 258 ]
-[v has_data@buff buff `*.39S1104  1 p 2 19 ]
+[s S1250 . 260 `[256]uc 1 data 256 0 `ui 1 start 2 256 `ui 1 length 2 258 ]
+[v has_data@buff buff `*.39S1250  1 p 2 19 ]
 "53
 } 0
 "4 C:\Users\antho\Documents\Projects\pic\aecv7.X\pump_run.c
@@ -733,20 +772,20 @@ EventTotalNumber 9
 {
 "90
 } 0
-"102 C:\Users\antho\Documents\Projects\pic\aecv7.X\serial_message.c
+"104 C:\Users\antho\Documents\Projects\pic\aecv7.X\serial_message.c
 [v _process_message process_message `(v  1 e 1 0 ]
 {
+"106
+[v process_message@msgType msgType `uc  1 a 1 38 ]
 "104
-[v process_message@msgType msgType `uc  1 a 1 40 ]
-"102
-[v process_message@inmessage inmessage `*.39uc  1 p 2 36 ]
-"147
+[v process_message@inmessage inmessage `*.39uc  1 p 2 34 ]
+"149
 } 0
 "65
 [v _process_set_zones_message process_set_zones_message `(v  1 e 1 0 ]
 {
 [v process_set_zones_message@inmessage inmessage `*.39uc  1 p 2 31 ]
-"73
+"74
 } 0
 "18
 [v _xtochar xtochar `(uc  1 e 1 0 ]
@@ -756,23 +795,23 @@ EventTotalNumber 9
 [v xtochar@x x `uc  1 a 1 19 ]
 "31
 } 0
-"86
+"88
 [v _process_set_address_message process_set_address_message `(v  1 e 1 0 ]
 {
 [v process_set_address_message@inmessage inmessage `*.39uc  1 p 2 31 ]
-"93
-} 0
 "95
+} 0
+"97
 [v _process_reset_pump process_reset_pump `(v  1 e 1 0 ]
 {
 [v process_reset_pump@inmessage inmessage `*.39uc  1 p 2 31 ]
-"99
+"101
 } 0
-"75
+"76
 [v _process_get_status_message process_get_status_message `(v  1 e 1 0 ]
 {
 [v process_get_status_message@inmessage inmessage `*.39uc  1 p 2 31 ]
-"84
+"86
 } 0
 "42
 [v _setBaseMessage setBaseMessage `(v  1 e 1 0 ]
@@ -860,173 +899,55 @@ EventTotalNumber 9
 {
 "38
 } 0
-"98 C:\Users\antho\Documents\Projects\pic\aecv7.X\pump_control.c
+"102 C:\Users\antho\Documents\Projects\pic\aecv7.X\pump_control.c
 [v _printPumpState printPumpState `(v  1 e 1 0 ]
 {
-"101
+"105
 } 0
-"103
+"107
 [v _printFaultState printFaultState `(v  1 e 1 0 ]
 {
-"136
+"140
 } 0
 "5 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\printf.c
 [v _printf printf `(i  1 e 2 0 ]
 {
 "8
-[v printf@ap ap `[1]*.39v  1 a 2 65 ]
+[v printf@ap ap `[1]*.39v  1 a 2 10 ]
 "5
-[v printf@fmt fmt `*.25Cuc  1 p 2 57 ]
+[v printf@fmt fmt `*.25Cuc  1 p 2 6 ]
 "13
 } 0
 "1368 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\doprnt.c
 [v _vfprintf vfprintf `(i  1 e 2 0 ]
 {
 "1371
-[v vfprintf@cfmt cfmt `*.25uc  1 a 2 55 ]
-[s S1762 _IO_FILE 0 ]
+[v vfprintf@cfmt cfmt `*.25uc  1 a 2 46 ]
+[s S2041 _IO_FILE 0 ]
 "1368
-[v vfprintf@fp fp `*.2S1762  1 p 2 49 ]
-[v vfprintf@fmt fmt `*.25Cuc  1 p 2 51 ]
-[v vfprintf@ap ap `*.39*.39v  1 p 2 53 ]
+[v vfprintf@fp fp `*.2S2041  1 p 2 0 ]
+[v vfprintf@fmt fmt `*.25Cuc  1 p 2 2 ]
+[v vfprintf@ap ap `*.39*.39v  1 p 2 4 ]
 "1382
 } 0
 "670
 [v _vfpfcnvrt vfpfcnvrt `(i  1 s 2 vfpfcnvrt ]
 {
-"674
-[v vfpfcnvrt@ll ll `o  1 a 8 36 ]
 "677
-[v vfpfcnvrt@vp vp `*.39v  1 a 2 46 ]
-"672
-[v vfpfcnvrt@cp cp `*.39uc  1 a 2 44 ]
-[v vfpfcnvrt@c c `uc  1 a 1 48 ]
-[s S1762 _IO_FILE 0 ]
+[v vfpfcnvrt@vp vp `*.39v  1 a 2 44 ]
+[s S2041 _IO_FILE 0 ]
 "670
-[v vfpfcnvrt@fp fp `*.2S1762  1 p 2 28 ]
-[v vfpfcnvrt@fmt fmt `*.39*.25uc  1 p 2 30 ]
-[v vfpfcnvrt@ap ap `*.39*.39v  1 p 2 32 ]
+[v vfpfcnvrt@fp fp `*.2S2041  1 p 2 36 ]
+[v vfpfcnvrt@fmt fmt `*.39*.25uc  1 p 2 38 ]
+[v vfpfcnvrt@ap ap `*.39*.39v  1 p 2 40 ]
 "1365
-} 0
-"546
-[v _stoa stoa `(i  1 s 2 stoa ]
-{
-"548
-[v stoa@nuls nuls `[7]uc  1 a 7 41 ]
-"549
-[v stoa@l l `i  1 a 2 56 ]
-[v stoa@p p `i  1 a 2 54 ]
-"548
-[v stoa@cp cp `*.39uc  1 a 2 52 ]
-"549
-[v stoa@w w `i  1 a 2 50 ]
-[v stoa@i i `i  1 a 2 48 ]
-[s S1762 _IO_FILE 0 ]
-"546
-[v stoa@fp fp `*.2S1762  1 p 2 36 ]
-[v stoa@s s `*.39uc  1 p 2 38 ]
-"548
-[v stoa@F1144 F1144 `[7]uc  1 s 7 F1144 ]
-"589
-} 0
-"274
-[v _dtoa dtoa `(i  1 s 2 dtoa ]
-{
-"277
-[v dtoa@n n `o  1 a 8 18 ]
-"276
-[v dtoa@i i `i  1 a 2 26 ]
-[v dtoa@s s `i  1 a 2 16 ]
-[v dtoa@w w `i  1 a 2 14 ]
-[v dtoa@p p `i  1 a 2 12 ]
-[s S1762 _IO_FILE 0 ]
-"274
-[v dtoa@fp fp `*.2S1762  1 p 2 0 ]
-[v dtoa@d d `o  1 p 8 2 ]
-"315
-} 0
-"1 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\abs.c
-[v _abs abs `(i  1 e 2 0 ]
-{
-[v abs@a a `i  1 p 2 37 ]
-"4
-} 0
-"9 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\aomod.c
-[v ___aomod __aomod `(o  1 e 8 0 ]
-{
-"12
-[v ___aomod@sign sign `uc  1 a 1 36 ]
-[v ___aomod@counter counter `uc  1 a 1 35 ]
-"9
-[v ___aomod@dividend dividend `o  1 p 8 19 ]
-[v ___aomod@divisor divisor `o  1 p 8 27 ]
-"36
-} 0
-"9 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\aodiv.c
-[v ___aodiv __aodiv `(o  1 e 8 0 ]
-{
-"12
-[v ___aodiv@quotient quotient `o  1 a 8 37 ]
-"13
-[v ___aodiv@sign sign `uc  1 a 1 36 ]
-[v ___aodiv@counter counter `uc  1 a 1 35 ]
-"9
-[v ___aodiv@dividend dividend `o  1 p 8 19 ]
-[v ___aodiv@divisor divisor `o  1 p 8 27 ]
-"43
-} 0
-"259 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\doprnt.c
-[v _ctoa ctoa `(i  1 s 2 ctoa ]
-{
-"261
-[v ctoa@w w `i  1 a 2 57 ]
-[s S1762 _IO_FILE 0 ]
-"259
-[v ctoa@fp fp `*.2S1762  1 p 2 54 ]
-[v ctoa@c c `uc  1 p 1 56 ]
-"270
-} 0
-"72
-[v _pad pad `(i  1 s 2 pad ]
-{
-"74
-[v pad@w w `i  1 a 2 52 ]
-[v pad@i i `i  1 a 2 50 ]
-[s S1762 _IO_FILE 0 ]
-"72
-[v pad@fp fp `*.2S1762  1 p 2 43 ]
-[v pad@buf buf `*.39uc  1 p 2 45 ]
-[v pad@p p `i  1 p 2 47 ]
-"95
-} 0
-"12 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\strlen.c
-[v _strlen strlen `(ui  1 e 2 0 ]
-{
-"14
-[v strlen@a a `*.39Cuc  1 a 2 21 ]
-"12
-[v strlen@s s `*.39Cuc  1 p 2 19 ]
-"26
-} 0
-"8 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\nf_fputs.c
-[v _fputs fputs `(i  1 e 2 0 ]
-{
-"11
-[v fputs@i i `i  1 a 2 41 ]
-"10
-[v fputs@c c `uc  1 a 1 40 ]
-"8
-[v fputs@s s `*.39Cuc  1 p 2 36 ]
-[s S2287 _IO_FILE 6 `*.2uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
-[v fputs@fp fp `*.2S2287  1 p 2 38 ]
-"19
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\nf_fputc.c
 [v _fputc fputc `(i  1 e 2 0 ]
 {
 [v fputc@c c `i  1 p 2 27 ]
-[s S2287 _IO_FILE 6 `*.2uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
-[v fputc@fp fp `*.2S2287  1 p 2 29 ]
+[s S2531 _IO_FILE 6 `*.2uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[v fputc@fp fp `*.2S2531  1 p 2 29 ]
 "21
 } 0
 "209 C:\Users\antho\Documents\Projects\pic\aecv7.X\serial.c
@@ -1040,8 +961,8 @@ EventTotalNumber 9
 "10 C:\Users\antho\Documents\Projects\pic\aecv7.X\serial_buffer.c
 [v _push push `(v  1 e 1 0 ]
 {
-[s S1104 . 260 `[256]uc 1 data 256 0 `ui 1 start 2 256 `ui 1 length 2 258 ]
-[v push@buff buff `*.39S1104  1 p 2 19 ]
+[s S1250 . 260 `[256]uc 1 data 256 0 `ui 1 start 2 256 `ui 1 length 2 258 ]
+[v push@buff buff `*.39S1250  1 p 2 19 ]
 [v push@d d `uc  1 p 1 21 ]
 "18
 } 0
@@ -1058,15 +979,15 @@ EventTotalNumber 9
 [v clear_callback@callback callback `uc  1 a 1 19 ]
 "27
 } 0
-"221 C:\Users\antho\Documents\Projects\pic\aecv7.X\pump_control.c
+"227 C:\Users\antho\Documents\Projects\pic\aecv7.X\pump_control.c
 [v _checkIfShoudReset checkIfShoudReset `(v  1 e 1 0 ]
 {
-"232
+"238
 } 0
-"209
+"215
 [v _resetPump resetPump `(v  1 e 1 0 ]
 {
-"212
+"218
 } 0
 "41 C:\Users\antho\Documents\Projects\pic\aecv7.X\timer_event.c
 [v _init_event_timer init_event_timer `(v  1 e 1 0 ]
@@ -1082,15 +1003,20 @@ EventTotalNumber 9
 [v enable_callback@callback callback `uc  1 a 1 21 ]
 "22
 } 0
-"139 C:\Users\antho\Documents\Projects\pic\aecv7.X\pump_control.c
+"143 C:\Users\antho\Documents\Projects\pic\aecv7.X\pump_control.c
 [v _init init `(v  1 e 1 0 ]
 {
-"206
+"212
 } 0
 "51 C:\Users\antho\Documents\Projects\pic\aecv7.X\serial.c
 [v _ser_int ser_int `(v  1 e 1 0 ]
 {
 "68
+} 0
+"88 C:\Users\antho\Documents\Projects\pic\aecv7.X\pump_control.c
+[v _combineZones combineZones `(v  1 e 1 0 ]
+{
+"91
 } 0
 "64 C:\Users\antho\Documents\Projects\pic\aecv7.X\timer_event.c
 [v _event_timer_isr event_timer_isr `IIH(v  1 e 1 0 ]
@@ -1108,15 +1034,15 @@ EventTotalNumber 9
 [v i2_pop pop `(uc  1 e 1 0 ]
 {
 [v i2pop@d pop `uc  1 a 1 4 ]
-[s S1104 . 260 `[256]uc 1 data 256 0 `ui 1 start 2 256 `ui 1 length 2 258 ]
-[v i2pop@buff buff `*.39S1104  1 p 2 0 ]
+[s S1250 . 260 `[256]uc 1 data 256 0 `ui 1 start 2 256 `ui 1 length 2 258 ]
+[v i2pop@buff buff `*.39S1250  1 p 2 0 ]
 "44
 } 0
 "51
 [v i2_has_data has_data `(uc  1 e 1 0 ]
 {
-[s S1104 . 260 `[256]uc 1 data 256 0 `ui 1 start 2 256 `ui 1 length 2 258 ]
-[v i2has_data@buff buff `*.39S1104  1 p 2 0 ]
+[s S1250 . 260 `[256]uc 1 data 256 0 `ui 1 start 2 256 `ui 1 length 2 258 ]
+[v i2has_data@buff buff `*.39S1250  1 p 2 0 ]
 "53
 } 0
 "213 C:\Users\antho\Documents\Projects\pic\aecv7.X\serial.c
@@ -1139,15 +1065,15 @@ EventTotalNumber 9
 "10 C:\Users\antho\Documents\Projects\pic\aecv7.X\serial_buffer.c
 [v i2_push push `(v  1 e 1 0 ]
 {
-[s S1104 . 260 `[256]uc 1 data 256 0 `ui 1 start 2 256 `ui 1 length 2 258 ]
-[v i2push@buff buff `*.39S1104  1 p 2 0 ]
+[s S1250 . 260 `[256]uc 1 data 256 0 `ui 1 start 2 256 `ui 1 length 2 258 ]
+[v i2push@buff buff `*.39S1250  1 p 2 0 ]
 [v i2push@d d `uc  1 p 1 2 ]
 "18
 } 0
 "60
 [v _not_full not_full `(uc  1 e 1 0 ]
 {
-[s S1104 . 260 `[256]uc 1 data 256 0 `ui 1 start 2 256 `ui 1 length 2 258 ]
-[v not_full@buff buff `*.39S1104  1 p 2 0 ]
+[s S1250 . 260 `[256]uc 1 data 256 0 `ui 1 start 2 256 `ui 1 length 2 258 ]
+[v not_full@buff buff `*.39S1250  1 p 2 0 ]
 "62
 } 0

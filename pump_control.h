@@ -15,35 +15,36 @@
 
 
 
-#define LOW_WATER_PRESSURE_BIT PORTBbits.RB2	// active hi
-#define RUN_SIGNAL_BIT PORTBbits.RB3	// active lo
+#define LOW_WATER_PRESSURE_BIT PORTCbits.RC0	// active hi
+#define RUN_SIGNAL_BIT PORTCbits.RC1	// active lo
 #define LOW_WATER_LEVEL_BIT PORTAbits.RA4	// active hi
 #define LOW_FOG_PRESSURE_BIT PORTAbits.RA5	// active hi !!!!changed
-#define PUMP_OVERLOAD_BIT PORTBbits.RB4	
-
+#define PUMP_OVERLOAD_BIT PORTCbits.RC2	
+	
 #define WATER_PRESSURE_OK_BIT PORTAbits.RA0	
 #define MAIN_PUMP_BIT PORTAbits.RA1	
 #define DUMP_SOLENOID_BIT PORTAbits.RA2	
 #define FAULT_OUTPUT_BIT PORTAbits.RA3	
-#define BOOST_PUMP_BIT PORTBbits.RB5	
+#define BOOST_PUMP_BIT PORTEbits.RE0
+	
+#define TRANSMIT_CONTROL_BIT PORTEbits.RE1
+	
 
-#define TRANSMIT_CONTROL_BIT PORTBbits.RB0	
 
+#define TRIS_LOW_WATER_PRESSURE_BIT TRISCbits.TRISC0
+#define TRIS_RUN_SIGNAL_BIT TRISCbits.TRISC1
+#define TRIS_LOW_WATER_LEVEL_BIT TRISAbits.TRISA4
+#define TRIS_LOW_FOG_PRESSURE_BIT TRISAbits.TRISA5
+#define TRIS_PUMP_OVERLOAD_BIT TRISCbits.TRISC2
 
+#define TRIS_WATER_PRESSURE_OK_BIT TRISAbits.TRISA0
+#define TRIS_MAIN_PUMP_BIT TRISAbits.TRISA1
+#define TRIS_DUMP_SOLENOID_BIT TRISAbits.TRISA2
+#define TRIS_FAULT_OUTPUT_BIT TRISAbits.TRISA3
+#define TRIS_BOOST_PUMP_BIT TRISEbits.TRISE0
 
-#define TRIS_LOW_WATER_PRESSURE_BIT TRISBbits.RB2
-#define TRIS_RUN_SIGNAL_BIT TRISBbits.RB3
-#define TRIS_LOW_WATER_LEVEL_BIT TRISAbits.RA4
-#define TRIS_LOW_FOG_PRESSURE_BIT TRISAbits.RA5
-#define TRIS_PUMP_OVERLOAD_BIT TRISBbits.RB4
+#define TRIS_TRANSMIT_CONTROL_BIT TRISEbits.TRISE1
 
-#define TRIS_WATER_PRESSURE_OK_BIT TRISAbits.RA0
-#define TRIS_MAIN_PUMP_BIT TRISAbits.RA1
-#define TRIS_DUMP_SOLENOID_BIT TRISAbits.RA2
-#define TRIS_FAULT_OUTPUT_BIT TRISAbits.RA3
-#define TRIS_BOOST_PUMP_BIT TRISBbits.RB5
-
-#define TRIS_TRANSMIT_CONTROL_BIT TRISBbits.RB0
 
 
 
@@ -52,7 +53,7 @@
 
 #define LOW_WATER_LEVEL_ACTIVE ( LOW_WATER_LEVEL_BIT)
 #define LOW_WATER_PRESSURE_ACTIVE (  LOW_WATER_PRESSURE_BIT)
-#define RUN_SIGNAL_ACTIVE ( (!RUN_SIGNAL_BIT) || (zones != 0) )
+#define RUN_SIGNAL_ACTIVE ( (!RUN_SIGNAL_BIT) || (combinedZones != 0) )
 #define LOW_FOG_PRESSURE_ACTIVE ( LOW_FOG_PRESSURE_BIT)
 #define PO_SIGNAL_ACTIVE ( !PUMP_OVERLOAD_BIT)
 
@@ -63,26 +64,28 @@
 // port directions: 1=input, 0=output
 
 #define INIT_INPUT_PINS  \
- TRIS_LOW_WATER_PRESSURE_BIT = TRIS_INPUT; \
+  TRIS_LOW_WATER_PRESSURE_BIT = TRIS_INPUT; \
  TRIS_RUN_SIGNAL_BIT = TRIS_INPUT; \
  TRIS_LOW_WATER_LEVEL_BIT = TRIS_INPUT; \
  TRIS_LOW_FOG_PRESSURE_BIT = TRIS_INPUT; \
- TRIS_PUMP_OVERLOAD_BIT = TRIS_INPUT; 
- 
+ TRIS_PUMP_OVERLOAD_BIT = TRIS_INPUT; \
+ TRISB = TRIS_INPUT
 
+ 
 #define INIT_OUTPUT_PINS  FAULT_OUTPUT_SET(0);\
                             WATER_PRESSURE_OK_SET(0);\
                             MAIN_PUMP_SET(0);\
                              BOOST_PUMP_SET(0);\
                            DUMP_SOLENOID_SET(0);\
                             TRANSMIT_CONTROL_SET(0);\
-                            TRISD = 0; LEDPORT = 0x00;\
- TRIS_WATER_PRESSURE_OK_BIT = TRIS_OUTPUT; \
+                            TRISD = TRIS_OUTPUT; LEDPORT = 0x00;\
+  TRIS_WATER_PRESSURE_OK_BIT = TRIS_OUTPUT; \
  TRIS_MAIN_PUMP_BIT = TRIS_OUTPUT; \
  TRIS_DUMP_SOLENOID_BIT = TRIS_OUTPUT; \
  TRIS_FAULT_OUTPUT_BIT = TRIS_OUTPUT; \
  TRIS_BOOST_PUMP_BIT = TRIS_OUTPUT; \
  TRIS_TRANSMIT_CONTROL_BIT = TRIS_OUTPUT; 
+
  
 
 
@@ -180,10 +183,18 @@ typedef union {
 
 extern fault_flags_t fault_flags;
 
-extern unsigned int zones;
+extern unsigned char combinedZones; // the or of below
+extern unsigned char commsZones; // coming in from comms
+#define manualZones PORTB // additional from manual switches PortB
+#define outputZones PORTD // output the combined zones
 
+void combineZones(void);
 void shutdown(void);
+#ifdef _PIC18F4550_H_
 #define _XTAL_FREQ 8000000
+#else
+#define _XTAL_FREQ 4000000
+#endif
 #define TIME_PULSE_PER_SEC (_XTAL_FREQ/256/4/256)
 
 #define LWL_FINAL_WAIT (30*TIME_PULSE_PER_SEC)

@@ -26,19 +26,19 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2353
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2353: extern volatile PORTAbits_t PORTAbits __attribute__((address(0xF80)));
 [v _PORTAbits `VS100 ~T0 @X0 0 e@3968 ]
-"164 ./pump_control.h
-[; ;./pump_control.h: 164:     struct {
+"167 ./pump_control.h
+[; ;./pump_control.h: 167:     struct {
 [s S369 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S369 . lwl_fault lwp_fault lfp_fault po_fault wpOkBit mainPumpBit boostPumpBit pumpOverloadBit dumpSolenoidBit ]
-"162
-[; ;./pump_control.h: 162: typedef union {
+"165
+[; ;./pump_control.h: 165: typedef union {
 [u S368 `S369 1 `ui 1 ]
 [n S368 . . value ]
-"181
-[; ;./pump_control.h: 181: extern fault_flags_t fault_flags;
+"184
+[; ;./pump_control.h: 184: extern fault_flags_t fault_flags;
 [v _fault_flags `S368 ~T0 @X0 0 e ]
-"107
-[; ;./pump_control.h: 107: extern char state;
+"110
+[; ;./pump_control.h: 110: extern char state;
 [v _state `uc ~T0 @X0 0 e ]
 "7 EventDumpsolenoid.c
 [; ;EventDumpsolenoid.c: 7:   state = standbyState;

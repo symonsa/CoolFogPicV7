@@ -5635,7 +5635,7 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/limits.h" 1 3
 # 10 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\limits.h" 2 3
 # 7 "./pump_control.h" 2
-# 107 "./pump_control.h"
+# 110 "./pump_control.h"
 extern char state;
 extern char inIdleDumpHour;
 
@@ -5712,10 +5712,14 @@ typedef union {
 
 extern fault_flags_t fault_flags;
 
-extern unsigned int zones;
+extern unsigned char combinedZones;
+extern unsigned char commsZones;
 
+
+
+void combineZones(void);
 void shutdown(void);
-# 212 "./pump_control.h"
+# 219 "./pump_control.h"
 char *receiveMessage(void);
 void putch(char c);
 int puts(const char * str);
@@ -5784,8 +5788,8 @@ void setBaseMessage(char messageType, char msgAddress) {
 
  outputMessage[1] = msgAddress;
  outputMessage[2] = messageType;
- outputMessage[3] = chartox(zones >>4);
-    outputMessage[4] = chartox((zones &15));
+ outputMessage[3] = chartox(combinedZones >>4);
+    outputMessage[4] = chartox((combinedZones &15));
 
 
 
@@ -5803,7 +5807,8 @@ void setBaseMessage(char messageType, char msgAddress) {
 }
 
 void process_set_zones_message(char * inmessage) {
-    zones = (xtochar(inmessage[3]) << 4) + xtochar(inmessage[4]);
+    commsZones = (xtochar(inmessage[3]) << 4) + xtochar(inmessage[4]);
+    combineZones();
     setBaseMessage('s', inmessage[1]);
 
 
@@ -5814,6 +5819,7 @@ void process_set_zones_message(char * inmessage) {
 
 void process_get_status_message(char * inmessage) {
 
+    combineZones();
     setBaseMessage('g', inmessage[1]);
 
 
@@ -5866,7 +5872,7 @@ process_message(char *inmessage) {
             case 'a':
                 process_set_address_message(inmessage);
                 break;
-# 137 "serial_message.c"
+# 139 "serial_message.c"
             case 'M':
             case 'm':
                 process_reset_pump(inmessage);

@@ -1,0 +1,538 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"186 ./pump_control.h
+[; ;./pump_control.h: 186: extern unsigned char combinedZones;
+[v _combinedZones `uc ~T0 @X0 0 e ]
+"167
+[; ;./pump_control.h: 167:     struct {
+[s S97 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S97 . lwl_fault lwp_fault lfp_fault po_fault wpOkBit mainPumpBit boostPumpBit pumpOverloadBit dumpSolenoidBit ]
+"165
+[; ;./pump_control.h: 165: typedef union {
+[u S96 `S97 1 `ui 1 ]
+[n S96 . . value ]
+"184
+[; ;./pump_control.h: 184: extern fault_flags_t fault_flags;
+[v _fault_flags `S96 ~T0 @X0 0 e ]
+"187
+[; ;./pump_control.h: 187: extern unsigned char commsZones;
+[v _commsZones `uc ~T0 @X0 0 e ]
+"191
+[; ;./pump_control.h: 191: void combineZones(void);
+[v _combineZones `(v ~T0 @X0 0 ef ]
+"230
+[; ;./pump_control.h: 230: void output_message(char *message);
+[v _output_message `(v ~T0 @X0 0 ef1`*uc ]
+"237
+[; ;./pump_control.h: 237: void resetPump(void);
+[v _resetPump `(v ~T0 @X0 0 ef ]
+"54 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 54: __asm("INDF equ 00h");
+[; <" INDF equ 00h ;# ">
+"61
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 61: __asm("TMR0 equ 01h");
+[; <" TMR0 equ 01h ;# ">
+"68
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 68: __asm("PCL equ 02h");
+[; <" PCL equ 02h ;# ">
+"75
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 75: __asm("STATUS equ 03h");
+[; <" STATUS equ 03h ;# ">
+"161
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 161: __asm("FSR equ 04h");
+[; <" FSR equ 04h ;# ">
+"168
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 168: __asm("PORTA equ 05h");
+[; <" PORTA equ 05h ;# ">
+"218
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 218: __asm("PORTB equ 06h");
+[; <" PORTB equ 06h ;# ">
+"280
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 280: __asm("PORTC equ 07h");
+[; <" PORTC equ 07h ;# ">
+"342
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 342: __asm("PORTD equ 08h");
+[; <" PORTD equ 08h ;# ">
+"404
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 404: __asm("PORTE equ 09h");
+[; <" PORTE equ 09h ;# ">
+"436
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 436: __asm("PCLATH equ 0Ah");
+[; <" PCLATH equ 0Ah ;# ">
+"456
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 456: __asm("INTCON equ 0Bh");
+[; <" INTCON equ 0Bh ;# ">
+"534
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 534: __asm("PIR1 equ 0Ch");
+[; <" PIR1 equ 0Ch ;# ">
+"596
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 596: __asm("PIR2 equ 0Dh");
+[; <" PIR2 equ 0Dh ;# ">
+"636
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 636: __asm("TMR1 equ 0Eh");
+[; <" TMR1 equ 0Eh ;# ">
+"643
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 643: __asm("TMR1L equ 0Eh");
+[; <" TMR1L equ 0Eh ;# ">
+"650
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 650: __asm("TMR1H equ 0Fh");
+[; <" TMR1H equ 0Fh ;# ">
+"657
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 657: __asm("T1CON equ 010h");
+[; <" T1CON equ 010h ;# ">
+"732
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 732: __asm("TMR2 equ 011h");
+[; <" TMR2 equ 011h ;# ">
+"739
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 739: __asm("T2CON equ 012h");
+[; <" T2CON equ 012h ;# ">
+"810
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 810: __asm("SSPBUF equ 013h");
+[; <" SSPBUF equ 013h ;# ">
+"817
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 817: __asm("SSPCON equ 014h");
+[; <" SSPCON equ 014h ;# ">
+"887
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 887: __asm("CCPR1 equ 015h");
+[; <" CCPR1 equ 015h ;# ">
+"894
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 894: __asm("CCPR1L equ 015h");
+[; <" CCPR1L equ 015h ;# ">
+"901
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 901: __asm("CCPR1H equ 016h");
+[; <" CCPR1H equ 016h ;# ">
+"908
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 908: __asm("CCP1CON equ 017h");
+[; <" CCP1CON equ 017h ;# ">
+"966
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 966: __asm("RCSTA equ 018h");
+[; <" RCSTA equ 018h ;# ">
+"1061
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 1061: __asm("TXREG equ 019h");
+[; <" TXREG equ 019h ;# ">
+"1068
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 1068: __asm("RCREG equ 01Ah");
+[; <" RCREG equ 01Ah ;# ">
+"1075
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 1075: __asm("CCPR2 equ 01Bh");
+[; <" CCPR2 equ 01Bh ;# ">
+"1082
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 1082: __asm("CCPR2L equ 01Bh");
+[; <" CCPR2L equ 01Bh ;# ">
+"1089
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 1089: __asm("CCPR2H equ 01Ch");
+[; <" CCPR2H equ 01Ch ;# ">
+"1096
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 1096: __asm("CCP2CON equ 01Dh");
+[; <" CCP2CON equ 01Dh ;# ">
+"1154
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 1154: __asm("ADRESH equ 01Eh");
+[; <" ADRESH equ 01Eh ;# ">
+"1161
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 1161: __asm("ADCON0 equ 01Fh");
+[; <" ADCON0 equ 01Fh ;# ">
+"1257
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 1257: __asm("OPTION_REG equ 081h");
+[; <" OPTION_REG equ 081h ;# ">
+"1327
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 1327: __asm("TRISA equ 085h");
+[; <" TRISA equ 085h ;# ">
+"1377
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 1377: __asm("TRISB equ 086h");
+[; <" TRISB equ 086h ;# ">
+"1439
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 1439: __asm("TRISC equ 087h");
+[; <" TRISC equ 087h ;# ">
+"1501
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 1501: __asm("TRISD equ 088h");
+[; <" TRISD equ 088h ;# ">
+"1563
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 1563: __asm("TRISE equ 089h");
+[; <" TRISE equ 089h ;# ">
+"1620
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 1620: __asm("PIE1 equ 08Ch");
+[; <" PIE1 equ 08Ch ;# ">
+"1682
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 1682: __asm("PIE2 equ 08Dh");
+[; <" PIE2 equ 08Dh ;# ">
+"1722
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 1722: __asm("PCON equ 08Eh");
+[; <" PCON equ 08Eh ;# ">
+"1756
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 1756: __asm("SSPCON2 equ 091h");
+[; <" SSPCON2 equ 091h ;# ">
+"1818
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 1818: __asm("PR2 equ 092h");
+[; <" PR2 equ 092h ;# ">
+"1825
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 1825: __asm("SSPADD equ 093h");
+[; <" SSPADD equ 093h ;# ">
+"1832
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 1832: __asm("SSPSTAT equ 094h");
+[; <" SSPSTAT equ 094h ;# ">
+"2001
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 2001: __asm("TXSTA equ 098h");
+[; <" TXSTA equ 098h ;# ">
+"2082
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 2082: __asm("SPBRG equ 099h");
+[; <" SPBRG equ 099h ;# ">
+"2089
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 2089: __asm("CMCON equ 09Ch");
+[; <" CMCON equ 09Ch ;# ">
+"2159
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 2159: __asm("CVRCON equ 09Dh");
+[; <" CVRCON equ 09Dh ;# ">
+"2224
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 2224: __asm("ADRESL equ 09Eh");
+[; <" ADRESL equ 09Eh ;# ">
+"2231
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 2231: __asm("ADCON1 equ 09Fh");
+[; <" ADCON1 equ 09Fh ;# ">
+"2290
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 2290: __asm("EEDATA equ 010Ch");
+[; <" EEDATA equ 010Ch ;# ">
+"2297
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 2297: __asm("EEADR equ 010Dh");
+[; <" EEADR equ 010Dh ;# ">
+"2304
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 2304: __asm("EEDATH equ 010Eh");
+[; <" EEDATH equ 010Eh ;# ">
+"2311
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 2311: __asm("EEADRH equ 010Fh");
+[; <" EEADRH equ 010Fh ;# ">
+"2318
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 2318: __asm("EECON1 equ 018Ch");
+[; <" EECON1 equ 018Ch ;# ">
+"2363
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f877a.h: 2363: __asm("EECON2 equ 018Dh");
+[; <" EECON2 equ 018Dh ;# ">
+"14 serial_message.c
+[; ;serial_message.c: 14: static char outputMessage[10];
+[v _outputMessage `uc ~T0 @X0 -> 10 `i s ]
+"16
+[; ;serial_message.c: 16: __asm("\tpsect eeprom_data,class=EEDATA,delta=2,space=3,noexec"); __asm("\tdb\t" "'0'" "," "'1'" "," "0" "," "0" "," "0" "," "0" "," "0" "," "0");
+[; <" 	psect eeprom_data,class=EEDATA,delta=2,space=3,noexec ;# ">
+[; <" 	db	'0','1',0,0,0,0,0,0 ;# ">
+"18
+[; ;serial_message.c: 18: unsigned char xtochar(char x) {
+[v _xtochar `(uc ~T0 @X0 1 ef1`uc ]
+{
+[e :U _xtochar ]
+[v _x `uc ~T0 @X0 1 r1 ]
+[f ]
+"19
+[; ;serial_message.c: 19:     if ((x >= '0')
+[e $ ! && >= -> _x `ui -> 48 `ui <= -> _x `ui -> 57 `ui 99  ]
+"20
+[; ;serial_message.c: 20:             && (x <= '9')) {
+{
+"21
+[; ;serial_message.c: 21:         return (x - '0');
+[e ) -> - -> _x `ui -> 48 `ui `uc ]
+[e $UE 98  ]
+"22
+[; ;serial_message.c: 22:     } else if ((x >= 'a')
+}
+[e $U 100  ]
+[e :U 99 ]
+[e $ ! && >= -> _x `ui -> 97 `ui <= -> _x `ui -> 102 `ui 101  ]
+"23
+[; ;serial_message.c: 23:             && (x <= 'f')) {
+{
+"24
+[; ;serial_message.c: 24:         return (x) - 'a' + 10;
+[e ) -> + - -> _x `ui -> 97 `ui -> -> 10 `i `ui `uc ]
+[e $UE 98  ]
+"25
+[; ;serial_message.c: 25:   }
+}
+[e $U 102  ]
+"26
+[; ;serial_message.c: 26:   else if ((x >= 'A')
+[e :U 101 ]
+[e $ ! && >= -> _x `ui -> 65 `ui <= -> _x `ui -> 70 `ui 103  ]
+"27
+[; ;serial_message.c: 27:             && (x <= 'F')) {
+{
+"28
+[; ;serial_message.c: 28:         return (x) - 'F' + 10;
+[e ) -> + - -> _x `ui -> 70 `ui -> -> 10 `i `ui `uc ]
+[e $UE 98  ]
+"29
+[; ;serial_message.c: 29:   }
+}
+[e :U 103 ]
+[e :U 102 ]
+[e :U 100 ]
+"30
+[; ;serial_message.c: 30:     return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 98  ]
+"31
+[; ;serial_message.c: 31: }
+[e :UE 98 ]
+}
+"33
+[; ;serial_message.c: 33: char chartox(unsigned char c) {
+[v _chartox `(uc ~T0 @X0 1 ef1`uc ]
+{
+[e :U _chartox ]
+[v _c `uc ~T0 @X0 1 r1 ]
+[f ]
+"34
+[; ;serial_message.c: 34:     if (c > 9) {
+[e $ ! > -> _c `i -> 9 `i 105  ]
+{
+"35
+[; ;serial_message.c: 35:         return 'a' + (c - 10);
+[e ) -> + -> 97 `ui -> - -> _c `i -> 10 `i `ui `uc ]
+[e $UE 104  ]
+"36
+[; ;serial_message.c: 36:     } else {
+}
+[e $U 106  ]
+[e :U 105 ]
+{
+"37
+[; ;serial_message.c: 37:         return '0' + c;
+[e ) -> + -> 48 `ui -> _c `ui `uc ]
+[e $UE 104  ]
+"39
+[; ;serial_message.c: 39:     }
+}
+[e :U 106 ]
+"40
+[; ;serial_message.c: 40: }
+[e :UE 104 ]
+}
+"42
+[; ;serial_message.c: 42: void setBaseMessage(char messageType, char msgAddress) {
+[v _setBaseMessage `(v ~T0 @X0 1 ef2`uc`uc ]
+{
+[e :U _setBaseMessage ]
+[v _messageType `uc ~T0 @X0 1 r1 ]
+[v _msgAddress `uc ~T0 @X0 1 r2 ]
+[f ]
+"43
+[; ;serial_message.c: 43:     outputMessage[0] = '{';
+[e = *U + &U _outputMessage * -> -> -> 0 `i `ui `ux -> -> # *U &U _outputMessage `ui `ux -> -> 123 `ui `uc ]
+"45
+[; ;serial_message.c: 45:  outputMessage[1] = msgAddress;
+[e = *U + &U _outputMessage * -> -> -> 1 `i `ui `ux -> -> # *U &U _outputMessage `ui `ux _msgAddress ]
+"46
+[; ;serial_message.c: 46:  outputMessage[2] = messageType;
+[e = *U + &U _outputMessage * -> -> -> 2 `i `ui `ux -> -> # *U &U _outputMessage `ui `ux _messageType ]
+"47
+[; ;serial_message.c: 47:  outputMessage[3] = chartox(combinedZones >>4);
+[e = *U + &U _outputMessage * -> -> -> 3 `i `ui `ux -> -> # *U &U _outputMessage `ui `ux ( _chartox (1 -> >> -> _combinedZones `i -> 4 `i `uc ]
+"48
+[; ;serial_message.c: 48:     outputMessage[4] = chartox((combinedZones &15));
+[e = *U + &U _outputMessage * -> -> -> 4 `i `ui `ux -> -> # *U &U _outputMessage `ui `ux ( _chartox (1 -> & -> _combinedZones `i -> 15 `i `uc ]
+"52
+[; ;serial_message.c: 52:     char v = (fault_flags.value >> 8) &0xf;
+[v _v `uc ~T0 @X0 1 a ]
+[e = _v -> & >> . _fault_flags 1 -> 8 `i -> -> 15 `i `ui `uc ]
+"53
+[; ;serial_message.c: 53:     outputMessage[5] = chartox(v);
+[e = *U + &U _outputMessage * -> -> -> 5 `i `ui `ux -> -> # *U &U _outputMessage `ui `ux ( _chartox (1 -> _v `uc ]
+"55
+[; ;serial_message.c: 55:     v = (fault_flags.value >> 4) &0xf;
+[e = _v -> & >> . _fault_flags 1 -> 4 `i -> -> 15 `i `ui `uc ]
+"56
+[; ;serial_message.c: 56:     outputMessage[6] = chartox(v);
+[e = *U + &U _outputMessage * -> -> -> 6 `i `ui `ux -> -> # *U &U _outputMessage `ui `ux ( _chartox (1 -> _v `uc ]
+"58
+[; ;serial_message.c: 58:     v = (fault_flags.value) &0xf;
+[e = _v -> & . _fault_flags 1 -> -> 15 `i `ui `uc ]
+"59
+[; ;serial_message.c: 59:     outputMessage[7] = chartox(v);
+[e = *U + &U _outputMessage * -> -> -> 7 `i `ui `ux -> -> # *U &U _outputMessage `ui `ux ( _chartox (1 -> _v `uc ]
+"61
+[; ;serial_message.c: 61:     outputMessage[8] = '}';
+[e = *U + &U _outputMessage * -> -> -> 8 `i `ui `ux -> -> # *U &U _outputMessage `ui `ux -> -> 125 `ui `uc ]
+"62
+[; ;serial_message.c: 62:     outputMessage[9] = 0;
+[e = *U + &U _outputMessage * -> -> -> 9 `i `ui `ux -> -> # *U &U _outputMessage `ui `ux -> -> 0 `i `uc ]
+"63
+[; ;serial_message.c: 63: }
+[e :UE 107 ]
+}
+"65
+[; ;serial_message.c: 65: void process_set_zones_message(char * inmessage) {
+[v _process_set_zones_message `(v ~T0 @X0 1 ef1`*uc ]
+{
+[e :U _process_set_zones_message ]
+[v _inmessage `*uc ~T0 @X0 1 r1 ]
+[f ]
+"66
+[; ;serial_message.c: 66:     commsZones = (xtochar(inmessage[3]) << 4) + xtochar(inmessage[4]);
+[e = _commsZones -> + << -> ( _xtochar (1 *U + _inmessage * -> -> 3 `i `x -> -> # *U _inmessage `i `x `i -> 4 `i -> ( _xtochar (1 *U + _inmessage * -> -> 4 `i `x -> -> # *U _inmessage `i `x `i `uc ]
+"67
+[; ;serial_message.c: 67:     combineZones();
+[e ( _combineZones ..  ]
+"68
+[; ;serial_message.c: 68:     setBaseMessage('s', inmessage[1]);
+[e ( _setBaseMessage (2 , -> -> 115 `ui `uc *U + _inmessage * -> -> 1 `i `x -> -> # *U _inmessage `i `x ]
+"71
+[; ;serial_message.c: 71:     output_message(outputMessage);
+[e ( _output_message (1 &U _outputMessage ]
+"74
+[; ;serial_message.c: 74: }
+[e :UE 108 ]
+}
+"76
+[; ;serial_message.c: 76: void process_get_status_message(char * inmessage) {
+[v _process_get_status_message `(v ~T0 @X0 1 ef1`*uc ]
+{
+[e :U _process_get_status_message ]
+[v _inmessage `*uc ~T0 @X0 1 r1 ]
+[f ]
+"78
+[; ;serial_message.c: 78:     combineZones();
+[e ( _combineZones ..  ]
+"79
+[; ;serial_message.c: 79:     setBaseMessage('g', inmessage[1]);
+[e ( _setBaseMessage (2 , -> -> 103 `ui `uc *U + _inmessage * -> -> 1 `i `x -> -> # *U _inmessage `i `x ]
+"84
+[; ;serial_message.c: 84:     output_message(outputMessage);
+[e ( _output_message (1 &U _outputMessage ]
+"86
+[; ;serial_message.c: 86: }
+[e :UE 109 ]
+}
+"88
+[; ;serial_message.c: 88: void process_set_address_message(char * inmessage) {
+[v _process_set_address_message `(v ~T0 @X0 1 ef1`*uc ]
+{
+[e :U _process_set_address_message ]
+[v _inmessage `*uc ~T0 @X0 1 r1 ]
+[f ]
+"89
+[; ;serial_message.c: 89:     unsigned char new_address = inmessage[3];
+[v _new_address `uc ~T0 @X0 1 a ]
+[e = _new_address -> *U + _inmessage * -> -> 3 `i `x -> -> # *U _inmessage `i `x `uc ]
+"92
+[; ;serial_message.c: 92:     setBaseMessage('a', inmessage[1]);
+[e ( _setBaseMessage (2 , -> -> 97 `ui `uc *U + _inmessage * -> -> 1 `i `x -> -> # *U _inmessage `i `x ]
+"93
+[; ;serial_message.c: 93:     output_message(outputMessage);
+[e ( _output_message (1 &U _outputMessage ]
+"95
+[; ;serial_message.c: 95: }
+[e :UE 110 ]
+}
+"97
+[; ;serial_message.c: 97: void process_reset_pump(char * inmessage) {
+[v _process_reset_pump `(v ~T0 @X0 1 ef1`*uc ]
+{
+[e :U _process_reset_pump ]
+[v _inmessage `*uc ~T0 @X0 1 r1 ]
+[f ]
+"98
+[; ;serial_message.c: 98:     resetPump();
+[e ( _resetPump ..  ]
+"99
+[; ;serial_message.c: 99:     setBaseMessage('m', inmessage[1]);
+[e ( _setBaseMessage (2 , -> -> 109 `ui `uc *U + _inmessage * -> -> 1 `i `x -> -> # *U _inmessage `i `x ]
+"100
+[; ;serial_message.c: 100:     output_message(outputMessage);
+[e ( _output_message (1 &U _outputMessage ]
+"101
+[; ;serial_message.c: 101: }
+[e :UE 111 ]
+}
+"104
+[; ;serial_message.c: 104: process_message(char *inmessage) {
+[v _process_message `(v ~T0 @X0 1 ef1`*uc ]
+{
+[e :U _process_message ]
+[v _inmessage `*uc ~T0 @X0 1 r1 ]
+[f ]
+"106
+[; ;serial_message.c: 106:     char msgType;
+[v _msgType `uc ~T0 @X0 1 a ]
+"107
+[; ;serial_message.c: 107:     unsigned char address = 0;
+[v _address `uc ~T0 @X0 1 a ]
+[e = _address -> -> 0 `i `uc ]
+"112
+[; ;serial_message.c: 112:     if (inmessage[1] == '0' || inmessage[1] == address) {
+[e $ ! || == -> *U + _inmessage * -> -> 1 `i `x -> -> # *U _inmessage `i `x `ui -> 48 `ui == -> *U + _inmessage * -> -> 1 `i `x -> -> # *U _inmessage `i `x `i -> _address `i 113  ]
+{
+"114
+[; ;serial_message.c: 114:         msgType = inmessage[2];
+[e = _msgType *U + _inmessage * -> -> 2 `i `x -> -> # *U _inmessage `i `x ]
+"116
+[; ;serial_message.c: 116:         switch(msgType){
+[e $U 115  ]
+{
+"117
+[; ;serial_message.c: 117:             case 'S':
+[e :U 116 ]
+"118
+[; ;serial_message.c: 118:             case 's':
+[e :U 117 ]
+"119
+[; ;serial_message.c: 119:                 process_set_zones_message(inmessage);
+[e ( _process_set_zones_message (1 _inmessage ]
+"120
+[; ;serial_message.c: 120:                 break;
+[e $U 114  ]
+"122
+[; ;serial_message.c: 122:             case 'G':
+[e :U 118 ]
+"123
+[; ;serial_message.c: 123:             case 'g':
+[e :U 119 ]
+"124
+[; ;serial_message.c: 124:                 process_get_status_message(inmessage);
+[e ( _process_get_status_message (1 _inmessage ]
+"125
+[; ;serial_message.c: 125:                 break;
+[e $U 114  ]
+"127
+[; ;serial_message.c: 127:             case 'A':
+[e :U 120 ]
+"128
+[; ;serial_message.c: 128:             case 'a':
+[e :U 121 ]
+"129
+[; ;serial_message.c: 129:                 process_set_address_message(inmessage);
+[e ( _process_set_address_message (1 _inmessage ]
+"130
+[; ;serial_message.c: 130:                 break;
+[e $U 114  ]
+"139
+[; ;serial_message.c: 139:             case 'M':
+[e :U 122 ]
+"140
+[; ;serial_message.c: 140:             case 'm':
+[e :U 123 ]
+"141
+[; ;serial_message.c: 141:                 process_reset_pump(inmessage);
+[e ( _process_reset_pump (1 _inmessage ]
+"142
+[; ;serial_message.c: 142:                 break;
+[e $U 114  ]
+"145
+[; ;serial_message.c: 145:         }
+}
+[e $U 114  ]
+[e :U 115 ]
+[e [\ -> _msgType `i , $ -> -> 83 `ui `i 116
+ , $ -> -> 115 `ui `i 117
+ , $ -> -> 71 `ui `i 118
+ , $ -> -> 103 `ui `i 119
+ , $ -> -> 65 `ui `i 120
+ , $ -> -> 97 `ui `i 121
+ , $ -> -> 77 `ui `i 122
+ , $ -> -> 109 `ui `i 123
+ 114 ]
+[e :U 114 ]
+"148
+[; ;serial_message.c: 148:     }
+}
+[e :U 113 ]
+"149
+[; ;serial_message.c: 149: }
+[e :UE 112 ]
+}

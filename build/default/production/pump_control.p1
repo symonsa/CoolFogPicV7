@@ -3,18 +3,24 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;pump_control.c: 85: char state = standbyState;
 [c E3162 0 1 2 3 4 5 6 .. ]
 [n E3162 pump_state_e standbyState shutdownState startpumpInitialState startpumpWaitState startpumpSecondLWPCheckState startmainState pumprunState  ]
+"2453 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2453: extern volatile unsigned char PORTB __attribute__((address(0xF81)));
+[v _PORTB `Vuc ~T0 @X0 0 e@3969 ]
+"2705
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2705: extern volatile unsigned char PORTD __attribute__((address(0xF83)));
+[v _PORTD `Vuc ~T0 @X0 0 e@3971 ]
 "113 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\c99\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"164 ./pump_control.h
-[; ;./pump_control.h: 164:     struct {
+"167 ./pump_control.h
+[; ;./pump_control.h: 167:     struct {
 [s S369 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S369 . lwl_fault lwp_fault lfp_fault po_fault wpOkBit mainPumpBit boostPumpBit pumpOverloadBit dumpSolenoidBit ]
-"162
-[; ;./pump_control.h: 162: typedef union {
+"165
+[; ;./pump_control.h: 165: typedef union {
 [u S368 `S369 1 `ui 1 ]
 [n S368 . . value ]
-"181
-[; ;./pump_control.h: 181: extern fault_flags_t fault_flags;
+"184
+[; ;./pump_control.h: 184: extern fault_flags_t fault_flags;
 [v _fault_flags `S368 ~T0 @X0 0 e ]
 "10722 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 10722: extern volatile __bit T0CS __attribute__((address(0x7EAD)));
@@ -40,9 +46,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2314
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2314: extern volatile unsigned char PORTA __attribute__((address(0xF80)));
 [v _PORTA `Vuc ~T0 @X0 0 e@3968 ]
-"2453
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2453: extern volatile unsigned char PORTB __attribute__((address(0xF81)));
-[v _PORTB `Vuc ~T0 @X0 0 e@3969 ]
 "3427
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 3427: extern volatile unsigned char TRISA __attribute__((address(0xF92)));
 [v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
@@ -76,31 +79,36 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2353
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2353: extern volatile PORTAbits_t PORTAbits __attribute__((address(0xF80)));
 [v _PORTAbits `VS100 ~T0 @X0 0 e@3968 ]
-"2459
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2459:     struct {
-[s S107 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S107 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
-"2469
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2469:     struct {
-[s S108 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S108 . INT0 INT1 INT2 . PGM PGC PGD ]
-"2478
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2478:     struct {
-[s S109 :3 `uc 1 :1 `uc 1 ]
-[n S109 . . CCP2_PA2 ]
-"2458
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2458: typedef union {
-[u S106 `S107 1 `S108 1 `S109 1 ]
-[n S106 . . . . ]
-"2483
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2483: extern volatile PORTBbits_t PORTBbits __attribute__((address(0xF81)));
-[v _PORTBbits `VS106 ~T0 @X0 0 e@3969 ]
+"2832
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2832:     struct {
+[s S121 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
+[n S121 . RE0 RE1 RE2 RE3 . RDPU ]
+"2840
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2840:     struct {
+[s S122 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S122 . CK1SPP CK2SPP OESPP ]
+"2845
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2845:     struct {
+[s S123 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
+[n S123 . PD2 PC2 CCP10 CCP9E . CCP2E ]
+"2853
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2853:     struct {
+[s S124 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
+[n S124 . RDE WRE CS PC3E . PA2E ]
+"2861
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2861:     struct {
+[s S125 :2 `uc 1 :1 `uc 1 :4 `uc 1 :1 `uc 1 ]
+[n S125 . . PB2 . RE7 ]
+"2831
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2831: typedef union {
+[u S120 `S121 1 `S122 1 `S123 1 `S124 1 `S125 1 ]
+[n S120 . . . . . . ]
+"2868
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2868: extern volatile PORTEbits_t PORTEbits __attribute__((address(0xF84)));
+[v _PORTEbits `VS120 ~T0 @X0 0 e@3972 ]
 "4001
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 4001: extern volatile unsigned char TRISD __attribute__((address(0xF95)));
 [v _TRISD `Vuc ~T0 @X0 0 e@3989 ]
-"2705
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2705: extern volatile unsigned char PORTD __attribute__((address(0xF83)));
-[v _PORTD `Vuc ~T0 @X0 0 e@3971 ]
 "3438
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 3438:     struct {
 [s S142 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -116,84 +124,126 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3457
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 3457: extern volatile TRISAbits_t TRISAbits __attribute__((address(0xF92)));
 [v _TRISAbits `VS141 ~T0 @X0 0 e@3986 ]
-"3636
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 3636:     struct {
-[s S148 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S148 . TRISB0 TRISB1 TRISB2 TRISB3 TRISB4 TRISB5 TRISB6 TRISB7 ]
-"3646
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 3646:     struct {
-[s S149 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S149 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
-"3635
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 3635: typedef union {
-[u S147 `S148 1 `S149 1 ]
-[n S147 . . . ]
-"3657
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 3657: extern volatile TRISBbits_t TRISBbits __attribute__((address(0xF93)));
-[v _TRISBbits `VS147 ~T0 @X0 0 e@3987 ]
+"4234
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 4234:     struct {
+[s S166 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S166 . TRISE0 TRISE1 TRISE2 ]
+"4239
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 4239:     struct {
+[s S167 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S167 . RE0 RE1 RE2 ]
+"4233
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 4233: typedef union {
+[u S165 `S166 1 `S167 1 ]
+[n S165 . . . ]
+"4245
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 4245: extern volatile TRISEbits_t TRISEbits __attribute__((address(0xF96)));
+[v _TRISEbits `VS165 ~T0 @X0 0 e@3990 ]
+"3858
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 3858:     struct {
+[s S154 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S154 . TRISC0 TRISC1 TRISC2 . TRISC6 TRISC7 ]
+"3866
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 3866:     struct {
+[s S155 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S155 . RC0 RC1 RC2 . RC6 RC7 ]
+"3857
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 3857: typedef union {
+[u S153 `S154 1 `S155 1 ]
+[n S153 . . . ]
+"3875
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 3875: extern volatile TRISCbits_t TRISCbits __attribute__((address(0xF94)));
+[v _TRISCbits `VS153 ~T0 @X0 0 e@3988 ]
 "9741
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 9741: extern volatile __bit GIE __attribute__((address(0x7F97)));
 [v _GIE `Vb ~T0 @X0 0 e@32663 ]
-"108 ./pump_control.h
-[; ;./pump_control.h: 108: extern char inIdleDumpHour;
+"111 ./pump_control.h
+[; ;./pump_control.h: 111: extern char inIdleDumpHour;
 [v _inIdleDumpHour `uc ~T0 @X0 0 e ]
 "51 ./serial_buffer.h
 [; ;./serial_buffer.h: 51:     void ser_int(void);
 [v _ser_int `(v ~T0 @X0 0 ef ]
-"153 ./pump_control.h
-[; ;./pump_control.h: 153: void init_event_timer(void);
+"156 ./pump_control.h
+[; ;./pump_control.h: 156: void init_event_timer(void);
 [v _init_event_timer `(v ~T0 @X0 0 ef ]
+"2569 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2569:     struct {
+[s S111 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S111 . RC0 RC1 RC2 . RC4 RC5 RC6 RC7 ]
+"2579
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2579:     struct {
+[s S112 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S112 . T1OSO T1OSI CCP1 . TX RX ]
+"2587
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2587:     struct {
+[s S113 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S113 . T13CKI . P1A . CK DT ]
+"2595
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2595:     struct {
+[s S114 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S114 . . CCP2 PA1 ]
+"2600
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2600:     struct {
+[s S115 :1 `uc 1 :1 `uc 1 ]
+[n S115 . . PA2 ]
+"2568
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2568: typedef union {
+[u S110 `S111 1 `S112 1 `S113 1 `S114 1 `S115 1 ]
+[n S110 . . . . . . ]
+"2605
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2605: extern volatile PORTCbits_t PORTCbits __attribute__((address(0xF82)));
+[v _PORTCbits `VS110 ~T0 @X0 0 e@3970 ]
 [p mainexit ]
-"158
-[; ;./pump_control.h: 158: void process_event_timer(void);
+"161 ./pump_control.h
+[; ;./pump_control.h: 161: void process_event_timer(void);
 [v _process_event_timer `(v ~T0 @X0 0 ef ]
-"212
-[; ;./pump_control.h: 212: char *receiveMessage(void);
+"219
+[; ;./pump_control.h: 219: char *receiveMessage(void);
 [v _receiveMessage `(*uc ~T0 @X0 0 ef ]
-"218
-[; ;./pump_control.h: 218: void process_message(char *message);
+"225
+[; ;./pump_control.h: 225: void process_message(char *message);
 [v _process_message `(v ~T0 @X0 0 ef1`*uc ]
 "50 ./serial_buffer.h
 [; ;./serial_buffer.h: 50: void serial_process_loop(void);
 [v _serial_process_loop `(v ~T0 @X0 0 ef ]
-"244 ./pump_control.h
-[; ;./pump_control.h: 244: void process_get_status_message(char * inmessage);
+"251 ./pump_control.h
+[; ;./pump_control.h: 251: void process_get_status_message(char * inmessage);
 [v _process_get_status_message `(v ~T0 @X0 0 ef1`*uc ]
-"238
-[; ;./pump_control.h: 238: void monitor_water_pressure(void);
+"245
+[; ;./pump_control.h: 245: void monitor_water_pressure(void);
 [v _monitor_water_pressure `(v ~T0 @X0 0 ef ]
-"160
-[; ;./pump_control.h: 160: void clear_callback(char callback);
+"163
+[; ;./pump_control.h: 163: void clear_callback(char callback);
 [v _clear_callback `(v ~T0 @X0 0 ef1`uc ]
-"308 pump_control.c
-[; ;pump_control.c: 308:             clear_callback(EventPODebounce);
+"315 pump_control.c
+[; ;pump_control.c: 315:             clear_callback(EventPODebounce);
 [c E3171 0 1 2 3 4 5 6 7 8 9 .. ]
 [n E3171 timer_event_pos EventLowWaterLevel EventLowWaterPressure EventLowWaterPressureDebounce EventLowFogPressure EventFaultStateLED EventIdleTimeout EventDumpSolenoid EventRunSignalDebounce EventPODebounce EventTotalNumber  ]
-"224 ./pump_control.h
-[; ;./pump_control.h: 224: void standby(void);
+"231 ./pump_control.h
+[; ;./pump_control.h: 231: void standby(void);
 [v _standby `(v ~T0 @X0 0 ef ]
-"221
-[; ;./pump_control.h: 221: void shutdown(void);
+"228
+[; ;./pump_control.h: 228: void shutdown(void);
 [v _shutdown `(v ~T0 @X0 0 ef ]
-"225
-[; ;./pump_control.h: 225: void start_pump(void);
+"232
+[; ;./pump_control.h: 232: void start_pump(void);
 [v _start_pump `(v ~T0 @X0 0 ef ]
-"222
-[; ;./pump_control.h: 222: void start_main(void);
+"229
+[; ;./pump_control.h: 229: void start_main(void);
 [v _start_main `(v ~T0 @X0 0 ef ]
-"223
-[; ;./pump_control.h: 223: void pump_run(void);
+"230
+[; ;./pump_control.h: 230: void pump_run(void);
 [v _pump_run `(v ~T0 @X0 0 ef ]
 [v F3190 `(v ~T0 @X0 0 tf ]
-"133
-[; ;./pump_control.h: 133: typedef struct timer_event {
+"136
+[; ;./pump_control.h: 136: typedef struct timer_event {
 [s S367 `i 1 :1 `uc 1 :1 `uc 1 `uc 1 `ui 1 `*F3190 1 ]
 [n S367 timer_event time_left active flag_bit next_state flag_data callback ]
-"150
-[; ;./pump_control.h: 150: extern volatile timer_event timer_events[EventTotalNumber];
+"153
+[; ;./pump_control.h: 153: extern volatile timer_event timer_events[EventTotalNumber];
 [v _timer_events `VS367 ~T0 @X0 -> 0 `x e ]
-"159
-[; ;./pump_control.h: 159: void enable_callback(char callback, int time_delay);
+"162
+[; ;./pump_control.h: 162: void enable_callback(char callback, int time_delay);
 [v _enable_callback `(v ~T0 @X0 0 ef2`uc`i ]
 "9 pump_control.c
 [p x PLLDIV = 1 ]
@@ -788,13 +838,33 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> . `E3162 0 `uc
 ]
 "86
-[; ;pump_control.c: 86: unsigned int zones = 0;
-[v _zones `ui ~T0 @X0 1 e ]
-[i _zones
--> -> 0 `i `ui
+[; ;pump_control.c: 86: unsigned char commsZones = 0, combinedZones = 0;
+[v _commsZones `uc ~T0 @X0 1 e ]
+[i _commsZones
+-> -> 0 `i `uc
+]
+[v _combinedZones `uc ~T0 @X0 1 e ]
+[i _combinedZones
+-> -> 0 `i `uc
 ]
 "88
-[; ;pump_control.c: 88: char *PumpStateMappings[] = {
+[; ;pump_control.c: 88: void combineZones(void){
+[v _combineZones `(v ~T0 @X0 1 ef ]
+{
+[e :U _combineZones ]
+[f ]
+"89
+[; ;pump_control.c: 89:     combinedZones = commsZones | PORTB;
+[e = _combinedZones -> | -> _commsZones `i -> _PORTB `i `uc ]
+"90
+[; ;pump_control.c: 90:     PORTD = combinedZones;
+[e = _PORTD _combinedZones ]
+"91
+[; ;pump_control.c: 91: }
+[e :UE 373 ]
+}
+"92
+[; ;pump_control.c: 92: char *PumpStateMappings[] = {
 [v _PumpStateMappings `*uc ~T0 @X0 -> 7 `i e ]
 [i _PumpStateMappings
 :U ..
@@ -807,186 +877,186 @@ Version 4.0 HI-TECH Software Intermediate Code
 :s 7C
 ..
 ]
-"98
-[; ;pump_control.c: 98: void printPumpState(void) {
+"102
+[; ;pump_control.c: 102: void printPumpState(void) {
 [v _printPumpState `(v ~T0 @X0 1 ef ]
 {
 [e :U _printPumpState ]
 [f ]
-"99
-[; ;pump_control.c: 99:     return;
-[e $UE 373  ]
-"100
-[; ;pump_control.c: 100:     printf(PumpStateMappings[state]);
-[e ( _printf -> *U + &U _PumpStateMappings * -> _state `ux -> -> # *U &U _PumpStateMappings `ui `ux `*Cuc ]
-"101
-[; ;pump_control.c: 101: }
-[e :UE 373 ]
-}
 "103
-[; ;pump_control.c: 103: void printFaultState(void) {
+[; ;pump_control.c: 103:     return;
+[e $UE 374  ]
+"104
+[; ;pump_control.c: 104:     printf(PumpStateMappings[state]);
+[e ( _printf -> *U + &U _PumpStateMappings * -> _state `ux -> -> # *U &U _PumpStateMappings `ui `ux `*Cuc ]
+"105
+[; ;pump_control.c: 105: }
+[e :UE 374 ]
+}
+"107
+[; ;pump_control.c: 107: void printFaultState(void) {
 [v _printFaultState `(v ~T0 @X0 1 ef ]
 {
 [e :U _printFaultState ]
 [f ]
-"104
-[; ;pump_control.c: 104:     return;
-[e $UE 374  ]
-"105
-[; ;pump_control.c: 105:     if (fault_flags . boostPumpBit) {
-[e $ ! != -> . . _fault_flags 0 6 `i -> 0 `i 375  ]
-{
-"106
-[; ;pump_control.c: 106:         printf("boostPumpBit\n\r");
-[e ( _printf :s 8C ]
-"107
-[; ;pump_control.c: 107:     }
-}
-[e :U 375 ]
 "108
-[; ;pump_control.c: 108:     if (fault_flags . lwl_fault) {
-[e $ ! != -> . . _fault_flags 0 0 `i -> 0 `i 376  ]
-{
+[; ;pump_control.c: 108:     return;
+[e $UE 375  ]
 "109
-[; ;pump_control.c: 109:         printf("lwl_fault\n\r");
-[e ( _printf :s 9C ]
+[; ;pump_control.c: 109:     if (fault_flags . boostPumpBit) {
+[e $ ! != -> . . _fault_flags 0 6 `i -> 0 `i 376  ]
+{
 "110
-[; ;pump_control.c: 110:     }
+[; ;pump_control.c: 110:         printf("boostPumpBit\n\r");
+[e ( _printf :s 8C ]
+"111
+[; ;pump_control.c: 111:     }
 }
 [e :U 376 ]
-"111
-[; ;pump_control.c: 111:     if (fault_flags . lwp_fault) {
-[e $ ! != -> . . _fault_flags 0 1 `i -> 0 `i 377  ]
-{
 "112
-[; ;pump_control.c: 112:         printf("lwp_fault\n\r");
-[e ( _printf :s 10C ]
+[; ;pump_control.c: 112:     if (fault_flags . lwl_fault) {
+[e $ ! != -> . . _fault_flags 0 0 `i -> 0 `i 377  ]
+{
 "113
-[; ;pump_control.c: 113:     }
+[; ;pump_control.c: 113:         printf("lwl_fault\n\r");
+[e ( _printf :s 9C ]
+"114
+[; ;pump_control.c: 114:     }
 }
 [e :U 377 ]
-"114
-[; ;pump_control.c: 114:     if (fault_flags . lfp_fault) {
-[e $ ! != -> . . _fault_flags 0 2 `i -> 0 `i 378  ]
-{
 "115
-[; ;pump_control.c: 115:         printf("lfp_fault\n\r");
-[e ( _printf :s 11C ]
+[; ;pump_control.c: 115:     if (fault_flags . lwp_fault) {
+[e $ ! != -> . . _fault_flags 0 1 `i -> 0 `i 378  ]
+{
 "116
-[; ;pump_control.c: 116:     }
+[; ;pump_control.c: 116:         printf("lwp_fault\n\r");
+[e ( _printf :s 10C ]
+"117
+[; ;pump_control.c: 117:     }
 }
 [e :U 378 ]
-"117
-[; ;pump_control.c: 117:     if (fault_flags . po_fault) {
-[e $ ! != -> . . _fault_flags 0 3 `i -> 0 `i 379  ]
-{
 "118
-[; ;pump_control.c: 118:         printf("po_fault\n\r");
-[e ( _printf :s 12C ]
+[; ;pump_control.c: 118:     if (fault_flags . lfp_fault) {
+[e $ ! != -> . . _fault_flags 0 2 `i -> 0 `i 379  ]
+{
 "119
-[; ;pump_control.c: 119:     }
+[; ;pump_control.c: 119:         printf("lfp_fault\n\r");
+[e ( _printf :s 11C ]
+"120
+[; ;pump_control.c: 120:     }
 }
 [e :U 379 ]
-"120
-[; ;pump_control.c: 120:     if (fault_flags . wpOkBit) {
-[e $ ! != -> . . _fault_flags 0 4 `i -> 0 `i 380  ]
-{
 "121
-[; ;pump_control.c: 121:         printf("wpOkBit\n\r");
-[e ( _printf :s 13C ]
+[; ;pump_control.c: 121:     if (fault_flags . po_fault) {
+[e $ ! != -> . . _fault_flags 0 3 `i -> 0 `i 380  ]
+{
 "122
-[; ;pump_control.c: 122:     }
+[; ;pump_control.c: 122:         printf("po_fault\n\r");
+[e ( _printf :s 12C ]
+"123
+[; ;pump_control.c: 123:     }
 }
 [e :U 380 ]
-"123
-[; ;pump_control.c: 123:     if (fault_flags . mainPumpBit) {
-[e $ ! != -> . . _fault_flags 0 5 `i -> 0 `i 381  ]
-{
 "124
-[; ;pump_control.c: 124:         printf("mainPumpBit\n\r");
-[e ( _printf :s 14C ]
+[; ;pump_control.c: 124:     if (fault_flags . wpOkBit) {
+[e $ ! != -> . . _fault_flags 0 4 `i -> 0 `i 381  ]
+{
 "125
-[; ;pump_control.c: 125:     }
+[; ;pump_control.c: 125:         printf("wpOkBit\n\r");
+[e ( _printf :s 13C ]
+"126
+[; ;pump_control.c: 126:     }
 }
 [e :U 381 ]
-"126
-[; ;pump_control.c: 126:     if (fault_flags . boostPumpBit) {
-[e $ ! != -> . . _fault_flags 0 6 `i -> 0 `i 382  ]
-{
 "127
-[; ;pump_control.c: 127:         printf("boostPumpBit\n\r");
-[e ( _printf :s 15C ]
+[; ;pump_control.c: 127:     if (fault_flags . mainPumpBit) {
+[e $ ! != -> . . _fault_flags 0 5 `i -> 0 `i 382  ]
+{
 "128
-[; ;pump_control.c: 128:     }
+[; ;pump_control.c: 128:         printf("mainPumpBit\n\r");
+[e ( _printf :s 14C ]
+"129
+[; ;pump_control.c: 129:     }
 }
 [e :U 382 ]
-"129
-[; ;pump_control.c: 129:     if (fault_flags . pumpOverloadBit) {
-[e $ ! != -> . . _fault_flags 0 7 `i -> 0 `i 383  ]
-{
 "130
-[; ;pump_control.c: 130:         printf("pumpOverloadBit\n\r");
-[e ( _printf :s 16C ]
+[; ;pump_control.c: 130:     if (fault_flags . boostPumpBit) {
+[e $ ! != -> . . _fault_flags 0 6 `i -> 0 `i 383  ]
+{
 "131
-[; ;pump_control.c: 131:     }
+[; ;pump_control.c: 131:         printf("boostPumpBit\n\r");
+[e ( _printf :s 15C ]
+"132
+[; ;pump_control.c: 132:     }
 }
 [e :U 383 ]
-"132
-[; ;pump_control.c: 132:     if (fault_flags . dumpSolenoidBit) {
-[e $ ! != -> . . _fault_flags 0 8 `i -> 0 `i 384  ]
-{
 "133
-[; ;pump_control.c: 133:         printf("dumpSolenoidBit\n\r");
-[e ( _printf :s 17C ]
+[; ;pump_control.c: 133:     if (fault_flags . pumpOverloadBit) {
+[e $ ! != -> . . _fault_flags 0 7 `i -> 0 `i 384  ]
+{
 "134
-[; ;pump_control.c: 134:     }
+[; ;pump_control.c: 134:         printf("pumpOverloadBit\n\r");
+[e ( _printf :s 16C ]
+"135
+[; ;pump_control.c: 135:     }
 }
 [e :U 384 ]
 "136
-[; ;pump_control.c: 136: }
-[e :UE 374 ]
+[; ;pump_control.c: 136:     if (fault_flags . dumpSolenoidBit) {
+[e $ ! != -> . . _fault_flags 0 8 `i -> 0 `i 385  ]
+{
+"137
+[; ;pump_control.c: 137:         printf("dumpSolenoidBit\n\r");
+[e ( _printf :s 17C ]
+"138
+[; ;pump_control.c: 138:     }
 }
-"139
-[; ;pump_control.c: 139: init(void) {
+[e :U 385 ]
+"140
+[; ;pump_control.c: 140: }
+[e :UE 375 ]
+}
+"143
+[; ;pump_control.c: 143: init(void) {
 [v _init `(v ~T0 @X0 1 ef ]
 {
 [e :U _init ]
 [f ]
-"144
-[; ;pump_control.c: 144:     T0CS = 0;
+"148
+[; ;pump_control.c: 148:     T0CS = 0;
 [e = _T0CS -> -> 0 `i `b ]
-"146
-[; ;pump_control.c: 146:     ADCON1 = 0x7f;
-[e = _ADCON1 -> -> 127 `i `uc ]
 "150
-[; ;pump_control.c: 150:     PCFG3 = 1;
-[e = _PCFG3 -> -> 1 `i `b ]
+[; ;pump_control.c: 150:     ADCON1 = 0x7f;
+[e = _ADCON1 -> -> 127 `i `uc ]
 "154
-[; ;pump_control.c: 154:     RBPU = 0;
+[; ;pump_control.c: 154:     PCFG3 = 1;
+[e = _PCFG3 -> -> 1 `i `b ]
+"158
+[; ;pump_control.c: 158:     RBPU = 0;
 [e = _RBPU -> -> 0 `i `b ]
-"167
-[; ;pump_control.c: 167: IRCF2 = 1;
+"171
+[; ;pump_control.c: 171: IRCF2 = 1;
 [e = _IRCF2 -> -> 1 `i `b ]
-"168
-[; ;pump_control.c: 168: IRCF1 = 1;
-[e = _IRCF1 -> -> 1 `i `b ]
-"169
-[; ;pump_control.c: 169: IRCF0 = 1;
-[e = _IRCF0 -> -> 1 `i `b ]
 "172
-[; ;pump_control.c: 172:     PORTA = 0;
-[e = _PORTA -> -> 0 `i `uc ]
+[; ;pump_control.c: 172: IRCF1 = 1;
+[e = _IRCF1 -> -> 1 `i `b ]
 "173
-[; ;pump_control.c: 173:     PORTB = 0;
+[; ;pump_control.c: 173: IRCF0 = 1;
+[e = _IRCF0 -> -> 1 `i `b ]
+"176
+[; ;pump_control.c: 176:     PORTA = 0;
+[e = _PORTA -> -> 0 `i `uc ]
+"177
+[; ;pump_control.c: 177:     PORTB = 0;
 [e = _PORTB -> -> 0 `i `uc ]
-"174
-[; ;pump_control.c: 174:     TRISA = 0;
-[e = _TRISA -> -> 0 `i `uc ]
-"175
-[; ;pump_control.c: 175:     TRISB = 0;
-[e = _TRISB -> -> 0 `i `uc ]
 "178
-[; ;pump_control.c: 178:     { PORTAbits.RA3 = (0);}; { PORTAbits.RA0 = (0); fault_flags.wpOkBit = (0);}; { PORTAbits.RA1 = (0); fault_flags.mainPumpBit = (0);}; { PORTBbits.RB5 = (0); fault_flags.boostPumpBit = (0);}; { PORTAbits.RA2 = (0); fault_flags.dumpSolenoidBit = (0);}; { PORTBbits.RB0 = (0);}; TRISD = 0; PORTD = 0x00; TRISAbits.RA0 = 0; TRISAbits.RA1 = 0; TRISAbits.RA2 = 0; TRISAbits.RA3 = 0; TRISBbits.RB5 = 0; TRISBbits.RB0 = 0;;
+[; ;pump_control.c: 178:     TRISA = 0;
+[e = _TRISA -> -> 0 `i `uc ]
+"179
+[; ;pump_control.c: 179:     TRISB = 0;
+[e = _TRISB -> -> 0 `i `uc ]
+"182
+[; ;pump_control.c: 182:     { PORTAbits.RA3 = (0);}; { PORTAbits.RA0 = (0); fault_flags.wpOkBit = (0);}; { PORTAbits.RA1 = (0); fault_flags.mainPumpBit = (0);}; { PORTEbits.RE0 = (0); fault_flags.boostPumpBit = (0);}; { PORTAbits.RA2 = (0); fault_flags.dumpSolenoidBit = (0);}; { PORTEbits.RE1 = (0);}; TRISD = 0; PORTD = 0x00; TRISAbits.RA0 = 0; TRISAbits.RA1 = 0; TRISAbits.RA2 = 0; TRISAbits.RA3 = 0; TRISEbits.RE0 = 0; TRISEbits.RE1 = 0;;
 {
 [e = . . _PORTAbits 0 3 -> -> 0 `i `uc ]
 }
@@ -999,7 +1069,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _fault_flags 0 5 -> -> 0 `i `uc ]
 }
 {
-[e = . . _PORTBbits 0 5 -> -> 0 `i `uc ]
+[e = . . _PORTEbits 0 0 -> -> 0 `i `uc ]
 [e = . . _fault_flags 0 6 -> -> 0 `i `uc ]
 }
 {
@@ -1007,7 +1077,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _fault_flags 0 8 -> -> 0 `i `uc ]
 }
 {
-[e = . . _PORTBbits 0 0 -> -> 0 `i `uc ]
+[e = . . _PORTEbits 0 1 -> -> 0 `i `uc ]
 }
 [e = _TRISD -> -> 0 `i `uc ]
 [e = _PORTD -> -> 0 `i `uc ]
@@ -1015,131 +1085,138 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _TRISAbits 1 1 -> -> 0 `i `uc ]
 [e = . . _TRISAbits 1 2 -> -> 0 `i `uc ]
 [e = . . _TRISAbits 1 3 -> -> 0 `i `uc ]
-[e = . . _TRISBbits 1 5 -> -> 0 `i `uc ]
-[e = . . _TRISBbits 1 0 -> -> 0 `i `uc ]
-"179
-[; ;pump_control.c: 179:     TRISBbits.RB2 = 1; TRISBbits.RB3 = 1; TRISAbits.RA4 = 1; TRISAbits.RA5 = 1; TRISBbits.RB4 = 1;;
-[e = . . _TRISBbits 1 2 -> -> 1 `i `uc ]
-[e = . . _TRISBbits 1 3 -> -> 1 `i `uc ]
+[e = . . _TRISEbits 1 0 -> -> 0 `i `uc ]
+[e = . . _TRISEbits 1 1 -> -> 0 `i `uc ]
+"183
+[; ;pump_control.c: 183:     TRISCbits.RC0 = 1; TRISCbits.RC1 = 1; TRISAbits.RA4 = 1; TRISAbits.RA5 = 1; TRISCbits.RC2 = 1; TRISB = 1;
+[e = . . _TRISCbits 1 0 -> -> 1 `i `uc ]
+[e = . . _TRISCbits 1 1 -> -> 1 `i `uc ]
 [e = . . _TRISAbits 1 4 -> -> 1 `i `uc ]
 [e = . . _TRISAbits 1 5 -> -> 1 `i `uc ]
-[e = . . _TRISBbits 1 4 -> -> 1 `i `uc ]
-"182
-[; ;pump_control.c: 182:     fault_flags.boostPumpBit = 0;
-[e = . . _fault_flags 0 6 -> -> 0 `i `uc ]
-"183
-[; ;pump_control.c: 183:     fault_flags.lwl_fault = 0;
-[e = . . _fault_flags 0 0 -> -> 0 `i `uc ]
-"184
-[; ;pump_control.c: 184:     fault_flags.lwp_fault = 0;
-[e = . . _fault_flags 0 1 -> -> 0 `i `uc ]
-"185
-[; ;pump_control.c: 185:     fault_flags.lfp_fault = 0;
-[e = . . _fault_flags 0 2 -> -> 0 `i `uc ]
+[e = . . _TRISCbits 1 2 -> -> 1 `i `uc ]
+[e = _TRISB -> -> 1 `i `uc ]
 "186
-[; ;pump_control.c: 186:     fault_flags.po_fault = 0;
-[e = . . _fault_flags 0 3 -> -> 0 `i `uc ]
-"188
-[; ;pump_control.c: 188:     fault_flags.wpOkBit = 0;
-[e = . . _fault_flags 0 4 -> -> 0 `i `uc ]
-"189
-[; ;pump_control.c: 189:     fault_flags.mainPumpBit = 0;
-[e = . . _fault_flags 0 5 -> -> 0 `i `uc ]
-"190
-[; ;pump_control.c: 190:     fault_flags.boostPumpBit = 0;
+[; ;pump_control.c: 186:     fault_flags.boostPumpBit = 0;
 [e = . . _fault_flags 0 6 -> -> 0 `i `uc ]
-"191
-[; ;pump_control.c: 191:     fault_flags.pumpOverloadBit = 0;
-[e = . . _fault_flags 0 7 -> -> 0 `i `uc ]
+"187
+[; ;pump_control.c: 187:     fault_flags.lwl_fault = 0;
+[e = . . _fault_flags 0 0 -> -> 0 `i `uc ]
+"188
+[; ;pump_control.c: 188:     fault_flags.lwp_fault = 0;
+[e = . . _fault_flags 0 1 -> -> 0 `i `uc ]
+"189
+[; ;pump_control.c: 189:     fault_flags.lfp_fault = 0;
+[e = . . _fault_flags 0 2 -> -> 0 `i `uc ]
+"190
+[; ;pump_control.c: 190:     fault_flags.po_fault = 0;
+[e = . . _fault_flags 0 3 -> -> 0 `i `uc ]
 "192
-[; ;pump_control.c: 192:     fault_flags.dumpSolenoidBit = 0;
-[e = . . _fault_flags 0 8 -> -> 0 `i `uc ]
+[; ;pump_control.c: 192:     fault_flags.wpOkBit = 0;
+[e = . . _fault_flags 0 4 -> -> 0 `i `uc ]
+"193
+[; ;pump_control.c: 193:     fault_flags.mainPumpBit = 0;
+[e = . . _fault_flags 0 5 -> -> 0 `i `uc ]
+"194
+[; ;pump_control.c: 194:     fault_flags.boostPumpBit = 0;
+[e = . . _fault_flags 0 6 -> -> 0 `i `uc ]
+"195
+[; ;pump_control.c: 195:     fault_flags.pumpOverloadBit = 0;
+[e = . . _fault_flags 0 7 -> -> 0 `i `uc ]
 "196
-[; ;pump_control.c: 196:     GIE = 1;
+[; ;pump_control.c: 196:     fault_flags.dumpSolenoidBit = 0;
+[e = . . _fault_flags 0 8 -> -> 0 `i `uc ]
+"200
+[; ;pump_control.c: 200:     GIE = 1;
 [e = _GIE -> -> 1 `i `b ]
-"197
-[; ;pump_control.c: 197:     state = standbyState;
+"201
+[; ;pump_control.c: 201:     state = standbyState;
 [e = _state -> . `E3162 0 `uc ]
-"198
-[; ;pump_control.c: 198:     zones = 0;
-[e = _zones -> -> 0 `i `ui ]
-"199
-[; ;pump_control.c: 199:     inIdleDumpHour = 0;
-[e = _inIdleDumpHour -> -> 0 `i `uc ]
+"202
+[; ;pump_control.c: 202:     commsZones = 0;
+[e = _commsZones -> -> 0 `i `uc ]
+"203
+[; ;pump_control.c: 203:     combinedZones = 0;
+[e = _combinedZones -> -> 0 `i `uc ]
 "204
-[; ;pump_control.c: 204:     ser_int();
-[e ( _ser_int ..  ]
-"206
-[; ;pump_control.c: 206: }
-[e :UE 385 ]
-}
-"209
-[; ;pump_control.c: 209: resetPump(void) {
-[v _resetPump `(v ~T0 @X0 1 ef ]
-{
-[e :U _resetPump ]
-[f ]
+[; ;pump_control.c: 204:     combineZones();
+[e ( _combineZones ..  ]
+"205
+[; ;pump_control.c: 205:     inIdleDumpHour = 0;
+[e = _inIdleDumpHour -> -> 0 `i `uc ]
 "210
-[; ;pump_control.c: 210:     init();
-[e ( _init ..  ]
-"211
-[; ;pump_control.c: 211:     init_event_timer();
-[e ( _init_event_timer ..  ]
+[; ;pump_control.c: 210:     ser_int();
+[e ( _ser_int ..  ]
 "212
 [; ;pump_control.c: 212: }
 [e :UE 386 ]
 }
-"221
-[; ;pump_control.c: 221: void checkIfShoudReset(void) {
+"215
+[; ;pump_control.c: 215: resetPump(void) {
+[v _resetPump `(v ~T0 @X0 1 ef ]
+{
+[e :U _resetPump ]
+[f ]
+"216
+[; ;pump_control.c: 216:     init();
+[e ( _init ..  ]
+"217
+[; ;pump_control.c: 217:     init_event_timer();
+[e ( _init_event_timer ..  ]
+"218
+[; ;pump_control.c: 218: }
+[e :UE 387 ]
+}
+"227
+[; ;pump_control.c: 227: void checkIfShoudReset(void) {
 [v _checkIfShoudReset `(v ~T0 @X0 1 ef ]
 {
 [e :U _checkIfShoudReset ]
 [f ]
-"223
-[; ;pump_control.c: 223:     if (!( (!PORTBbits.RB3) || (zones != 0) )
-[e $ ! && ! || ! != -> . . _PORTBbits 0 3 `i -> 0 `i != _zones -> -> 0 `i `ui || || || != -> . . _fault_flags 0 0 `i -> 0 `i != -> . . _fault_flags 0 1 `i -> 0 `i != -> . . _fault_flags 0 2 `i -> 0 `i != -> . . _fault_flags 0 3 `i -> 0 `i 388  ]
-"228
-[; ;pump_control.c: 228:             ) {
+"229
+[; ;pump_control.c: 229:     if (!( (!PORTCbits.RC1) || (combinedZones != 0) )
+[e $ ! && ! || ! != -> . . _PORTCbits 0 1 `i -> 0 `i != -> _combinedZones `i -> 0 `i || || || != -> . . _fault_flags 0 0 `i -> 0 `i != -> . . _fault_flags 0 1 `i -> 0 `i != -> . . _fault_flags 0 2 `i -> 0 `i != -> . . _fault_flags 0 3 `i -> 0 `i 389  ]
+"234
+[; ;pump_control.c: 234:             ) {
 {
-"230
-[; ;pump_control.c: 230:         resetPump();
+"236
+[; ;pump_control.c: 236:         resetPump();
 [e ( _resetPump ..  ]
-"231
-[; ;pump_control.c: 231:     }
+"237
+[; ;pump_control.c: 237:     }
 }
-[e :U 388 ]
-"232
-[; ;pump_control.c: 232: }
-[e :UE 387 ]
+[e :U 389 ]
+"238
+[; ;pump_control.c: 238: }
+[e :UE 388 ]
 }
-"252
-[; ;pump_control.c: 252: void toggleLeds(void) {
+"258
+[; ;pump_control.c: 258: void toggleLeds(void) {
 [v _toggleLeds `(v ~T0 @X0 1 ef ]
 {
 [e :U _toggleLeds ]
 [f ]
-"253
-[; ;pump_control.c: 253:     PORTD++;
+"259
+[; ;pump_control.c: 259:     PORTD++;
 [e ++ _PORTD -> -> 1 `i `Vuc ]
-"254
-[; ;pump_control.c: 254: }
-[e :UE 389 ]
+"260
+[; ;pump_control.c: 260: }
+[e :UE 390 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"258
-[; ;pump_control.c: 258: main(void) {
+"264
+[; ;pump_control.c: 264: main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"259
-[; ;pump_control.c: 259:     char *message;
+"265
+[; ;pump_control.c: 265:     char *message;
 [v _message `*uc ~T0 @X0 1 a ]
-[v F3632 `uc ~T0 @X0 -> 10 `i s ]
-[i F3632
+[v F3636 `uc ~T0 @X0 -> 10 `i s ]
+[i F3636
 :U ..
-"260
-[; ;pump_control.c: 260:     char sendGetMessageBuffer[10] = {'0', '0', '0', '0', '0', '0', '0', '0', '0'};
+"266
+[; ;pump_control.c: 266:     char sendGetMessageBuffer[10] = {'0', '0', '0', '0', '0', '0', '0', '0', '0'};
 -> -> 48 `ui `uc
 -> -> 48 `ui `uc
 -> -> 48 `ui `uc
@@ -1152,211 +1229,211 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v _sendGetMessageBuffer `uc ~T0 @X0 -> 10 `i a ]
-[e = _sendGetMessageBuffer F3632 ]
-"261
-[; ;pump_control.c: 261:     init();
+[e = _sendGetMessageBuffer F3636 ]
+"267
+[; ;pump_control.c: 267:     init();
 [e ( _init ..  ]
-"262
-[; ;pump_control.c: 262:     init_event_timer();
+"268
+[; ;pump_control.c: 268:     init_event_timer();
 [e ( _init_event_timer ..  ]
-"263
-[; ;pump_control.c: 263:     ser_int();
+"269
+[; ;pump_control.c: 269:     ser_int();
 [e ( _ser_int ..  ]
-"264
-[; ;pump_control.c: 264:     printf("waitingxxxx \n\r");
+"270
+[; ;pump_control.c: 270:     printf("waitingxxxx \n\r");
 [e ( _printf :s 18C ]
-"281
-[; ;pump_control.c: 281:     unsigned int msg_counter = 0;
+"287
+[; ;pump_control.c: 287:     unsigned int msg_counter = 0;
 [v _msg_counter `ui ~T0 @X0 1 a ]
 [e = _msg_counter -> -> 0 `i `ui ]
-"282
-[; ;pump_control.c: 282:     while (1) {
-[e :U 392 ]
-{
-"283
-[; ;pump_control.c: 283:         toggleLeds();
-[e ( _toggleLeds ..  ]
-"285
-[; ;pump_control.c: 285:         process_event_timer();
-[e ( _process_event_timer ..  ]
-"287
-[; ;pump_control.c: 287:         if ((message = receiveMessage())) {
-[e $ ! != = _message ( _receiveMessage ..  -> -> 0 `i `*uc 394  ]
+"288
+[; ;pump_control.c: 288:     while (1) {
+[e :U 393 ]
 {
 "289
-[; ;pump_control.c: 289:             process_message(message);
-[e ( _process_message (1 _message ]
-"290
-[; ;pump_control.c: 290:         }
-}
-[e :U 394 ]
+[; ;pump_control.c: 289:         combineZones();
+[e ( _combineZones ..  ]
 "292
-[; ;pump_control.c: 292:         serial_process_loop();
-[e ( _serial_process_loop ..  ]
+[; ;pump_control.c: 292:         process_event_timer();
+[e ( _process_event_timer ..  ]
 "294
-[; ;pump_control.c: 294:         msg_counter++;
-[e ++ _msg_counter -> -> 1 `i `ui ]
-"295
-[; ;pump_control.c: 295:         if (msg_counter >= (1 << 10)) {
-[e $ ! >= _msg_counter -> << -> 1 `i -> 10 `i `ui 395  ]
+[; ;pump_control.c: 294:         if ((message = receiveMessage())) {
+[e $ ! != = _message ( _receiveMessage ..  -> -> 0 `i `*uc 395  ]
 {
 "296
-[; ;pump_control.c: 296:             printPumpState();
-[e ( _printPumpState ..  ]
+[; ;pump_control.c: 296:             process_message(message);
+[e ( _process_message (1 _message ]
 "297
-[; ;pump_control.c: 297:             printFaultState();
-[e ( _printFaultState ..  ]
-"298
-[; ;pump_control.c: 298:             process_get_status_message(sendGetMessageBuffer);
-[e ( _process_get_status_message (1 &U _sendGetMessageBuffer ]
-"300
-[; ;pump_control.c: 300:             msg_counter = 0;
-[e = _msg_counter -> -> 0 `i `ui ]
-"301
-[; ;pump_control.c: 301:         }
+[; ;pump_control.c: 297:         }
 }
 [e :U 395 ]
-"305
-[; ;pump_control.c: 305:         checkIfShoudReset();
-[e ( _checkIfShoudReset ..  ]
-"306
-[; ;pump_control.c: 306:         monitor_water_pressure();
-[e ( _monitor_water_pressure ..  ]
-"307
-[; ;pump_control.c: 307:         if (!( !PORTBbits.RB4)) {
-[e $ ! ! ! != -> . . _PORTBbits 0 4 `i -> 0 `i 396  ]
+"299
+[; ;pump_control.c: 299:         serial_process_loop();
+[e ( _serial_process_loop ..  ]
+"301
+[; ;pump_control.c: 301:         msg_counter++;
+[e ++ _msg_counter -> -> 1 `i `ui ]
+"302
+[; ;pump_control.c: 302:         if (msg_counter >= (1 << 10)) {
+[e $ ! >= _msg_counter -> << -> 1 `i -> 10 `i `ui 396  ]
 {
+"303
+[; ;pump_control.c: 303:             printPumpState();
+[e ( _printPumpState ..  ]
+"304
+[; ;pump_control.c: 304:             printFaultState();
+[e ( _printFaultState ..  ]
+"305
+[; ;pump_control.c: 305:             process_get_status_message(sendGetMessageBuffer);
+[e ( _process_get_status_message (1 &U _sendGetMessageBuffer ]
+"307
+[; ;pump_control.c: 307:             msg_counter = 0;
+[e = _msg_counter -> -> 0 `i `ui ]
 "308
-[; ;pump_control.c: 308:             clear_callback(EventPODebounce);
-[e ( _clear_callback (1 -> . `E3171 8 `uc ]
-"309
-[; ;pump_control.c: 309:         }
+[; ;pump_control.c: 308:         }
 }
 [e :U 396 ]
-"310
-[; ;pump_control.c: 310:         switch (state) {
-[e $U 398  ]
-{
-"311
-[; ;pump_control.c: 311:             case standbyState:
-[e :U 399 ]
 "312
-[; ;pump_control.c: 312:                 standby();
-[e ( _standby ..  ]
+[; ;pump_control.c: 312:         checkIfShoudReset();
+[e ( _checkIfShoudReset ..  ]
 "313
-[; ;pump_control.c: 313:                 break;
-[e $U 397  ]
+[; ;pump_control.c: 313:         monitor_water_pressure();
+[e ( _monitor_water_pressure ..  ]
 "314
-[; ;pump_control.c: 314:             case shutdownState:
-[e :U 400 ]
+[; ;pump_control.c: 314:         if (!( !PORTCbits.RC2)) {
+[e $ ! ! ! != -> . . _PORTCbits 0 2 `i -> 0 `i 397  ]
+{
 "315
-[; ;pump_control.c: 315:                 shutdown();
-[e ( _shutdown ..  ]
+[; ;pump_control.c: 315:             clear_callback(EventPODebounce);
+[e ( _clear_callback (1 -> . `E3171 8 `uc ]
 "316
-[; ;pump_control.c: 316:                 break;
-[e $U 397  ]
-"317
-[; ;pump_control.c: 317:             case startpumpInitialState:
-[e :U 401 ]
-"318
-[; ;pump_control.c: 318:                 start_pump();
-[e ( _start_pump ..  ]
-"319
-[; ;pump_control.c: 319:                 break;
-[e $U 397  ]
-"320
-[; ;pump_control.c: 320:             case startpumpWaitState:
-[e :U 402 ]
-"321
-[; ;pump_control.c: 321:                 start_pump();
-[e ( _start_pump ..  ]
-"322
-[; ;pump_control.c: 322:                 break;
-[e $U 397  ]
-"323
-[; ;pump_control.c: 323:             case startpumpSecondLWPCheckState:
-[e :U 403 ]
-"324
-[; ;pump_control.c: 324:                 start_pump();
-[e ( _start_pump ..  ]
-"325
-[; ;pump_control.c: 325:                 break;
-[e $U 397  ]
-"326
-[; ;pump_control.c: 326:             case startmainState:
-[e :U 404 ]
-"327
-[; ;pump_control.c: 327:                 start_main();
-[e ( _start_main ..  ]
-"328
-[; ;pump_control.c: 328:                 break;
-[e $U 397  ]
-"329
-[; ;pump_control.c: 329:             case pumprunState:
-[e :U 405 ]
-"330
-[; ;pump_control.c: 330:                 pump_run();
-[e ( _pump_run ..  ]
-"331
-[; ;pump_control.c: 331:                 break;
-[e $U 397  ]
-"332
-[; ;pump_control.c: 332:         }
+[; ;pump_control.c: 316:         }
 }
-[e $U 397  ]
-[e :U 398 ]
-[e [\ -> _state `i , $ . `E3162 0 399
- , $ . `E3162 1 400
- , $ . `E3162 2 401
- , $ . `E3162 3 402
- , $ . `E3162 4 403
- , $ . `E3162 5 404
- , $ . `E3162 6 405
- 397 ]
 [e :U 397 ]
+"317
+[; ;pump_control.c: 317:         switch (state) {
+[e $U 399  ]
+{
+"318
+[; ;pump_control.c: 318:             case standbyState:
+[e :U 400 ]
+"319
+[; ;pump_control.c: 319:                 standby();
+[e ( _standby ..  ]
+"320
+[; ;pump_control.c: 320:                 break;
+[e $U 398  ]
+"321
+[; ;pump_control.c: 321:             case shutdownState:
+[e :U 401 ]
+"322
+[; ;pump_control.c: 322:                 shutdown();
+[e ( _shutdown ..  ]
+"323
+[; ;pump_control.c: 323:                 break;
+[e $U 398  ]
+"324
+[; ;pump_control.c: 324:             case startpumpInitialState:
+[e :U 402 ]
+"325
+[; ;pump_control.c: 325:                 start_pump();
+[e ( _start_pump ..  ]
+"326
+[; ;pump_control.c: 326:                 break;
+[e $U 398  ]
+"327
+[; ;pump_control.c: 327:             case startpumpWaitState:
+[e :U 403 ]
+"328
+[; ;pump_control.c: 328:                 start_pump();
+[e ( _start_pump ..  ]
+"329
+[; ;pump_control.c: 329:                 break;
+[e $U 398  ]
+"330
+[; ;pump_control.c: 330:             case startpumpSecondLWPCheckState:
+[e :U 404 ]
+"331
+[; ;pump_control.c: 331:                 start_pump();
+[e ( _start_pump ..  ]
+"332
+[; ;pump_control.c: 332:                 break;
+[e $U 398  ]
+"333
+[; ;pump_control.c: 333:             case startmainState:
+[e :U 405 ]
 "334
-[; ;pump_control.c: 334:         if (state == standbyState) {
-[e $ ! == -> _state `i -> . `E3162 0 `i 406  ]
-{
+[; ;pump_control.c: 334:                 start_main();
+[e ( _start_main ..  ]
 "335
-[; ;pump_control.c: 335:             if (!timer_events[EventIdleTimeout].active) {
-[e $ ! ! != -> . *U + &U _timer_events * -> . `E3171 5 `ux -> -> # *U &U _timer_events `ui `ux 1 `i -> 0 `i 407  ]
-{
+[; ;pump_control.c: 335:                 break;
+[e $U 398  ]
 "336
-[; ;pump_control.c: 336:                 timer_events[EventIdleTimeout].flag_bit = 0;
-[e = . *U + &U _timer_events * -> . `E3171 5 `ux -> -> # *U &U _timer_events `ui `ux 2 -> -> 0 `i `uc ]
-"337
-[; ;pump_control.c: 337:                 timer_events[EventIdleTimeout].flag_data = 0;
-[e = . *U + &U _timer_events * -> . `E3171 5 `ux -> -> # *U &U _timer_events `ui `ux 4 -> -> 0 `i `ui ]
-"338
-[; ;pump_control.c: 338:                 enable_callback(EventIdleTimeout, (0x7fff));
-[e ( _enable_callback (2 , -> . `E3171 5 `uc -> 32767 `i ]
-"339
-[; ;pump_control.c: 339:             }
-}
-[e :U 407 ]
-"341
-[; ;pump_control.c: 341:         } else {
-}
-[e $U 408  ]
+[; ;pump_control.c: 336:             case pumprunState:
 [e :U 406 ]
+"337
+[; ;pump_control.c: 337:                 pump_run();
+[e ( _pump_run ..  ]
+"338
+[; ;pump_control.c: 338:                 break;
+[e $U 398  ]
+"339
+[; ;pump_control.c: 339:         }
+}
+[e $U 398  ]
+[e :U 399 ]
+[e [\ -> _state `i , $ . `E3162 0 400
+ , $ . `E3162 1 401
+ , $ . `E3162 2 402
+ , $ . `E3162 3 403
+ , $ . `E3162 4 404
+ , $ . `E3162 5 405
+ , $ . `E3162 6 406
+ 398 ]
+[e :U 398 ]
+"341
+[; ;pump_control.c: 341:         if (state == standbyState) {
+[e $ ! == -> _state `i -> . `E3162 0 `i 407  ]
 {
 "342
-[; ;pump_control.c: 342:             clear_callback(EventIdleTimeout);
-[e ( _clear_callback (1 -> . `E3171 5 `uc ]
+[; ;pump_control.c: 342:             if (!timer_events[EventIdleTimeout].active) {
+[e $ ! ! != -> . *U + &U _timer_events * -> . `E3171 5 `ux -> -> # *U &U _timer_events `ui `ux 1 `i -> 0 `i 408  ]
+{
 "343
-[; ;pump_control.c: 343:         }
+[; ;pump_control.c: 343:                 timer_events[EventIdleTimeout].flag_bit = 0;
+[e = . *U + &U _timer_events * -> . `E3171 5 `ux -> -> # *U &U _timer_events `ui `ux 2 -> -> 0 `i `uc ]
+"344
+[; ;pump_control.c: 344:                 timer_events[EventIdleTimeout].flag_data = 0;
+[e = . *U + &U _timer_events * -> . `E3171 5 `ux -> -> # *U &U _timer_events `ui `ux 4 -> -> 0 `i `ui ]
+"345
+[; ;pump_control.c: 345:                 enable_callback(EventIdleTimeout, (0x7fff));
+[e ( _enable_callback (2 , -> . `E3171 5 `uc -> 32767 `i ]
+"346
+[; ;pump_control.c: 346:             }
 }
 [e :U 408 ]
-"347
-[; ;pump_control.c: 347:     }
+"348
+[; ;pump_control.c: 348:         } else {
 }
-[e :U 391 ]
-[e $U 392  ]
-[e :U 393 ]
+[e $U 409  ]
+[e :U 407 ]
+{
 "349
-[; ;pump_control.c: 349: }
-[e :UE 390 ]
+[; ;pump_control.c: 349:             clear_callback(EventIdleTimeout);
+[e ( _clear_callback (1 -> . `E3171 5 `uc ]
+"350
+[; ;pump_control.c: 350:         }
+}
+[e :U 409 ]
+"354
+[; ;pump_control.c: 354:     }
+}
+[e :U 392 ]
+[e $U 393  ]
+[e :U 394 ]
+"356
+[; ;pump_control.c: 356: }
+[e :UE 391 ]
 }
 [p f _printf 9437696 ]
 [a 10C 108 119 112 95 102 97 117 108 116 10 13 0 ]

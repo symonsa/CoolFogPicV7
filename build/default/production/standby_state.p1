@@ -26,54 +26,89 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2353
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2353: extern volatile PORTAbits_t PORTAbits __attribute__((address(0xF80)));
 [v _PORTAbits `VS100 ~T0 @X0 0 e@3968 ]
-"160 ./pump_control.h
-[; ;./pump_control.h: 160: void clear_callback(char callback);
+"163 ./pump_control.h
+[; ;./pump_control.h: 163: void clear_callback(char callback);
 [v _clear_callback `(v ~T0 @X0 0 ef1`uc ]
 "27 standby_state.c
 [; ;standby_state.c: 27:     clear_callback (EventLowWaterLevel);
 [c E3171 0 1 2 3 4 5 6 7 8 9 .. ]
 [n E3171 timer_event_pos EventLowWaterLevel EventLowWaterPressure EventLowWaterPressureDebounce EventLowFogPressure EventFaultStateLED EventIdleTimeout EventDumpSolenoid EventRunSignalDebounce EventPODebounce EventTotalNumber  ]
-"164 ./pump_control.h
-[; ;./pump_control.h: 164:     struct {
+"167 ./pump_control.h
+[; ;./pump_control.h: 167:     struct {
 [s S369 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S369 . lwl_fault lwp_fault lfp_fault po_fault wpOkBit mainPumpBit boostPumpBit pumpOverloadBit dumpSolenoidBit ]
-"162
-[; ;./pump_control.h: 162: typedef union {
+"165
+[; ;./pump_control.h: 165: typedef union {
 [u S368 `S369 1 `ui 1 ]
 [n S368 . . value ]
-"181
-[; ;./pump_control.h: 181: extern fault_flags_t fault_flags;
+"184
+[; ;./pump_control.h: 184: extern fault_flags_t fault_flags;
 [v _fault_flags `S368 ~T0 @X0 0 e ]
-"159
-[; ;./pump_control.h: 159: void enable_callback(char callback, int time_delay);
+"162
+[; ;./pump_control.h: 162: void enable_callback(char callback, int time_delay);
 [v _enable_callback `(v ~T0 @X0 0 ef2`uc`i ]
-"2459 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2459:     struct {
-[s S107 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S107 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
-"2469
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2469:     struct {
-[s S108 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S108 . INT0 INT1 INT2 . PGM PGC PGD ]
-"2478
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2478:     struct {
-[s S109 :3 `uc 1 :1 `uc 1 ]
-[n S109 . . CCP2_PA2 ]
-"2458
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2458: typedef union {
-[u S106 `S107 1 `S108 1 `S109 1 ]
-[n S106 . . . . ]
-"2483
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2483: extern volatile PORTBbits_t PORTBbits __attribute__((address(0xF81)));
-[v _PORTBbits `VS106 ~T0 @X0 0 e@3969 ]
-"108 ./pump_control.h
-[; ;./pump_control.h: 108: extern char inIdleDumpHour;
+"2832 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2832:     struct {
+[s S121 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
+[n S121 . RE0 RE1 RE2 RE3 . RDPU ]
+"2840
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2840:     struct {
+[s S122 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S122 . CK1SPP CK2SPP OESPP ]
+"2845
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2845:     struct {
+[s S123 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
+[n S123 . PD2 PC2 CCP10 CCP9E . CCP2E ]
+"2853
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2853:     struct {
+[s S124 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
+[n S124 . RDE WRE CS PC3E . PA2E ]
+"2861
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2861:     struct {
+[s S125 :2 `uc 1 :1 `uc 1 :4 `uc 1 :1 `uc 1 ]
+[n S125 . . PB2 . RE7 ]
+"2831
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2831: typedef union {
+[u S120 `S121 1 `S122 1 `S123 1 `S124 1 `S125 1 ]
+[n S120 . . . . . . ]
+"2868
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2868: extern volatile PORTEbits_t PORTEbits __attribute__((address(0xF84)));
+[v _PORTEbits `VS120 ~T0 @X0 0 e@3972 ]
+"111 ./pump_control.h
+[; ;./pump_control.h: 111: extern char inIdleDumpHour;
 [v _inIdleDumpHour `uc ~T0 @X0 0 e ]
-"183
-[; ;./pump_control.h: 183: extern unsigned int zones;
-[v _zones `ui ~T0 @X0 0 e ]
-"107
-[; ;./pump_control.h: 107: extern char state;
+"2569 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2569:     struct {
+[s S111 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S111 . RC0 RC1 RC2 . RC4 RC5 RC6 RC7 ]
+"2579
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2579:     struct {
+[s S112 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S112 . T1OSO T1OSI CCP1 . TX RX ]
+"2587
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2587:     struct {
+[s S113 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S113 . T13CKI . P1A . CK DT ]
+"2595
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2595:     struct {
+[s S114 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S114 . . CCP2 PA1 ]
+"2600
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2600:     struct {
+[s S115 :1 `uc 1 :1 `uc 1 ]
+[n S115 . . PA2 ]
+"2568
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2568: typedef union {
+[u S110 `S111 1 `S112 1 `S113 1 `S114 1 `S115 1 ]
+[n S110 . . . . . . ]
+"2605
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4550.h: 2605: extern volatile PORTCbits_t PORTCbits __attribute__((address(0xF82)));
+[v _PORTCbits `VS110 ~T0 @X0 0 e@3970 ]
+"186 ./pump_control.h
+[; ;./pump_control.h: 186: extern unsigned char combinedZones;
+[v _combinedZones `uc ~T0 @X0 0 e ]
+"110
+[; ;./pump_control.h: 110: extern char state;
 [v _state `uc ~T0 @X0 0 e ]
 "54 standby_state.c
 [; ;standby_state.c: 54:     state = startpumpInitialState;
@@ -632,9 +667,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _fault_flags 0 5 -> -> 0 `i `uc ]
 }
 "39
-[; ;standby_state.c: 39:   { PORTBbits.RB5 = (0); fault_flags.boostPumpBit = (0);};
+[; ;standby_state.c: 39:   { PORTEbits.RE0 = (0); fault_flags.boostPumpBit = (0);};
 {
-[e = . . _PORTBbits 0 5 -> -> 0 `i `uc ]
+[e = . . _PORTEbits 0 0 -> -> 0 `i `uc ]
 [e = . . _fault_flags 0 6 -> -> 0 `i `uc ]
 }
 "40
@@ -652,8 +687,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 373 ]
 "48
-[; ;standby_state.c: 48:   if (( (!PORTBbits.RB3) || (zones != 0) )
-[e $ ! && && && && || ! != -> . . _PORTBbits 0 3 `i -> 0 `i != _zones -> -> 0 `i `ui ! != -> . . _fault_flags 0 0 `i -> 0 `i ! != -> . . _fault_flags 0 1 `i -> 0 `i ! != -> . . _fault_flags 0 2 `i -> 0 `i ! != -> . . _fault_flags 0 3 `i -> 0 `i 374  ]
+[; ;standby_state.c: 48:   if (( (!PORTCbits.RC1) || (combinedZones != 0) )
+[e $ ! && && && && || ! != -> . . _PORTCbits 0 1 `i -> 0 `i != -> _combinedZones `i -> 0 `i ! != -> . . _fault_flags 0 0 `i -> 0 `i ! != -> . . _fault_flags 0 1 `i -> 0 `i ! != -> . . _fault_flags 0 2 `i -> 0 `i ! != -> . . _fault_flags 0 3 `i -> 0 `i 374  ]
 "52
 [; ;standby_state.c: 52:       && !fault_flags.po_fault) {
 {
