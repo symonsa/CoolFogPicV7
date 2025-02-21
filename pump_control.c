@@ -79,11 +79,11 @@
 // 'C' source line config statements
 
 // CONFIG
-#pragma config FOSC = HS        // Oscillator Selection bits (XT oscillator)
-#pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled)
+#pragma config FOSC = HS        // Oscillator Selection bits (HS oscillator)
+#pragma config WDTE = ON        // Watchdog Timer Enable bit (WDT enabled)
 #pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
 #pragma config BOREN = ON       // Brown-out Reset Enable bit (BOR enabled)
-#pragma config LVP = ON         // Low-Voltage (Single-Supply) In-Circuit Serial Programming Enable bit (RB3/PGM pin has PGM function; low-voltage programming enabled)
+#pragma config LVP = OFF        // Low-Voltage (Single-Supply) In-Circuit Serial Programming Enable bit (RB3 is digital I/O, HV on MCLR must be used for programming)
 #pragma config CPD = OFF        // Data EEPROM Memory Code Protection bit (Data EEPROM code protection off)
 #pragma config WRT = OFF        // Flash Program Memory Write Enable bits (Write protection off; all program memory may be written to by EECON control)
 #pragma config CP = OFF         // Flash Program Memory Code Protection bit (Code protection off)
@@ -156,9 +156,7 @@ void printFaultState(void) {
     if (fault_flags . boostPumpBit) {
         printf("boostPumpBit\n\r");
     }
-    if (fault_flags . pumpOverloadBit) {
-        printf("pumpOverloadBit\n\r");
-    }
+   
     if (fault_flags . dumpSolenoidBit) {
         printf("dumpSolenoidBit\n\r");
     }
@@ -169,7 +167,47 @@ void
 init(void) {
 
 
-
+    // watch dog set up
+    /*
+     PSA: Prescaler Assignment bit
+1 = Prescaler is assigned to the WDT
+0 = Prescaler is assigned to the Timer0 module
+bit 2-0 PS2:PS0: Prescaler Rate Select bits
+Legend:
+R = Readable bit W = Writable bit U = Unimplemented bit, read as ?0?
+- n = Value at POR ?1? = Bit is set ?0? = Bit is cleared x = Bit is unknown
+000
+001
+010
+011
+100
+101
+110
+111
+1 : 2
+1 : 4
+1 : 8
+1 : 16
+1 : 32
+1 : 64
+1 : 128
+1 : 256
+1 : 1
+1 : 2
+1 : 4
+1 : 8
+1 : 16
+1 : 32
+1 : 64
+1 : 128
+     * 
+     * To avoid an unintended device RESET, the instruction sequence shown in the PIC® MCU Mid-Range Family
+Reference Manual (DS33023) must be executed when changing the prescaler assignment from Timer0
+to the WDT. This sequence must be followed even if the WDT is disabled.
+     * 
+     * 
+     * Example 11-1: Changing Prescaler (Timer0®WDT)     1)  BSF    STATUS, RP0   ;Bank1 Lines 2 and 3 do NOT have to be included if the final desired prescale value is other than 1:1. If 1:1 is final desired value, then a temporary prescale value is set in lines 2 and 3 and the final prescale value will be set in lines 10 and 11. 2)  MOVLW  b'xx0x0xxx'   ;Select clock source and prescale value of 3)  MOVWF  OPTION_REG    ;other than 1:1 4)  BCF    STATUS, RP0   ;Bank0 5)  CLRF   TMR0          ;Clear TMR0 and prescaler 6)  BSF    STATUS, RP1   ;Bank1 7)  MOVLW  b'xxxx1xxx'   ;Select WDT, do not change prescale value 8)  MOVWF  OPTION_REG    ; 9)  CLRWDT               ;Clears WDT and prescaler 10) MOVLW  b'xxxx1xxx'   ;Select new prescale value and WDT 11) MOVWF  OPTION_REG    ; 12) BCF    STATUS, RP0   ;Bank0
+     */
 
     T0CS = 0;
     // Set digital pins
@@ -203,10 +241,6 @@ IRCF0 = 1;
 #endif
 
 
-    PORTA = 0;
-    PORTB = 0;
-    TRISA = 0;
-    TRISB = 0;
 
     
     INIT_OUTPUT_PINS;
@@ -222,7 +256,7 @@ IRCF0 = 1;
     fault_flags.wpOkBit = 0;
     fault_flags.mainPumpBit = 0;
     fault_flags.boostPumpBit = 0;
-    fault_flags.pumpOverloadBit = 0;
+    fault_flags.UNUSED_pumpOverloadBit = 0;
     fault_flags.dumpSolenoidBit = 0;
 
 
@@ -285,15 +319,20 @@ void debugIfShouldReset(void) {
     }
 }*/
 
-void toggleLeds(void) {
-    LEDPORT++;
+void 
+setAnyFaultStatus(void){
+    if (FAULT_EXISTS){
+        ANY_FAULT_SET(1);
+    }else{
+        ANY_FAULT_SET(0);
+    }
 }
 void mainserial(void);
-
+  char sendGetMessageBuffer[MAX_MESSAGE] = {'0', '0', '0', '0', '0', '0', '0', '0', '0'};
 void
 main(void) {
     char *message;
-    char sendGetMessageBuffer[MAX_MESSAGE] = {'0', '0', '0', '0', '0', '0', '0', '0', '0'};
+  
     init();
     init_event_timer();
     ser_int();
@@ -316,7 +355,9 @@ main(void) {
 
     unsigned int msg_counter = 0;
     while (1) {
+        CLRWDT();
         combineZones();
+        setAnyFaultStatus();
         //toggleLeds();
         //printf("z");
         process_event_timer();
