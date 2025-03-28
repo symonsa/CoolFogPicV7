@@ -15,54 +15,12 @@
 
 
 
-#define INPUT_ZONES_PORT PORTA
-#define INPUT_ZONES_PORT_TRIS TRISA
+#define INPUT_ZONES_PORT PORTB
+#define INPUT_ZONES_PORT_TRIS TRISB
 
-#define OUTPUT_ZONES_PORT PORTB
-#define OUTPUT_ZONES_PORT_TRIS TRISB 
+#define OUTPUT_ZONES_PORT PORTA
+#define OUTPUT_ZONES_PORT_TRIS TRISA
 
-#ifdef _PIC18F4550_H_
-#define LOW_WATER_PRESSURE_BIT PORTCbits.RC1	// active hi
-
-#define LOW_WATER_LEVEL_BIT PORTCbits.RC2	// active hi
-#define LOW_FOG_PRESSURE_BIT PORTCbits.RC0	// active hi !!!!changed
-#define PUMP_OVERLOAD_BIT PORTDbits.RD1	
-#define BOOST_PUMP_OVERLOAD_BIT PORTDbits.RD0	
-	
-	
-#define WATER_PRESSURE_OK_BIT PORTDbits.RD7	
-#define MAIN_PUMP_BIT PORTEbits.RE0	
-#define DUMP_SOLENOID_BIT PORTEbits.RE2	
-#define FAULT_OUTPUT_BIT PORTEbits.RE3	
-#define BOOST_PUMP_BIT PORTEbits.RE1	
-#define ANY_FAULT_OUT_BIT PORTDbits.RD4	
-#define TRANSMIT_CONTROL_BIT PORTCbits.RC5	
-
-#define MAIN_PUMP_BIT2 PORTDbits.RD3	
-#define BOOST_PUMP_BIT2 PORTDbits.RD2	
-
-	
-
-
-#define TRIS_LOW_WATER_PRESSURE_BIT TRISCbits.TRISC1
-
-#define TRIS_LOW_WATER_LEVEL_BIT TRISCbits.TRISC2
-#define TRIS_LOW_FOG_PRESSURE_BIT TRISCbits.TRISC0
-#define TRIS_PUMP_OVERLOAD_BIT TRISDbits.TRISD1
-#define TRIS_BOOST_PUMP_OVERLOAD_BIT TRISDbits.TRISD0
-
-#define TRIS_WATER_PRESSURE_OK_BIT TRISDbits.TRISD7
-#define TRIS_MAIN_PUMP_BIT TRISEbits.TRISE0
-#define TRIS_DUMP_SOLENOID_BIT TRISEbits.TRISE2
-#define TRIS_FAULT_OUTPUT_BIT TRISEbits.TRISE3
-#define TRIS_BOOST_PUMP_BIT TRISEbits.TRISE1
-#define TRIS_ANY_FAULT_OUT_BIT TRISDbits.TRISD4
-#define TRIS_TRANSMIT_CONTROL_BIT TRISCbits.TRISC5
-
-#define TRIS_MAIN_PUMP_BIT2 TRISDbits.TRISD3
-#define TRIS_BOOST_PUMP_BIT2 TRISDbits.TRISD2
-
-#else
 
 #define LOW_WATER_PRESSURE_BIT PORTCbits.RC1
 #define RUN_SIGNAL_BIT PORTbits.
@@ -102,7 +60,6 @@
 #define TRIS_MAIN_PUMP_BIT2 TRISDbits.TRISD3
 #define TRIS_BOOST_PUMP_BIT2 TRISDbits.TRISD2
 
-#endif
 
 
 
@@ -110,7 +67,8 @@
 #define LOW_WATER_PRESSURE_ACTIVE (  LOW_WATER_PRESSURE_BIT)
 #define RUN_SIGNAL_ACTIVE (  (combinedZones != 0) )
 #define LOW_FOG_PRESSURE_ACTIVE ( LOW_FOG_PRESSURE_BIT)
-#define PO_SIGNAL_ACTIVE ( (!PUMP_OVERLOAD_BIT) || ( !BOOST_PUMP_OVERLOAD_BIT) )
+#define PO_SIGNAL_ACTIVE ( !(PUMP_OVERLOAD_BIT) )
+#define BOOST_PUMP_PO_SIGNAL_ACTIVE (!(BOOST_PUMP_OVERLOAD_BIT))
 
 #define TRIS_INPUT 1
 #define TRIS_OUTPUT 0
@@ -128,7 +86,7 @@
  TRIS_BOOST_PUMP_OVERLOAD_BIT = TRIS_INPUT; \
  INPUT_ZONES_PORT_TRIS = TRIS_INPUT_FULL_PORT
 
- 
+
 #define INIT_OUTPUT_PINS  FAULT_OUTPUT_SET(0);\
                             WATER_PRESSURE_OK_SET(0);\
                             MAIN_PUMP_SET(0);\
@@ -148,7 +106,7 @@
  TRIS_BOOST_PUMP_BIT2 = TRIS_OUTPUT; 
 
 
- 
+
 
 
 
@@ -192,6 +150,7 @@ typedef enum timer_event_pos {
     EventDumpSolenoid,
     EventRunSignalDebounce,
     EventPODebounce,
+    EventBoostPumpPODebounce,
     EventTotalNumber
 } timer_event_pos;
 
@@ -235,8 +194,9 @@ typedef union {
         unsigned wpOkBit : 1;
         unsigned mainPumpBit : 1;
         unsigned boostPumpBit : 1;
-        unsigned UNUSED_pumpOverloadBit : 1;
+        unsigned boost_pump_fault : 1;
         unsigned dumpSolenoidBit : 1;
+        unsigned overrideBit : 1;
 
 
     };
@@ -245,7 +205,7 @@ typedef union {
 
 extern fault_flags_t fault_flags;
 
-#define FAULT_EXISTS ( fault_flags.lwl_fault || fault_flags.lwp_fault || fault_flags.lfp_fault || fault_flags.po_fault)
+#define FAULT_EXISTS ( fault_flags.lwl_fault || fault_flags.lwp_fault || fault_flags.lfp_fault || fault_flags.po_fault || fault_flags.boost_pump_fault)
 
 extern unsigned char combinedZones; // the or of below
 extern unsigned char commsZones; // coming in from comms
@@ -255,6 +215,8 @@ extern unsigned char commsZones; // coming in from comms
 void combineZones(void);
 void shutdown(void);
 #ifdef _PIC18F4550_H_
+#define _XTAL_FREQ 8000000
+#elif defined _18F4523
 #define _XTAL_FREQ 8000000
 #else
 #define _XTAL_FREQ 4000000
@@ -280,7 +242,7 @@ void shutdown(void);
 #define bitset(var, bitno) ((var) |= 1UL << (bitno))
 #define bitclr(var, bitno) ((var) &= ~(1UL << (bitno)))
 
-#define MAX_MESSAGE 10
+#define MAX_MESSAGE 12 // additional buffer if we need to dup the ending
 #define frameStart '{'
 #define frameEnd '}'
 
@@ -309,6 +271,7 @@ void EventDumpSolenoidCallBack(void);
 void EventIdleTimeoutCallBack(void);
 void EventRunSignalDebounceCallBack(void);
 void EventPODebounceCallBack(void);
+void EventBoostPumpPODebounceCallBack(void);
 
 void monitor_water_pressure(void);
 void monitor_pump_run(void);
