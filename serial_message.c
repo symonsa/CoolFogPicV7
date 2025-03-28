@@ -10,7 +10,8 @@
 #define STATUS2_POS 6
 #define STATUS3_POS 7
 #define END_MESSAGE_POS 8
-#define NUL_POS 9
+#define SECOND_END_MESSAGE_POS 9
+#define NUL_POS 10
 static char outputMessage[MAX_MESSAGE];
 //char address = '0';
 __EEPROM_DATA('0','1',0,0,0,0,0,0);
@@ -59,6 +60,7 @@ void setBaseMessage(char messageType, char msgAddress) {
     outputMessage[STATUS3_POS] = chartox(v);
 
     outputMessage[END_MESSAGE_POS] = frameEnd;
+    outputMessage[SECOND_END_MESSAGE_POS] = frameEnd;// a bit of a hack because the transmit control is going low too early
     outputMessage[NUL_POS] = 0;
 }
 
