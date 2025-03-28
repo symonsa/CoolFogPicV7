@@ -62,6 +62,15 @@ monitor_pump_run(void){
     
   }
   
+    if (BOOST_PUMP_PO_SIGNAL_ACTIVE) {
+      // if PO goes hi  de-bounce for 0.5 sec if still hi then go to shutdown
+       if (!timer_events[EventBoostPumpPODebounce].active) {
+      timer_events[EventBoostPumpPODebounce].flag_bit = false;
+      timer_events[EventBoostPumpPODebounce].next_state = shutdownState;
+      enable_callback (EventBoostPumpPODebounce, PO_SIGNAL_DEBOUNCE_TIME);
+    }
+    
+  }
  
 
   if (!LOW_WATER_LEVEL_ACTIVE) {
