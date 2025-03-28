@@ -53,6 +53,7 @@ init_event_timer(void) {
     SET_UP_CALLBACK(EventIdleTimeout, "EventIdleTimeoutCallBack");
     SET_UP_CALLBACK(EventDumpSolenoid, "EventDumpSolenoidCallBack");
     SET_UP_CALLBACK(EventPODebounce, "EventPODebounceCallBack");
+    SET_UP_CALLBACK(EventBoostPumpPODebounce,"EventBoostPumpPODebounceCallBack")
     SET_UP_CALLBACK(EventRunSignalDebounce, "EventRunSignalDebounceCallBack");
 
     TMR0IE = 1;
