@@ -6,7 +6,7 @@
 // 'C' source line config statements
 
 // CONFIG1L
-#ifdef _PIC18F4550_H_
+#if defined _18F4550
 #pragma config PLLDIV = 1       // PLL Prescaler Selection bits (No prescale (4 MHz oscillator input drives PLL directly))
 #pragma config CPUDIV = OSC1_PLL2// System Clock Postscaler Selection bits ([Primary Oscillator Src: /1][96 MHz PLL Src: /2])
 #pragma config USBDIV = 1       // USB Clock Selection bit (used in Full-Speed USB mode only; UCFG:FSEN = 1) (USB clock source comes directly from the primary oscillator block with no postscale)
@@ -73,7 +73,69 @@
 
 // #pragma config statements should precede project file includes.
 // Use project enums instead of #define for ON and OFF.
-#else
+#elif defined _18F4523
+// PIC18F4523 Configuration Bit Settings
+
+// 'C' source line config statements
+
+// CONFIG1H
+#pragma config OSC = INTIO67    // Oscillator Selection bits (Internal oscillator block, port function on RA6 and RA7)
+#pragma config FCMEN = OFF      // Fail-Safe Clock Monitor Enable bit (Fail-Safe Clock Monitor disabled)
+#pragma config IESO = OFF       // Internal/External Oscillator Switchover bit (Oscillator Switchover mode disabled)
+
+// CONFIG2L
+#pragma config PWRT = OFF       // Power-up Timer Enable bit (PWRT disabled)
+#pragma config BOREN = SBORDIS  // Brown-out Reset Enable bits (Brown-out Reset enabled in hardware only (SBOREN is disabled))
+#pragma config BORV = 3         // Brown Out Reset Voltage bits (Minimum setting)
+
+// CONFIG2H
+#pragma config WDT = ON         // Watchdog Timer Enable bit (WDT enabled)
+#pragma config WDTPS = 32768    // Watchdog Timer Postscale Select bits (1:32768)
+
+// CONFIG3H
+#pragma config CCP2MX = PORTC   // CCP2 MUX bit (CCP2 input/output is multiplexed with RC1)
+#pragma config PBADEN = OFF     // PORTB A/D Enable bit (PORTB<4:0> pins are configured as digital I/O on Reset)
+#pragma config LPT1OSC = OFF    // Low-Power Timer1 Oscillator Enable bit (Timer1 configured for higher power operation)
+#pragma config MCLRE = OFF      // MCLR Pin Enable bit (RE3 input pin enabled; MCLR disabled)
+
+// CONFIG4L
+#pragma config STVREN = ON      // Stack Full/Underflow Reset Enable bit (Stack full/underflow will cause Reset)
+#pragma config LVP = OFF        // Single-Supply ICSP Enable bit (Single-Supply ICSP disabled)
+#pragma config XINST = OFF      // Extended Instruction Set Enable bit (Instruction set extension and Indexed Addressing mode disabled (Legacy mode))
+
+// CONFIG5L
+#pragma config CP0 = OFF        // Code Protection bit (Block 0 (000800-001FFFh) not code-protected)
+#pragma config CP1 = OFF        // Code Protection bit (Block 1 (002000-003FFFh) not code-protected)
+#pragma config CP2 = OFF        // Code Protection bit (Block 2 (004000-005FFFh) not code-protected)
+#pragma config CP3 = OFF        // Code Protection bit (Block 3 (006000-007FFFh) not code-protected)
+
+// CONFIG5H
+#pragma config CPB = OFF        // Boot Block Code Protection bit (Boot block (000000-0007FFh) not code-protected)
+#pragma config CPD = OFF        // Data EEPROM Code Protection bit (Data EEPROM not code-protected)
+
+// CONFIG6L
+#pragma config WRT0 = OFF       // Write Protection bit (Block 0 (000800-001FFFh) not write-protected)
+#pragma config WRT1 = OFF       // Write Protection bit (Block 1 (002000-003FFFh) not write-protected)
+#pragma config WRT2 = OFF       // Write Protection bit (Block 2 (004000-005FFFh) not write-protected)
+#pragma config WRT3 = OFF       // Write Protection bit (Block 3 (006000-007FFFh) not write-protected)
+
+// CONFIG6H
+#pragma config WRTC = OFF       // Configuration Register Write Protection bit (Configuration registers (300000-3000FFh) not write-protected)
+#pragma config WRTB = OFF       // Boot Block Write Protection bit (Boot block (000000-0007FFh) not write-protected)
+#pragma config WRTD = OFF       // Data EEPROM Write Protection bit (Data EEPROM not write-protected)
+
+// CONFIG7L
+#pragma config EBTR0 = OFF      // Table Read Protection bit (Block 0 (000800-001FFFh) not protected from table reads executed in other blocks)
+#pragma config EBTR1 = OFF      // Table Read Protection bit (Block 1 (002000-003FFFh) not protected from table reads executed in other blocks)
+#pragma config EBTR2 = OFF      // Table Read Protection bit (Block 2 (004000-005FFFh) not protected from table reads executed in other blocks)
+#pragma config EBTR3 = OFF      // Table Read Protection bit (Block 3 (006000-007FFFh) not protected from table reads executed in other blocks)
+
+// CONFIG7H
+#pragma config EBTRB = OFF      // Boot Block Table Read Protection bit (Boot block (000000-0007FFh) not protected from table reads executed in other blocks)
+
+// #pragma config statements should precede project file includes.
+// Use project enums instead of #define for ON and OFF.
+#elif defined _16F877A
 // PIC16F877A Configuration Bit Settings
 
 // 'C' source line config statements
@@ -101,19 +163,25 @@
 #include "serial_buffer.h"
 #include <stdio.h>
 
-#ifdef _PIC18F4550_H_
+#if defined _PIC18F4550_H_ || defined _PIC18F4523_H_
 #define LOOP_COUNT_TO_SEND (1 << 10)
 #else
-#define LOOP_COUNT_TO_SEND (1 << 8)
+#define LOOP_COUNT_TO_SEND (1 << 10)
 #endif
 
 
 char state = standbyState;
 unsigned char commsZones = 0, combinedZones = 0;
 
-void combineZones(void){
-    combinedZones = commsZones | manualZones;
+void combineZones(void) {
+#if defined _PIC18F4550_H_ || defined _PIC18F4523_H_
+    combinedZones = commsZones | (~manualZones); // inputs are tied high, so active low
+#else
+    combinedZones = commsZones; //| (~manualZones);// inputs are tied high, so active low
+#endif
+
     outputZones = combinedZones;
+    fault_flags.overrideBit = (~manualZones)?1:0;
 }
 char *PumpStateMappings[] = {
     "standbyState\n\r",
@@ -147,6 +215,9 @@ void printFaultState(void) {
     if (fault_flags . po_fault) {
         printf("po_fault\n\r");
     }
+      if (fault_flags . boost_pump_fault) {
+        printf("boost_pump_fault\n\r");
+    }
     if (fault_flags . wpOkBit) {
         printf("wpOkBit\n\r");
     }
@@ -156,7 +227,7 @@ void printFaultState(void) {
     if (fault_flags . boostPumpBit) {
         printf("boostPumpBit\n\r");
     }
-   
+
     if (fault_flags . dumpSolenoidBit) {
         printf("dumpSolenoidBit\n\r");
     }
@@ -208,6 +279,7 @@ to the WDT. This sequence must be followed even if the WDT is disabled.
      * 
      * Example 11-1: Changing Prescaler (Timer0®WDT)     1)  BSF    STATUS, RP0   ;Bank1 Lines 2 and 3 do NOT have to be included if the final desired prescale value is other than 1:1. If 1:1 is final desired value, then a temporary prescale value is set in lines 2 and 3 and the final prescale value will be set in lines 10 and 11. 2)  MOVLW  b'xx0x0xxx'   ;Select clock source and prescale value of 3)  MOVWF  OPTION_REG    ;other than 1:1 4)  BCF    STATUS, RP0   ;Bank0 5)  CLRF   TMR0          ;Clear TMR0 and prescaler 6)  BSF    STATUS, RP1   ;Bank1 7)  MOVLW  b'xxxx1xxx'   ;Select WDT, do not change prescale value 8)  MOVWF  OPTION_REG    ; 9)  CLRWDT               ;Clears WDT and prescaler 10) MOVLW  b'xxxx1xxx'   ;Select new prescale value and WDT 11) MOVWF  OPTION_REG    ; 12) BCF    STATUS, RP0   ;Bank0
      */
+    PSA = 0;
 
     T0CS = 0;
     // Set digital pins
@@ -219,7 +291,7 @@ to the WDT. This sequence must be followed even if the WDT is disabled.
     //  PCFG2 = 1;
     //  PCFG1 = 1;
     //  PCFG0 = 1;
-#ifdef _PIC18F4550_H_
+#if defined _PIC18F4550_H_ || defined _PIC18F4523_H_
     RBPU = 0;
 #endif
     // new
@@ -234,15 +306,15 @@ to the WDT. This sequence must be followed even if the WDT is disabled.
 001 = 125 kHz
 000 = 31 kHz (from either INTOSC/256 or INTRC directly)(2)
      */
-#ifdef _PIC18F4550_H_
-IRCF2 = 1;
-IRCF1 = 1;
-IRCF0 = 1;
+#if defined _PIC18F4550_H_ || defined _PIC18F4523_H_
+    IRCF2 = 1;
+    IRCF1 = 1;
+    IRCF0 = 1;
 #endif
 
 
 
-    
+
     INIT_OUTPUT_PINS;
     INIT_INPUT_PINS;
     // memset(&fault_flags,0,sizeof(fault_flags));
@@ -256,7 +328,7 @@ IRCF0 = 1;
     fault_flags.wpOkBit = 0;
     fault_flags.mainPumpBit = 0;
     fault_flags.boostPumpBit = 0;
-    fault_flags.UNUSED_pumpOverloadBit = 0;
+    fault_flags.boost_pump_fault = FAULT_INIT_VALUE; // fault state 5?
     fault_flags.dumpSolenoidBit = 0;
 
 
@@ -294,7 +366,8 @@ void checkIfShoudReset(void) {
             && (fault_flags.lwl_fault
             || fault_flags.lwp_fault
             || fault_flags.lfp_fault
-            || fault_flags.po_fault)
+            || fault_flags.po_fault
+            || fault_flags.boost_pump_fault)
             ) {
         //printf("resetting pump \r\n");
         resetPump();
@@ -319,39 +392,40 @@ void debugIfShouldReset(void) {
     }
 }*/
 
-void 
-setAnyFaultStatus(void){
-    if (FAULT_EXISTS){
+void
+setAnyFaultStatus(void) {
+    if (FAULT_EXISTS) {
         ANY_FAULT_SET(1);
-    }else{
+    } else {
         ANY_FAULT_SET(0);
     }
 }
 void mainserial(void);
-  char sendGetMessageBuffer[MAX_MESSAGE] = {'0', '0', '0', '0', '0', '0', '0', '0', '0'};
+char sendGetMessageBuffer[MAX_MESSAGE] = {'0', '0', '0', '0', '0', '0', '0', '0', '0'};
+
 void
 main(void) {
     char *message;
-  
+
     init();
     init_event_timer();
     ser_int();
-    printf("waitingxxxx \n\r");
-//        while (1) {
-//            serial_process_loop();
-//            toggleLeds();
-//            //printf("z");
-//            if (has_data(&inbound)) {
-//                char c = pop(&inbound);
-//                //puts("got message '");
-//                push(&outbound,c );
-//                //putch('\'');
-//                
-//            }
-//             process_event_timer();
-//            //__delay_ms(1000);
-//    
-//        }
+    printf("waiting{0m0000}\n\r");
+    //        while (1) {
+    //            serial_process_loop();
+    //            toggleLeds();
+    //            //printf("z");
+    //            if (has_data(&inbound)) {
+    //                char c = pop(&inbound);
+    //                //puts("got message '");
+    //                push(&outbound,c );
+    //                //putch('\'');
+    //                
+    //            }
+    //             process_event_timer();
+    //            //__delay_ms(1000);
+    //    
+    //        }
 
     unsigned int msg_counter = 0;
     while (1) {
@@ -384,6 +458,9 @@ main(void) {
         monitor_water_pressure();
         if (!PO_SIGNAL_ACTIVE) {
             clear_callback(EventPODebounce);
+        }
+        if (!BOOST_PUMP_PO_SIGNAL_ACTIVE) {
+            clear_callback(EventBoostPumpPODebounce);
         }
         switch (state) {
             case standbyState:
