@@ -4,7 +4,7 @@
 #include "serial_buffer.h"
 #include <stdio.h>
 
-#ifdef _PIC18F4550_H_
+#if defined _PIC18F4550_H_ || defined _PIC18F4523_H_
 #define USE_SER_INTERUPT 1
 #else
 #define USE_SER_INTERUPT 0
@@ -62,8 +62,8 @@ void ser_int(void) {
     TX9 = 0;
 
     RCSTA = 0b10010000; //Serial Port enabled,8-bit reception
-#ifdef _PIC18F4550_H_
-    SPBRG = 207; //9600 baudrate for 4Mhz is 25, 8Mhz 51, 207 for 2400 baud
+#if defined _PIC18F4550_H_ || defined _PIC18F4523_H_
+    SPBRG = 51; //9600 baudrate for 4Mhz is 25, 8Mhz 51, 207 for 2400 baud
 #else
      SPBRG = 103; //2400 baud 16f877a
 #endif
@@ -142,12 +142,16 @@ void serial_process_loop(void) {
 
 
 void usart_interrupt(void) {
-
+   
     if (TXIE && TXIF) {
         TXIE = 0;
         if (/*TRMT &&*/ has_data(&outbound)) {
+            // have something so set write
+            TRANSMIT_CONTROL_SET(1);
             TXREG = pop(&outbound);
             TXIE = 1;
+        }else{
+             TRANSMIT_CONTROL_SET(0);//read
         }
     }
     if (RCIE && RCIF) {
