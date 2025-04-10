@@ -174,14 +174,18 @@ char state = standbyState;
 unsigned char commsZones = 0, combinedZones = 0;
 
 void combineZones(void) {
+      unsigned char manualZonesOn = ~manualZones;
+      unsigned char previousZones = combinedZones;
 #if defined _PIC18F4550_H_ || defined _PIC18F4523_H_
-    combinedZones = commsZones | (~manualZones); // inputs are tied high, so active low
+    combinedZones = commsZones | manualZonesOn; // inputs are tied high, so active low
 #else
-    combinedZones = commsZones; //| (~manualZones);// inputs are tied high, so active low
+    combinedZones = commsZones; //| (manualZonesOn);// inputs are tied high, so active low
 #endif
-
+    determineIfTurnOnDump(previousZones, combinedZones);
+    combinedZones|=dumpZones;
     outputZones = combinedZones;
-    fault_flags.overrideBit = (~manualZones)?1:0;
+      
+    fault_flags.overrideBit = manualZonesOn;
 }
 char *PumpStateMappings[] = {
     "standbyState\n\r",
@@ -215,7 +219,7 @@ void printFaultState(void) {
     if (fault_flags . po_fault) {
         printf("po_fault\n\r");
     }
-      if (fault_flags . boost_pump_fault) {
+    if (fault_flags . boost_pump_fault) {
         printf("boost_pump_fault\n\r");
     }
     if (fault_flags . wpOkBit) {
