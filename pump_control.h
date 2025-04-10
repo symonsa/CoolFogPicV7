@@ -19,6 +19,7 @@
 #define INPUT_ZONES_PORT_TRIS TRISB
 
 #define OUTPUT_ZONES_PORT PORTA
+#define OUTPUT_ZONES_PORT_BITS PORTAbits
 #define OUTPUT_ZONES_PORT_TRIS TRISA
 
 
@@ -130,6 +131,37 @@
 extern char state;
 extern char inIdleDumpHour;
 
+typedef enum dump_mode_e {
+    normal, /* 8 zones */
+    oneZoneOneDump, /*zone 1 dump, zone 0 on */
+    twoZonesTwoDump, /*zone 3 for zone 2*/
+    threeZonesThreeDump, /* zone 5 for zone 4*/
+    fourZonesFourDump /*zone 7 for zone 6*/
+} dump_mode_e;
+extern dump_mode_e dump_mode;
+
+extern unsigned char dumpZones;
+#define ZONE7_BITMASK (0b10000000)
+#define ZONE6_BITMASK (0b01000000)
+#define ZONE5_BITMASK (0b00100000)
+#define ZONE4_BITMASK (0b00010000)
+#define ZONE3_BITMASK (0b00001000)
+#define ZONE2_BITMASK (0b00000100)
+#define ZONE1_BITMASK (0b00000010)
+#define ZONE0_BITMASK (0b00000001)
+
+#define EventDumpZone1ForZone0_SET dumpZones|=ZONE1_BITMASK
+#define EventDumpZone1ForZone0_CLEAR dumpZones &= (~ZONE1_BITMASK)
+
+#define EventDumpZone3ForZone2_SET dumpZones|=ZONE3_BITMASK
+#define EventDumpZone3ForZone2_CLEAR dumpZones &= (~ZONE3_BITMASK)
+
+#define EventDumpZone5ForZone4_SET dumpZones|=ZONE5_BITMASK
+#define EventDumpZone5ForZone4_CLEAR dumpZones &= (~ZONE5_BITMASK)
+
+#define EventDumpZone7ForZone6_SET dumpZones|=ZONE7_BITMASK
+#define EventDumpZone7ForZone6_CLEAR dumpZones &= (~ZONE7_BITMASK)
+
 typedef enum pump_state_e {
     standbyState,
     shutdownState,
@@ -151,6 +183,11 @@ typedef enum timer_event_pos {
     EventRunSignalDebounce,
     EventPODebounce,
     EventBoostPumpPODebounce,
+    EventDumpZone1ForZone0,
+    EventDumpZone3ForZone2,
+    EventDumpZone5ForZone4,
+    EventDumpZone7ForZone6,
+
     EventTotalNumber
 } timer_event_pos;
 
@@ -160,7 +197,7 @@ typedef struct timer_event {
     //char * name;
     unsigned active : 1;
     unsigned flag_bit : 1;
-    unsigned char next_state;
+    unsigned next_state : 6;
     unsigned flag_data;
 
 
@@ -195,6 +232,7 @@ typedef union {
         unsigned mainPumpBit : 1;
         unsigned boostPumpBit : 1;
         unsigned boost_pump_fault : 1;
+
         unsigned dumpSolenoidBit : 1;
         unsigned overrideBit : 1;
 
@@ -242,7 +280,7 @@ void shutdown(void);
 #define bitset(var, bitno) ((var) |= 1UL << (bitno))
 #define bitclr(var, bitno) ((var) &= ~(1UL << (bitno)))
 
-#define MAX_MESSAGE 12 // additional buffer if we need to dup the ending
+#define MAX_MESSAGE 13 // additional buffer if we need to dup the ending
 #define frameStart '{'
 #define frameEnd '}'
 
@@ -272,6 +310,12 @@ void EventIdleTimeoutCallBack(void);
 void EventRunSignalDebounceCallBack(void);
 void EventPODebounceCallBack(void);
 void EventBoostPumpPODebounceCallBack(void);
+
+void EventDumpZone1ForZone0CallBack(void);
+void EventDumpZone3ForZone2CallBack(void);
+void EventDumpZone5ForZone4CallBack(void);
+void EventDumpZone7ForZone6CallBack(void);
+void determineIfTurnOnDump(unsigned char previousZones, unsigned char currentZones);
 
 void monitor_water_pressure(void);
 void monitor_pump_run(void);
