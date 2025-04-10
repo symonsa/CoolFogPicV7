@@ -6,15 +6,16 @@
 #define NEW_ADDRESS_POS 3
 #define ZONE1POS 3
 #define ZONE2POS 4
-#define STATUS1_POS 5
-#define STATUS2_POS 6
-#define STATUS3_POS 7
-#define END_MESSAGE_POS 8
-#define SECOND_END_MESSAGE_POS 9
-#define NUL_POS 10
+#define DUMP_MODE_POS 5
+#define STATUS1_POS 6
+#define STATUS2_POS 7
+#define STATUS3_POS 8
+#define END_MESSAGE_POS 9
+#define SECOND_END_MESSAGE_POS 10
+#define NUL_POS 11
 static char outputMessage[MAX_MESSAGE];
 //char address = '0';
-__EEPROM_DATA('0','1',0,0,0,0,0,0);
+__EEPROM_DATA('0', '1', 0, 0, 0, 0, 0, 0);
 
 unsigned char xtochar(char x) {
     if ((x >= '0')
@@ -23,11 +24,10 @@ unsigned char xtochar(char x) {
     } else if ((x >= 'a')
             && (x <= 'f')) {
         return (x) - 'a' + 10;
-  }
-  else if ((x >= 'A')
+    } else if ((x >= 'A')
             && (x <= 'F')) {
         return (x) - 'F' + 10;
-  }
+    }
     return 0;
 }
 
@@ -43,11 +43,12 @@ char chartox(unsigned char c) {
 void setBaseMessage(char messageType, char msgAddress) {
     outputMessage[0] = frameStart;
 
-	outputMessage[ADDRESS_POS] = msgAddress;
-	outputMessage[MSG_TYPE_POS] = messageType;
+    outputMessage[ADDRESS_POS] = msgAddress;
+    outputMessage[MSG_TYPE_POS] = messageType;
 	outputMessage[ZONE1POS] =     chartox(combinedZones >>4);
     outputMessage[ZONE2POS] =     chartox((combinedZones &15));
-
+    
+    outputMessage[DUMP_MODE_POS] = chartox(dump_mode);
     // now set the status
 
     char v = (fault_flags.value >> 8) &0xf;
@@ -60,12 +61,14 @@ void setBaseMessage(char messageType, char msgAddress) {
     outputMessage[STATUS3_POS] = chartox(v);
 
     outputMessage[END_MESSAGE_POS] = frameEnd;
-    outputMessage[SECOND_END_MESSAGE_POS] = frameEnd;// a bit of a hack because the transmit control is going low too early
+    outputMessage[SECOND_END_MESSAGE_POS] = frameEnd; // a bit of a hack because the transmit control is going low too early
     outputMessage[NUL_POS] = 0;
 }
 
 void process_set_zones_message(char * inmessage) {
     commsZones = (xtochar(inmessage[ZONE1POS]) << 4) + xtochar(inmessage[ZONE2POS]);
+    dump_mode = xtochar(inmessage[DUMP_MODE_POS]);
+
     combineZones();
     setBaseMessage('s', inmessage[ADDRESS_POS]);
 
@@ -106,7 +109,7 @@ void
 process_message(char *inmessage) {
 
     char msgType;
-    unsigned char address = 0;//eeprom_read(0);
+    unsigned char address = 0; //eeprom_read(0);
 
 
 
@@ -115,7 +118,7 @@ process_message(char *inmessage) {
 
         msgType = inmessage[MSG_TYPE_POS];
 
-        switch(msgType){
+        switch (msgType) {
             case 'S':
             case 's':
                 process_set_zones_message(inmessage);
@@ -125,7 +128,7 @@ process_message(char *inmessage) {
             case 'g':
                 process_get_status_message(inmessage);
                 break;
-                
+
             case 'A':
             case 'a':
                 process_set_address_message(inmessage);
@@ -137,12 +140,12 @@ process_message(char *inmessage) {
                  * is a bit error, we should not hit this one
                  * @param inmessage
                  */
-                
+
             case 'M':
             case 'm':
                 process_reset_pump(inmessage);
                 break;
-                 
+
 
         }
 
