@@ -31,7 +31,7 @@ clear_callback_for_shutdown(void) {
     clear_callback(EventLowWaterLevel);
     clear_callback(EventLowWaterPressure);
     clear_callback(EventLowWaterPressureDebounce);
-    clear_callback(EventLowFogPressure); 
+    clear_callback(EventLowFogPressure);
     clear_callback(EventDumpSolenoid);
     clear_callback(EventPODebounce);
     clear_callback(EventRunSignalDebounce);
@@ -53,14 +53,19 @@ init_event_timer(void) {
     SET_UP_CALLBACK(EventIdleTimeout, "EventIdleTimeoutCallBack");
     SET_UP_CALLBACK(EventDumpSolenoid, "EventDumpSolenoidCallBack");
     SET_UP_CALLBACK(EventPODebounce, "EventPODebounceCallBack");
-    SET_UP_CALLBACK(EventBoostPumpPODebounce,"EventBoostPumpPODebounceCallBack")
+    SET_UP_CALLBACK(EventBoostPumpPODebounce, "EventBoostPumpPODebounceCallBack")
     SET_UP_CALLBACK(EventRunSignalDebounce, "EventRunSignalDebounceCallBack");
+    SET_UP_CALLBACK(EventDumpZone1ForZone0, "EventDumpZone1ForZone0CallBack")
+    SET_UP_CALLBACK(EventDumpZone3ForZone2, "EventDumpZone3ForZone2CallBack")
+    SET_UP_CALLBACK(EventDumpZone5ForZone4, "EventDumpZone5ForZone4CallBack")
+    SET_UP_CALLBACK(EventDumpZone7ForZone6, "EventDumpZone7ForZone6CallBack")
 
     TMR0IE = 1;
 
 }
 
 #if 1
+
 void __interrupt()
 event_timer_isr(void) {
     if ((TMR0IE) && (TMR0IF)) {
