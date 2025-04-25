@@ -54,6 +54,7 @@ init_event_timer(void) {
     SET_UP_CALLBACK(EventDumpSolenoid, "EventDumpSolenoidCallBack");
     SET_UP_CALLBACK(EventPODebounce, "EventPODebounceCallBack");
     SET_UP_CALLBACK(EventBoostPumpPODebounce, "EventBoostPumpPODebounceCallBack")
+            SET_UP_CALLBACK(EventGeneralFaultDebounce, "EventGeneralFaultDebounceCallBack")
     SET_UP_CALLBACK(EventRunSignalDebounce, "EventRunSignalDebounceCallBack");
     SET_UP_CALLBACK(EventDumpZone1ForZone0, "EventDumpZone1ForZone0CallBack")
     SET_UP_CALLBACK(EventDumpZone3ForZone2, "EventDumpZone3ForZone2CallBack")
