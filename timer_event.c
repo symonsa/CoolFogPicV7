@@ -1,6 +1,6 @@
 //#include <stdio.h>
 #include "pump_control.h"
-//#include <string.h>
+#include <string.h>
 
 
 TIMER_VOLATILE_TYPE timer_event timer_events[EventTotalNumber];
@@ -39,8 +39,8 @@ clear_callback_for_shutdown(void) {
 
 void
 init_event_timer(void) {
-    // memset(&timer_events[0],0,sizeof(timer_events));
-#define SET_UP_CALLBACK(cb,n) timer_events[cb].callback = cb##CallBack;// timer_events[cb].name = n;
+     memset((void*)&timer_events[0],0,sizeof(timer_events));
+#define SET_UP_CALLBACK(cb,n) timer_events[cb].callback = cb##CallBack; timer_events[cb].active=false; // timer_events[cb].name = n;
 
     SET_UP_CALLBACK(EventLowWaterLevel, "EventLowWaterLevelCallBack");
 
@@ -102,7 +102,7 @@ process_event_timer(void) {
 
                         (*timer_events[i].callback) ();
 
-                    }
+    }
                 }
             }
         }
