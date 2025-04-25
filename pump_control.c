@@ -168,24 +168,27 @@
 #else
 #define LOOP_COUNT_TO_SEND (1 << 10)
 #endif
+//#define DEBUG_STATUS 1
 
-
-char state = standbyState;
+pump_state_e state = standbyState;
 unsigned char commsZones = 0, combinedZones = 0;
 
 void combineZones(void) {
       unsigned char manualZonesOn = ~manualZones;
       unsigned char previousZones = combinedZones;
-#if defined _PIC18F4550_H_ || defined _PIC18F4523_H_
-    combinedZones = commsZones | manualZonesOn; // inputs are tied high, so active low
+#if defined _18F4523
+    // nothing
 #else
-    combinedZones = commsZones; //| (manualZonesOn);// inputs are tied high, so active low
+      // dummy board mask out higher bits, leave lower bits
+      manualZonesOn &=0x0f;
+ 
 #endif
+    combinedZones = commsZones | manualZonesOn; // inputs are tied high, so active low
     determineIfTurnOnDump(previousZones, combinedZones);
     combinedZones|=dumpZones;
     outputZones = combinedZones;
       
-    fault_flags.overrideBit = manualZonesOn;
+    fault_flags.overrideBit = manualZonesOn?1:0;//need to convert int to single bit 1 or 0
 }
 char *PumpStateMappings[] = {
     "standbyState\n\r",
@@ -198,12 +201,17 @@ char *PumpStateMappings[] = {
 };
 
 void printPumpState(void) {
-    return;
+#ifdef DEBUG_STATUS
+    if (state > pumprunState){
+        printf("Error state!!");
+        return;
+    }
     printf(PumpStateMappings[state]);
+#endif
 }
 
 void printFaultState(void) {
-    return;
+ #ifdef DEBUG_STATUS
     if (fault_flags . boostPumpBit) {
         printf("boostPumpBit\n\r");
     }
@@ -235,7 +243,10 @@ void printFaultState(void) {
     if (fault_flags . dumpSolenoidBit) {
         printf("dumpSolenoidBit\n\r");
     }
-
+      if (fault_flags . overrideBit) {
+        printf("overrideBit\n\r");
+    }
+#endif
 }
 
 void
@@ -297,6 +308,11 @@ to the WDT. This sequence must be followed even if the WDT is disabled.
     //  PCFG0 = 1;
 #if defined _PIC18F4550_H_ || defined _PIC18F4523_H_
     RBPU = 0;
+    USBEN =0;
+////    UTRDIS = 1;
+////    CCP1CON = 0;
+////    CCP2CON = 0;
+   
 #endif
     // new
     /*
@@ -363,9 +379,11 @@ resetPump(void) {
  * the logic
  * Now we look - if the run signal is low, and we one of the errors is on
  * then we reset
+ * !!!!!! 2025-04-25 DO NOT USE - as we use the serial message to reset, the below will
+ * put us in a loop of resetting if an error in standby state.
  */
 void checkIfShoudReset(void) {
-
+    return;
     if (!RUN_SIGNAL_ACTIVE
             && (fault_flags.lwl_fault
             || fault_flags.lwp_fault
@@ -451,14 +469,16 @@ main(void) {
         if (msg_counter >= (LOOP_COUNT_TO_SEND)) {
             printPumpState();
             printFaultState();
+#ifndef DEBUG_STATUS            
             process_get_status_message(sendGetMessageBuffer);
+#endif
             //debugIfShouldReset();
             msg_counter = 0;
         }
 #endif   
 
 #if 1
-        checkIfShoudReset();
+        //checkIfShoudReset();
         monitor_water_pressure();
         if (!PO_SIGNAL_ACTIVE) {
             clear_callback(EventPODebounce);
