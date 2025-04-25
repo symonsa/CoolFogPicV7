@@ -36,6 +36,7 @@ EventFaultStateLEDCallBack(void) {
                  * and reset number of pulses
                  */
                 timer_events[EventFaultStateLED].flag_data =
+                        fault_flags.generalFaultBit ? 6 :
                          fault_flags.boost_pump_fault ? 5 :
                         fault_flags.po_fault ? 4 :
                         fault_flags.lfp_fault ? 3 :
