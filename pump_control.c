@@ -246,6 +246,9 @@ void printFaultState(void) {
       if (fault_flags . overrideBit) {
         printf("overrideBit\n\r");
     }
+    if (fault_flags . generalFaultBit) {
+        printf("generalFaultBit\n\r");
+    }
 #endif
 }
 
@@ -350,6 +353,7 @@ to the WDT. This sequence must be followed even if the WDT is disabled.
     fault_flags.boostPumpBit = 0;
     fault_flags.boost_pump_fault = FAULT_INIT_VALUE; // fault state 5?
     fault_flags.dumpSolenoidBit = 0;
+    fault_flags.generalFaultBit = 0;
 
 
 
@@ -485,6 +489,9 @@ main(void) {
         }
         if (!BOOST_PUMP_PO_SIGNAL_ACTIVE) {
             clear_callback(EventBoostPumpPODebounce);
+        }
+        if (!GENERAL_FAULT_SIGNAL_ACTIVE) {
+            clear_callback(EventGeneralFaultDebounce);
         }
         switch (state) {
             case standbyState:
