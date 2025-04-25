@@ -56,7 +56,11 @@
 #define TRIS_FAULT_OUTPUT_BIT TRISDbits.TRISD5
 #define TRIS_BOOST_PUMP_BIT TRISEbits.TRISE1
 #define TRIS_ANY_FAULT_OUT_BIT TRISDbits.TRISD4
+#if defined _18F4550
+#define TRIS_TRANSMIT_CONTROL_BIT TRISDbits.TRISD4 // hack
+#else
 #define TRIS_TRANSMIT_CONTROL_BIT TRISCbits.TRISC5
+#endif
 
 #define TRIS_MAIN_PUMP_BIT2 TRISDbits.TRISD3
 #define TRIS_BOOST_PUMP_BIT2 TRISDbits.TRISD2
@@ -128,7 +132,7 @@
 
 
 
-extern char state;
+
 extern char inIdleDumpHour;
 
 typedef enum dump_mode_e {
@@ -171,6 +175,7 @@ typedef enum pump_state_e {
     startmainState,
     pumprunState
 } pump_state_e;
+extern pump_state_e state;
 
 typedef enum timer_event_pos {
     EventLowWaterLevel = 0,
@@ -195,11 +200,11 @@ typedef struct timer_event {
     int time_left;
     //int data;
     //char * name;
-    unsigned active : 1;
-    unsigned flag_bit : 1;
-    unsigned next_state : 6;
-    unsigned flag_data;
-
+     unsigned flag_data;
+    unsigned char active ;
+    unsigned char flag_bit ;
+    unsigned char next_state ;
+   
 
     void (*callback) (void);
 
