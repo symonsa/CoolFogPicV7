@@ -15,8 +15,8 @@ extern "C" {
 #include <stdint.h>
 
 
-#define BUFFER_SIZE_IN 32
-#define BUFFER_SIZE_OUT 32
+#define BUFFER_SIZE_IN 64
+#define BUFFER_SIZE_OUT 64
 
 //    typedef struct {
 //        unsigned char data[BUFFER_SIZE_IN];
