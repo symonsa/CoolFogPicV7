@@ -29,6 +29,8 @@
 #define LOW_FOG_PRESSURE_BIT PORTCbits.RC0
 #define PUMP_OVERLOAD_BIT PORTDbits.RD1
 #define BOOST_PUMP_OVERLOAD_BIT PORTDbits.RD0
+//After further testing, we will need to add a new fault code ?Output Fault? Light 3Sec on, 1Sec off. When shorted (simulating a coil failure) heat skyrockets.
+#define GENERAL_FAULT_BIT PORTDbits.RD6
 
 
 #define WATER_PRESSURE_OK_BIT PORTDbits.RD7
@@ -49,6 +51,7 @@
 #define TRIS_LOW_FOG_PRESSURE_BIT TRISCbits.TRISC0
 #define TRIS_PUMP_OVERLOAD_BIT TRISDbits.TRISD1
 #define TRIS_BOOST_PUMP_OVERLOAD_BIT TRISDbits.TRISD0
+#define TRIS_GENERAL_FAULT_BIT TRISDbits.TRISD6
 
 #define TRIS_WATER_PRESSURE_OK_BIT TRISDbits.TRISD7
 #define TRIS_MAIN_PUMP_BIT TRISEbits.TRISE0
@@ -74,6 +77,7 @@
 #define LOW_FOG_PRESSURE_ACTIVE ( LOW_FOG_PRESSURE_BIT)
 #define PO_SIGNAL_ACTIVE ( !(PUMP_OVERLOAD_BIT) )
 #define BOOST_PUMP_PO_SIGNAL_ACTIVE (!(BOOST_PUMP_OVERLOAD_BIT))
+#define GENERAL_FAULT_SIGNAL_ACTIVE (!(GENERAL_FAULT_BIT))
 
 #define TRIS_INPUT 1
 #define TRIS_OUTPUT 0
@@ -89,6 +93,7 @@
  TRIS_LOW_FOG_PRESSURE_BIT = TRIS_INPUT; \
  TRIS_PUMP_OVERLOAD_BIT = TRIS_INPUT; \
  TRIS_BOOST_PUMP_OVERLOAD_BIT = TRIS_INPUT; \
+ TRIS_GENERAL_FAULT_BIT = TRIS_INPUT; \
  INPUT_ZONES_PORT_TRIS = TRIS_INPUT_FULL_PORT
 
 
@@ -188,6 +193,7 @@ typedef enum timer_event_pos {
     EventRunSignalDebounce,
     EventPODebounce,
     EventBoostPumpPODebounce,
+    EventGeneralFaultDebounce,
     EventDumpZone1ForZone0,
     EventDumpZone3ForZone2,
     EventDumpZone5ForZone4,
@@ -240,6 +246,7 @@ typedef union {
 
         unsigned dumpSolenoidBit : 1;
         unsigned overrideBit : 1;
+        unsigned generalFaultBit:1;
 
 
     };
@@ -248,7 +255,7 @@ typedef union {
 
 extern fault_flags_t fault_flags;
 
-#define FAULT_EXISTS ( fault_flags.lwl_fault || fault_flags.lwp_fault || fault_flags.lfp_fault || fault_flags.po_fault || fault_flags.boost_pump_fault)
+#define FAULT_EXISTS ( fault_flags.lwl_fault || fault_flags.lwp_fault || fault_flags.lfp_fault || fault_flags.po_fault || fault_flags.boost_pump_fault ||fault_flags.generalFaultBit )
 
 extern unsigned char combinedZones; // the or of below
 extern unsigned char commsZones; // coming in from comms
@@ -315,6 +322,7 @@ void EventIdleTimeoutCallBack(void);
 void EventRunSignalDebounceCallBack(void);
 void EventPODebounceCallBack(void);
 void EventBoostPumpPODebounceCallBack(void);
+void EventGeneralFaultDebounceCallBack(void);
 
 void EventDumpZone1ForZone0CallBack(void);
 void EventDumpZone3ForZone2CallBack(void);
