@@ -311,7 +311,7 @@ to the WDT. This sequence must be followed even if the WDT is disabled.
     //  PCFG0 = 1;
 #if defined _PIC18F4550_H_ || defined _PIC18F4523_H_
     RBPU = 0;
-    USBEN =0;
+    //USBEN =0;
 ////    UTRDIS = 1;
 ////    CCP1CON = 0;
 ////    CCP2CON = 0;
