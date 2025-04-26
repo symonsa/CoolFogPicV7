@@ -73,7 +73,7 @@
 
 #define LOW_WATER_LEVEL_ACTIVE ( LOW_WATER_LEVEL_BIT)
 #define LOW_WATER_PRESSURE_ACTIVE (  LOW_WATER_PRESSURE_BIT)
-#define RUN_SIGNAL_ACTIVE (  (combinedZones != 0) )
+#define RUN_SIGNAL_ACTIVE (  (shouldRun != 0) )
 #define LOW_FOG_PRESSURE_ACTIVE ( LOW_FOG_PRESSURE_BIT)
 #define PO_SIGNAL_ACTIVE ( !(PUMP_OVERLOAD_BIT) )
 #define BOOST_PUMP_PO_SIGNAL_ACTIVE (!(BOOST_PUMP_OVERLOAD_BIT))
@@ -259,6 +259,7 @@ extern fault_flags_t fault_flags;
 
 extern unsigned char combinedZones; // the or of below
 extern unsigned char commsZones; // coming in from comms
+extern unsigned char shouldRun;// mask the combined zones and dump mode to determine if the pump should be on
 #define manualZones INPUT_ZONES_PORT // additional from manual switches 
 #define outputZones OUTPUT_ZONES_PORT // output the combined zones
 
@@ -329,6 +330,7 @@ void EventDumpZone3ForZone2CallBack(void);
 void EventDumpZone5ForZone4CallBack(void);
 void EventDumpZone7ForZone6CallBack(void);
 void determineIfTurnOnDump(unsigned char previousZones, unsigned char currentZones);
+void determinIfPumpShouldRun(void);
 
 void monitor_water_pressure(void);
 void monitor_pump_run(void);
