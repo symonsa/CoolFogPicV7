@@ -158,6 +158,7 @@ void usart_interrupt(void) {
         if (OERR) {
             CREN = 0;
             CREN = 1;
+            numSerialErrors++;
              puts("serial overflow");
         }
         unsigned char a = RCREG;
@@ -259,6 +260,7 @@ receiveMessage (void)
   if (len >= MAX_MESSAGE) {
     // not valid
     len = 0;
+    numSerialErrors++;
     return NULL;
   }
   if (frameEnd == c) {
@@ -287,6 +289,7 @@ output_message (char *message)
   for (int i = 0; (i < MAX_MESSAGE) && (0 != message[i]); i++) {
     putch (message[i]);
   }
+   numSerialSent++;
 //  while (!TRMT) {
 //    ;
 //  }
