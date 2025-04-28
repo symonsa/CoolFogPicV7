@@ -172,23 +172,29 @@
 
 pump_state_e state = standbyState;
 unsigned char commsZones = 0, combinedZones = 0;
+unsigned char disableZonesDueToFault = 0;
+
 
 void combineZones(void) {
-      unsigned char manualZonesOn = ~manualZones;
-      unsigned char previousZones = combinedZones;
+    unsigned char manualZonesOn = ~manualZones;
+    unsigned char previousZones = combinedZones;
+    if (disableZonesDueToFault) {
+        combinedZones = 0;
+    } else {
 #if defined _18F4523
-    // nothing
+        // nothing
 #else
-      // dummy board mask out higher bits, leave lower bits
-      manualZonesOn &=0x0f;
- 
+        // dummy board mask out higher bits, leave lower bits
+        manualZonesOn &= 0x0f;
+
 #endif
-    combinedZones = commsZones | manualZonesOn; // inputs are tied high, so active low
-    determineIfTurnOnDump(previousZones, combinedZones);
-    combinedZones|=dumpZones;
+        combinedZones = commsZones | manualZonesOn; // inputs are tied high, so active low
+        determineIfTurnOnDump(previousZones, combinedZones);
+        combinedZones |= dumpZones;
+    }
     outputZones = combinedZones;
-      
-    fault_flags.overrideBit = manualZonesOn?1:0;//need to convert int to single bit 1 or 0
+
+    fault_flags.overrideBit = manualZonesOn ? 1 : 0; //need to convert int to single bit 1 or 0
 }
 char *PumpStateMappings[] = {
     "standbyState\n\r",
@@ -202,7 +208,7 @@ char *PumpStateMappings[] = {
 
 void printPumpState(void) {
 #ifdef DEBUG_STATUS
-    if (state > pumprunState){
+    if (state > pumprunState) {
         printf("Error state!!");
         return;
     }
@@ -211,7 +217,7 @@ void printPumpState(void) {
 }
 
 void printFaultState(void) {
- #ifdef DEBUG_STATUS
+#ifdef DEBUG_STATUS
     if (fault_flags . boostPumpBit) {
         printf("boostPumpBit\n\r");
     }
@@ -243,7 +249,7 @@ void printFaultState(void) {
     if (fault_flags . dumpSolenoidBit) {
         printf("dumpSolenoidBit\n\r");
     }
-      if (fault_flags . overrideBit) {
+    if (fault_flags . overrideBit) {
         printf("overrideBit\n\r");
     }
     if (fault_flags . generalFaultBit) {
@@ -312,10 +318,10 @@ to the WDT. This sequence must be followed even if the WDT is disabled.
 #if defined _PIC18F4550_H_ || defined _PIC18F4523_H_
     RBPU = 0;
     //USBEN =0;
-////    UTRDIS = 1;
-////    CCP1CON = 0;
-////    CCP2CON = 0;
-   
+    ////    UTRDIS = 1;
+    ////    CCP1CON = 0;
+    ////    CCP2CON = 0;
+
 #endif
     // new
     /*
@@ -357,12 +363,15 @@ to the WDT. This sequence must be followed even if the WDT is disabled.
 
 
 
-    GIE = 1;
+   
     state = standbyState;
     commsZones = 0;
     combinedZones = 0;
+    disableZonesDueToFault = 0;
     combineZones();
     inIdleDumpHour = 0;
+      init_event_timer();
+     GIE = 1;
 
 
 
@@ -374,7 +383,7 @@ to the WDT. This sequence must be followed even if the WDT is disabled.
 void
 resetPump(void) {
     init();
-    init_event_timer();
+  
 }
 
 /**
@@ -422,8 +431,11 @@ void
 setAnyFaultStatus(void) {
     if (FAULT_EXISTS) {
         ANY_FAULT_SET(1);
+      
     } else {
         ANY_FAULT_SET(0);
+         disableZonesDueToFault = 0;
+       
     }
 }
 void mainserial(void);
@@ -475,6 +487,7 @@ main(void) {
             printFaultState();
 #ifndef DEBUG_STATUS            
             process_get_status_message(sendGetMessageBuffer);
+            process_error_stats_message('0');
 #endif
             //debugIfShouldReset();
             msg_counter = 0;
