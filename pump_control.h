@@ -149,6 +149,13 @@ typedef enum dump_mode_e {
 } dump_mode_e;
 extern dump_mode_e dump_mode;
 
+typedef enum dump_time_e {
+    twoSeconds,
+    fiveSeconds,
+    tenSeconds,
+    twentySeconds
+} dump_time_e;
+extern dump_time_e dump_time;
 extern unsigned char dumpZones;
 #define ZONE7_BITMASK (0b10000000)
 #define ZONE6_BITMASK (0b01000000)
@@ -203,14 +210,14 @@ typedef enum timer_event_pos {
 } timer_event_pos;
 
 typedef struct timer_event {
-    int time_left;
+    unsigned int time_left;
     //int data;
     //char * name;
-     unsigned flag_data;
-    unsigned char active ;
-    unsigned char flag_bit ;
-    unsigned char next_state ;
-   
+    unsigned flag_data;
+    unsigned char active;
+    unsigned char flag_bit;
+    unsigned char next_state;
+
 
     void (*callback) (void);
 
@@ -246,7 +253,7 @@ typedef union {
 
         unsigned dumpSolenoidBit : 1;
         unsigned overrideBit : 1;
-        unsigned generalFaultBit:1;
+        unsigned generalFaultBit : 1;
 
 
     };
@@ -259,7 +266,13 @@ extern fault_flags_t fault_flags;
 
 extern unsigned char combinedZones; // the or of below
 extern unsigned char commsZones; // coming in from comms
-extern unsigned char shouldRun;// mask the combined zones and dump mode to determine if the pump should be on
+extern unsigned char shouldRun; // mask the combined zones and dump mode to determine if the pump should be on
+extern unsigned char disableZonesDueToFault;
+// serial statistics
+extern unsigned char numSerialErrors;
+extern unsigned char numSerialReceived;
+extern unsigned char numSerialSent;
+
 #define manualZones INPUT_ZONES_PORT // additional from manual switches 
 #define outputZones OUTPUT_ZONES_PORT // output the combined zones
 
@@ -287,13 +300,17 @@ void shutdown(void);
 #define RUN_SIGNAL_DEBOUNCE_TIME (TIME_PULSE_PER_SEC/2)
 #define PO_SIGNAL_DEBOUNCE_TIME (TIME_PULSE_PER_SEC/2)
 
-#define DUMP_SOLENOID_ON_TIME (2*TIME_PULSE_PER_SEC)
+#define DUMP_SOLENOID_WAIT_TIME (2*TIME_PULSE_PER_SEC)
+#define TWO_SECONDS (2*TIME_PULSE_PER_SEC)
+#define FIVE_SECONDS (5*TIME_PULSE_PER_SEC)
+#define TEN_SECONDS (10*TIME_PULSE_PER_SEC)
+#define TWENTY_SECONDS (20*TIME_PULSE_PER_SEC)
 
 
 #define bitset(var, bitno) ((var) |= 1UL << (bitno))
 #define bitclr(var, bitno) ((var) &= ~(1UL << (bitno)))
 
-#define MAX_MESSAGE 13 // additional buffer if we need to dup the ending
+#define MAX_MESSAGE 14 // additional buffer if we need to dup the ending
 #define frameStart '{'
 #define frameEnd '}'
 
@@ -331,6 +348,9 @@ void EventDumpZone5ForZone4CallBack(void);
 void EventDumpZone7ForZone6CallBack(void);
 void determineIfTurnOnDump(unsigned char previousZones, unsigned char currentZones);
 void determinIfPumpShouldRun(void);
+void enableDumpWaitCallback(timer_event_pos evnt);
+void enableDumpOnCallback(timer_event_pos evnt);
+unsigned int getDumpOnTime(void);
 
 void monitor_water_pressure(void);
 void monitor_pump_run(void);
@@ -339,5 +359,8 @@ void monitor_pump_run(void);
 void clear_callback_for_shutdown(void);
 
 void process_get_status_message(char * inmessage);
+void process_get_status_message(char * inmessage);
+unsigned char calculateChecksum(const char* str);
+void process_error_stats_message(char msgAddress);
 
 #endif
