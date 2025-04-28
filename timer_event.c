@@ -39,7 +39,7 @@ clear_callback_for_shutdown(void) {
 
 void
 init_event_timer(void) {
-     memset((void*)&timer_events[0],0,sizeof(timer_events));
+    memset((void*) &timer_events[0], 0, sizeof (timer_events));
 #define SET_UP_CALLBACK(cb,n) timer_events[cb].callback = cb##CallBack; timer_events[cb].active=false; // timer_events[cb].name = n;
 
     SET_UP_CALLBACK(EventLowWaterLevel, "EventLowWaterLevelCallBack");
@@ -54,7 +54,7 @@ init_event_timer(void) {
     SET_UP_CALLBACK(EventDumpSolenoid, "EventDumpSolenoidCallBack");
     SET_UP_CALLBACK(EventPODebounce, "EventPODebounceCallBack");
     SET_UP_CALLBACK(EventBoostPumpPODebounce, "EventBoostPumpPODebounceCallBack")
-            SET_UP_CALLBACK(EventGeneralFaultDebounce, "EventGeneralFaultDebounceCallBack")
+    SET_UP_CALLBACK(EventGeneralFaultDebounce, "EventGeneralFaultDebounceCallBack")
     SET_UP_CALLBACK(EventRunSignalDebounce, "EventRunSignalDebounceCallBack");
     SET_UP_CALLBACK(EventDumpZone1ForZone0, "EventDumpZone1ForZone0CallBack")
     SET_UP_CALLBACK(EventDumpZone3ForZone2, "EventDumpZone3ForZone2CallBack")
@@ -103,7 +103,7 @@ process_event_timer(void) {
 
                         (*timer_events[i].callback) ();
 
-    }
+                    }
                 }
             }
         }
