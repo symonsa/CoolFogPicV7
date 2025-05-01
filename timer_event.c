@@ -40,7 +40,7 @@ clear_callback_for_shutdown(void) {
 void
 init_event_timer(void) {
     memset((void*) &timer_events[0], 0, sizeof (timer_events));
-#define SET_UP_CALLBACK(cb,n) timer_events[cb].callback = cb##CallBack; timer_events[cb].active=false; // timer_events[cb].name = n;
+#define SET_UP_CALLBACK(cb,n) timer_events[cb].callback = cb##CallBack; timer_events[cb].active=false; timer_events[cb].flag_bit = 0; timer_events[cb].flag_data=0;// timer_events[cb].name = n;
 
     SET_UP_CALLBACK(EventLowWaterLevel, "EventLowWaterLevelCallBack");
 
