@@ -5,12 +5,16 @@ unsigned char dumpZones = 0;
 unsigned char shouldRun = 0;
 
 void enableDumpWaitCallback(timer_event_pos evnt){
-    timer_events[evnt].flag_bit = 0; 
-    enable_callback(evnt, DUMP_SOLENOID_WAIT_TIME);
+    if (!timer_events[evnt].active) {
+        timer_events[evnt].flag_bit = 0;
+        enable_callback(evnt, DUMP_SOLENOID_WAIT_TIME);
+    }
 }
 void enableDumpOnCallback(timer_event_pos evnt){
-    timer_events[evnt].flag_bit = 1; 
-    enable_callback(evnt, getDumpOnTime());
+    if (!timer_events[evnt].active) {
+        timer_events[evnt].flag_bit = 1;
+        enable_callback(evnt, getDumpOnTime());
+    }
 }
 
 
