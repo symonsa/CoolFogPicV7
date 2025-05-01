@@ -12,7 +12,9 @@ shutdown(void) {
      */
     MAIN_PUMP_SET(0);
     BOOST_PUMP_SET(0);
-    disableZonesDueToFault = true;
+     if (FAULT_EXISTS) {
+        disableZonesDueToFault = true;
+    }
 
 
     // wait 2 sec and then turn on dump
