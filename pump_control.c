@@ -164,16 +164,16 @@
 #include <stdio.h>
 
 #if defined _PIC18F4550_H_ || defined _PIC18F4523_H_
-#define LOOP_COUNT_TO_SEND (1 << 10)
+#define LOOP_COUNT_TO_SEND (1 << 11)
 #else
 #define LOOP_COUNT_TO_SEND (1 << 10)
 #endif
+#define COUNT_TO_SEND_STATS (16)
 //#define DEBUG_STATUS 1
 
 pump_state_e state = standbyState;
 unsigned char commsZones = 0, combinedZones = 0;
 unsigned char disableZonesDueToFault = 0;
-
 
 void combineZones(void) {
     unsigned char manualZonesOn = ~manualZones;
@@ -363,15 +363,15 @@ to the WDT. This sequence must be followed even if the WDT is disabled.
 
 
 
-   
+
     state = standbyState;
     commsZones = 0;
     combinedZones = 0;
     disableZonesDueToFault = 0;
     combineZones();
     inIdleDumpHour = 0;
-      init_event_timer();
-     GIE = 1;
+    init_event_timer();
+    GIE = 1;
 
 
 
@@ -383,7 +383,7 @@ to the WDT. This sequence must be followed even if the WDT is disabled.
 void
 resetPump(void) {
     init();
-  
+
 }
 
 /**
@@ -431,11 +431,11 @@ void
 setAnyFaultStatus(void) {
     if (FAULT_EXISTS) {
         ANY_FAULT_SET(1);
-      
+
     } else {
         ANY_FAULT_SET(0);
-         disableZonesDueToFault = 0;
-       
+        disableZonesDueToFault = 0;
+
     }
 }
 void mainserial(void);
@@ -448,7 +448,8 @@ main(void) {
     init();
     init_event_timer();
     ser_int();
-    printf("waiting{0m0000}\n\r");
+    unsigned char outputStatsCounter = 0;
+    printf("waiting v2025-05-01 {0m0000}\n\r");
     //        while (1) {
     //            serial_process_loop();
     //            toggleLeds();
@@ -487,7 +488,11 @@ main(void) {
             printFaultState();
 #ifndef DEBUG_STATUS            
             process_get_status_message(sendGetMessageBuffer);
-            process_error_stats_message('0');
+            outputStatsCounter++;
+            if (outputStatsCounter > COUNT_TO_SEND_STATS) {
+                process_error_stats_message('0');
+                outputStatsCounter = 0;
+            }
 #endif
             //debugIfShouldReset();
             msg_counter = 0;
