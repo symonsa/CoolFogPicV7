@@ -46,7 +46,7 @@ standby (void)
   //   3/If RUN goes lo then start pump.
   //		3/If RUN goes lo then start pump sequence as follows. 
   if (RUN_SIGNAL_ACTIVE && !FAULT_EXISTS) {
-
+    disableZonesDueToFault = false;
     state = startpumpInitialState;
     inIdleDumpHour = 0;
      DUMP_SOLENOID_SET (0);
